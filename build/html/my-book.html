@@ -1,0 +1,819 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link href="data:text/css;charset=utf-8,%0A%0A%0Aarticle%2C%0Aaside%2C%0Adetails%2C%0Afigcaption%2C%0Afigure%2C%0Afooter%2C%0Aheader%2C%0Ahgroup%2C%0Amain%2C%0Anav%2C%0Asection%2C%0Asummary%20%7B%0Adisplay%3A%20block%3B%0A%7D%0A%0Aaudio%2C%0Acanvas%2C%0Avideo%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0A%7D%0A%0Aaudio%3Anot%28%5Bcontrols%5D%29%20%7B%0Adisplay%3A%20none%3B%0Aheight%3A%200%3B%0A%7D%0A%0A%5Bhidden%5D%2C%0Atemplate%20%7B%0Adisplay%3A%20none%3B%0A%7D%0A%0A%0Ahtml%20%7B%0Afont%2Dfamily%3A%20sans%2Dserif%3B%20%0A%2Dms%2Dtext%2Dsize%2Dadjust%3A%20100%25%3B%20%0A%2Dwebkit%2Dtext%2Dsize%2Dadjust%3A%20100%25%3B%20%0A%7D%0A%0Abody%20%7B%0Amargin%3A%200%3B%0A%7D%0A%0A%0Aa%20%7B%0Abackground%3A%20transparent%3B%0A%7D%0A%0Aa%3Afocus%20%7B%0Aoutline%3A%20thin%20dotted%3B%0A%7D%0A%0Aa%3Aactive%2C%0Aa%3Ahover%20%7B%0Aoutline%3A%200%3B%0A%7D%0A%0A%0Ah1%20%7B%0Afont%2Dsize%3A%202em%3B%0Amargin%3A%200%2E67em%200%3B%0A%7D%0A%0Aabbr%5Btitle%5D%20%7B%0Aborder%2Dbottom%3A%201px%20dotted%3B%0A%7D%0A%0Ab%2C%0Astrong%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%0Adfn%20%7B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0A%0Ahr%20%7B%0A%2Dmoz%2Dbox%2Dsizing%3A%20content%2Dbox%3B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Aheight%3A%200%3B%0A%7D%0A%0Amark%20%7B%0Abackground%3A%20%23ff0%3B%0Acolor%3A%20%23000%3B%0A%7D%0A%0Acode%2C%0Akbd%2C%0Apre%2C%0Asamp%20%7B%0Afont%2Dfamily%3A%20monospace%2C%20serif%3B%0Afont%2Dsize%3A%201em%3B%0A%7D%0A%0Apre%20%7B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%0A%7D%0A%0Aq%20%7B%0Aquotes%3A%20%22%5C201C%22%20%22%5C201D%22%20%22%5C2018%22%20%22%5C2019%22%3B%0A%7D%0A%0Asmall%20%7B%0Afont%2Dsize%3A%2080%25%3B%0A%7D%0A%0Asub%2C%0Asup%20%7B%0Afont%2Dsize%3A%2075%25%3B%0Aline%2Dheight%3A%200%3B%0Aposition%3A%20relative%3B%0Avertical%2Dalign%3A%20baseline%3B%0A%7D%0Asup%20%7B%0Atop%3A%20%2D0%2E5em%3B%0A%7D%0Asub%20%7B%0Abottom%3A%20%2D0%2E25em%3B%0A%7D%0A%0A%0Aimg%20%7B%0Aborder%3A%200%3B%0A%7D%0A%0Asvg%3Anot%28%3Aroot%29%20%7B%0Aoverflow%3A%20hidden%3B%0A%7D%0A%0A%0Afigure%20%7B%0Amargin%3A%200%3B%0A%7D%0A%0A%0Afieldset%20%7B%0Aborder%3A%201px%20solid%20%23c0c0c0%3B%0Amargin%3A%200%202px%3B%0Apadding%3A%200%2E35em%200%2E625em%200%2E75em%3B%0A%7D%0A%0Alegend%20%7B%0Aborder%3A%200%3B%20%0Apadding%3A%200%3B%20%0A%7D%0A%0Abutton%2C%0Ainput%2C%0Aselect%2C%0Atextarea%20%7B%0Afont%2Dfamily%3A%20inherit%3B%20%0Afont%2Dsize%3A%20100%25%3B%20%0Amargin%3A%200%3B%20%0A%7D%0A%0Abutton%2C%0Ainput%20%7B%0Aline%2Dheight%3A%20normal%3B%0A%7D%0A%0Abutton%2C%0Aselect%20%7B%0Atext%2Dtransform%3A%20none%3B%0A%7D%0A%0Abutton%2C%0Ahtml%20input%5Btype%3D%22button%22%5D%2C%20%0Ainput%5Btype%3D%22reset%22%5D%2C%0Ainput%5Btype%3D%22submit%22%5D%20%7B%0A%2Dwebkit%2Dappearance%3A%20button%3B%20%0Acursor%3A%20pointer%3B%20%0A%7D%0A%0Abutton%5Bdisabled%5D%2C%0Ahtml%20input%5Bdisabled%5D%20%7B%0Acursor%3A%20default%3B%0A%7D%0A%0Ainput%5Btype%3D%22checkbox%22%5D%2C%0Ainput%5Btype%3D%22radio%22%5D%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%20%0Apadding%3A%200%3B%20%0A%7D%0A%0Ainput%5Btype%3D%22search%22%5D%20%7B%0A%2Dwebkit%2Dappearance%3A%20textfield%3B%20%0A%2Dmoz%2Dbox%2Dsizing%3A%20content%2Dbox%3B%0A%2Dwebkit%2Dbox%2Dsizing%3A%20content%2Dbox%3B%20%0Abox%2Dsizing%3A%20content%2Dbox%3B%0A%7D%0A%0Ainput%5Btype%3D%22search%22%5D%3A%3A%2Dwebkit%2Dsearch%2Dcancel%2Dbutton%2C%0Ainput%5Btype%3D%22search%22%5D%3A%3A%2Dwebkit%2Dsearch%2Ddecoration%20%7B%0A%2Dwebkit%2Dappearance%3A%20none%3B%0A%7D%0A%0Abutton%3A%3A%2Dmoz%2Dfocus%2Dinner%2C%0Ainput%3A%3A%2Dmoz%2Dfocus%2Dinner%20%7B%0Aborder%3A%200%3B%0Apadding%3A%200%3B%0A%7D%0A%0Atextarea%20%7B%0Aoverflow%3A%20auto%3B%20%0Avertical%2Dalign%3A%20top%3B%20%0A%7D%0A%0A%0Atable%20%7B%0Aborder%2Dcollapse%3A%20collapse%3B%0Aborder%2Dspacing%3A%200%3B%0A%7D%0A%2Ego%2Dtop%20%7B%0Aposition%3A%20fixed%3B%0Abottom%3A%202em%3B%0Aright%3A%202em%3B%0Atext%2Ddecoration%3A%20none%3B%0Abackground%2Dcolor%3A%20%23E0E0E0%3B%0Afont%2Dsize%3A%2012px%3B%0Apadding%3A%201em%3B%0Adisplay%3A%20inline%3B%0A%7D%0A%0Ahtml%2Cbody%7B%20margin%3A%20auto%3B%0Apadding%2Dright%3A%201em%3B%0Apadding%2Dleft%3A%201em%3B%0Amax%2Dwidth%3A%2044em%3B%20color%3Ablack%3B%7D%2A%3Anot%28%27%23mkdbuttons%27%29%7Bmargin%3A0%3Bpadding%3A0%7Dbody%7Bfont%3A13%2E34px%20helvetica%2Carial%2Cfreesans%2Cclean%2Csans%2Dserif%3B%2Dwebkit%2Dfont%2Dsmoothing%3Asubpixel%2Dantialiased%3Bline%2Dheight%3A1%2E4%3Bpadding%3A3px%3Bbackground%3A%23fff%3Bborder%2Dradius%3A3px%3B%2Dmoz%2Dborder%2Dradius%3A3px%3B%2Dwebkit%2Dborder%2Dradius%3A3px%7Dp%7Bmargin%3A1em%200%7Da%7Bcolor%3A%234183c4%3Btext%2Ddecoration%3Anone%7Dbody%7Bbackground%2Dcolor%3A%23fff%3Bpadding%3A30px%3Bmargin%3A15px%3Bfont%2Dsize%3A14px%3Bline%2Dheight%3A1%2E6%7Dbody%3E%2A%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%21important%7Dbody%3E%2A%3Alast%2Dchild%7Bmargin%2Dbottom%3A0%21important%7D%40media%20screen%7Bbody%7Bbox%2Dshadow%3A0%200%200%201px%20%23cacaca%2C0%200%200%204px%20%23eee%7D%7Dh1%2Ch2%2Ch3%2Ch4%2Ch5%2Ch6%7Bmargin%3A20px%200%2010px%3Bpadding%3A0%3Bfont%2Dweight%3Abold%3B%2Dwebkit%2Dfont%2Dsmoothing%3Asubpixel%2Dantialiased%3Bcursor%3Atext%7Dh1%7Bfont%2Dsize%3A28px%3Bcolor%3A%23000%7Dh2%7Bfont%2Dsize%3A24px%3Bborder%2Dbottom%3A1px%20solid%20%23ccc%3Bcolor%3A%23000%7Dh3%7Bfont%2Dsize%3A18px%3Bcolor%3A%23333%7Dh4%7Bfont%2Dsize%3A16px%3Bcolor%3A%23333%7Dh5%7Bfont%2Dsize%3A14px%3Bcolor%3A%23333%7Dh6%7Bcolor%3A%23777%3Bfont%2Dsize%3A14px%7Dp%2Cblockquote%2Ctable%2Cpre%7Bmargin%3A15px%200%7Dul%7Bpadding%2Dleft%3A30px%7Dol%7Bpadding%2Dleft%3A30px%7Dol%20li%20ul%3Afirst%2Dof%2Dtype%7Bmargin%2Dtop%3A0%7Dhr%7Bbackground%3Atransparent%20url%28data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw%2FeHBhY2tldCBiZWdpbj0i77u%2FIiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8%2BIDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI%2FPqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC%29%20repeat%2Dx%200%200%3Bborder%3A0%20none%3Bcolor%3A%23ccc%3Bheight%3A4px%3Bpadding%3A0%7Dbody%3Eh2%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%3Bpadding%2Dtop%3A0%7Dbody%3Eh1%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%3Bpadding%2Dtop%3A0%7Dbody%3Eh1%3Afirst%2Dchild%2Bh2%7Bmargin%2Dtop%3A0%3Bpadding%2Dtop%3A0%7Dbody%3Eh3%3Afirst%2Dchild%2Cbody%3Eh4%3Afirst%2Dchild%2Cbody%3Eh5%3Afirst%2Dchild%2Cbody%3Eh6%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%3Bpadding%2Dtop%3A0%7Da%3Afirst%2Dchild%20h1%2Ca%3Afirst%2Dchild%20h2%2Ca%3Afirst%2Dchild%20h3%2Ca%3Afirst%2Dchild%20h4%2Ca%3Afirst%2Dchild%20h5%2Ca%3Afirst%2Dchild%20h6%7Bmargin%2Dtop%3A0%3Bpadding%2Dtop%3A0%7Dh1%2Bp%2Ch2%2Bp%2Ch3%2Bp%2Ch4%2Bp%2Ch5%2Bp%2Ch6%2Bp%2Cul%20li%3E%3Afirst%2Dchild%2Col%20li%3E%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%7Ddl%7Bpadding%3A0%7Ddl%20dt%7Bfont%2Dsize%3A14px%3Bfont%2Dweight%3Abold%3Bfont%2Dstyle%3Aitalic%3Bpadding%3A0%3Bmargin%3A15px%200%205px%7Ddl%20dt%3Afirst%2Dchild%7Bpadding%3A0%7Ddl%20dt%3E%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%7Ddl%20dt%3E%3Alast%2Dchild%7Bmargin%2Dbottom%3A0%7Ddl%20dd%7Bmargin%3A0%200%2015px%3Bpadding%3A0%2015px%7Ddl%20dd%3E%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%7Ddl%20dd%3E%3Alast%2Dchild%7Bmargin%2Dbottom%3A0%7Dblockquote%7Bborder%2Dleft%3A4px%20solid%20%23DDD%3Bpadding%3A0%2015px%3Bcolor%3A%23777%7Dblockquote%3E%3Afirst%2Dchild%7Bmargin%2Dtop%3A0%7Dblockquote%3E%3Alast%2Dchild%7Bmargin%2Dbottom%3A0%7Dtable%7Bborder%2Dcollapse%3Acollapse%3Bborder%2Dspacing%3A0%3Bfont%2Dsize%3A100%25%3Bfont%3Ainherit%7Dtable%20th%7Bfont%2Dweight%3Abold%3Bborder%3A1px%20solid%20%23ccc%3Bpadding%3A6px%2013px%7Dtable%20td%7Bborder%3A1px%20solid%20%23ccc%3Bpadding%3A6px%2013px%7Dtable%20tr%7Bborder%2Dtop%3A1px%20solid%20%23ccc%3Bbackground%2Dcolor%3A%23fff%7Dtable%20tr%3Anth%2Dchild%282n%29%7Bbackground%2Dcolor%3A%23f8f8f8%7Dimg%7Bmax%2Dwidth%3A100%25%7Dcode%2Ctt%7Bmargin%3A0%202px%3Bpadding%3A0%205px%3Bwhite%2Dspace%3Anowrap%3Bborder%3A1px%20solid%20%23eaeaea%3Bbackground%2Dcolor%3A%23f8f8f8%3Bborder%2Dradius%3A3px%3Bfont%2Dfamily%3AConsolas%2C%27Liberation%20Mono%27%2CCourier%2Cmonospace%3Bfont%2Dsize%3A12px%3Bcolor%3A%23333%7Dpre%3Ecode%7Bmargin%3A0%3Bpadding%3A0%3Bwhite%2Dspace%3Apre%3Bborder%3A0%3Bbackground%3Atransparent%7D%2Ehighlight%20pre%7Bbackground%2Dcolor%3A%23f8f8f8%3Bborder%3A1px%20solid%20%23ccc%3Bfont%2Dsize%3A13px%3Bline%2Dheight%3A19px%3Boverflow%3Aauto%3Bpadding%3A6px%2010px%3Bborder%2Dradius%3A3px%7Dpre%7Bbackground%2Dcolor%3A%23f8f8f8%3Bborder%3A1px%20solid%20%23ccc%3Bfont%2Dsize%3A13px%3Bline%2Dheight%3A19px%3Boverflow%3Aauto%3Bpadding%3A6px%2010px%3Bborder%2Dradius%3A3px%7Dpre%20code%2Cpre%20tt%7Bbackground%2Dcolor%3Atransparent%3Bborder%3A0%7D%2Epoetry%20pre%7Bfont%2Dfamily%3AGeorgia%2CGaramond%2Cserif%21important%3Bfont%2Dstyle%3Aitalic%3Bfont%2Dsize%3A110%25%21important%3Bline%2Dheight%3A1%2E6em%3Bdisplay%3Ablock%3Bmargin%2Dleft%3A1em%7D%2Epoetry%20pre%20code%7Bfont%2Dfamily%3AGeorgia%2CGaramond%2Cserif%21important%3Bword%2Dbreak%3Abreak%2Dall%3Bword%2Dbreak%3Abreak%2Dword%3B%2Dwebkit%2Dhyphens%3Aauto%3B%2Dmoz%2Dhyphens%3Aauto%3Bhyphens%3Aauto%3Bwhite%2Dspace%3Apre%2Dwrap%7Dsup%2Csub%2Ca%2Efootnote%7Bfont%2Dsize%3A1%2E4ex%3Bheight%3A0%3Bline%2Dheight%3A1%3Bvertical%2Dalign%3Asuper%3Bposition%3Arelative%7Dsub%7Bvertical%2Dalign%3Asub%3Btop%3A%2D1px%7D%40media%20print%7Bbody%7Bbackground%3A%23fff%7Dimg%2Cpre%2Cblockquote%2Ctable%2Cfigure%7Bpage%2Dbreak%2Dinside%3Aavoid%7Dbody%7Bbackground%3A%23fff%3Bborder%3A0%7Dcode%7Bbackground%2Dcolor%3A%23fff%3Bcolor%3A%23333%21important%3Bpadding%3A0%20%2E2em%3Bborder%3A1px%20solid%20%23dedede%7Dpre%7Bbackground%3A%23fff%7Dpre%20code%7Bbackground%2Dcolor%3Awhite%21important%3Boverflow%3Avisible%7D%7D%40media%20screen%7Bbody%2Einverted%7Bcolor%3A%23eee%21important%3Bborder%2Dcolor%3A%23555%3Bbox%2Dshadow%3Anone%7D%2Einverted%20body%2C%2Einverted%20hr%20%2Einverted%20p%2C%2Einverted%20td%2C%2Einverted%20li%2C%2Einverted%20h1%2C%2Einverted%20h2%2C%2Einverted%20h3%2C%2Einverted%20h4%2C%2Einverted%20h5%2C%2Einverted%20h6%2C%2Einverted%20th%2C%2Einverted%20%2Emath%2C%2Einverted%20caption%2C%2Einverted%20dd%2C%2Einverted%20dt%2C%2Einverted%20blockquote%7Bcolor%3A%23eee%21important%3Bborder%2Dcolor%3A%23555%3Bbox%2Dshadow%3Anone%7D%2Einverted%20td%2C%2Einverted%20th%7Bbackground%3A%23333%7D%2Einverted%20h2%7Bborder%2Dcolor%3A%23555%7D%2Einverted%20hr%7Bborder%2Dcolor%3A%23777%3Bborder%2Dwidth%3A1px%21important%7D%3A%3Aselection%7Bbackground%3Argba%28157%2C193%2C200%2C0%2E5%29%7Dh1%3A%3Aselection%7Bbackground%2Dcolor%3Argba%2845%2C156%2C208%2C0%2E3%29%7Dh2%3A%3Aselection%7Bbackground%2Dcolor%3Argba%2890%2C182%2C224%2C0%2E3%29%7Dh3%3A%3Aselection%2Ch4%3A%3Aselection%2Ch5%3A%3Aselection%2Ch6%3A%3Aselection%2Cli%3A%3Aselection%2Col%3A%3Aselection%7Bbackground%2Dcolor%3Argba%28133%2C201%2C232%2C0%2E3%29%7Dcode%3A%3Aselection%7Bbackground%2Dcolor%3Argba%280%2C0%2C0%2C0%2E7%29%3Bcolor%3A%23eee%7Dcode%20span%3A%3Aselection%7Bbackground%2Dcolor%3Argba%280%2C0%2C0%2C0%2E7%29%21important%3Bcolor%3A%23eee%21important%7Da%3A%3Aselection%7Bbackground%2Dcolor%3Argba%28255%2C230%2C102%2C0%2E2%29%7D%2Einverted%20a%3A%3Aselection%7Bbackground%2Dcolor%3Argba%28255%2C230%2C102%2C0%2E6%29%7Dtd%3A%3Aselection%2Cth%3A%3Aselection%2Ccaption%3A%3Aselection%7Bbackground%2Dcolor%3Argba%28180%2C237%2C95%2C0%2E5%29%7D%2Einverted%7Bbackground%3A%230b2531%3Bbackground%3A%23252a2a%7D%2Einverted%20body%7Bbackground%3A%23252a2a%7D%2Einverted%20a%7Bcolor%3A%23acd1d5%7D%7D%2Ehighlight%20%2Ec%7Bcolor%3A%23998%3Bfont%2Dstyle%3Aitalic%7D%2Ehighlight%20%2Eerr%7Bcolor%3A%23a61717%3Bbackground%2Dcolor%3A%23e3d2d2%7D%2Ehighlight%20%2Ek%2C%2Ehighlight%20%2Eo%7Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Ecm%7Bcolor%3A%23998%3Bfont%2Dstyle%3Aitalic%7D%2Ehighlight%20%2Ecp%7Bcolor%3A%23999%3Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Ec1%7Bcolor%3A%23998%3Bfont%2Dstyle%3Aitalic%7D%2Ehighlight%20%2Ecs%7Bcolor%3A%23999%3Bfont%2Dweight%3Abold%3Bfont%2Dstyle%3Aitalic%7D%2Ehighlight%20%2Egd%7Bcolor%3A%23000%3Bbackground%2Dcolor%3A%23fdd%7D%2Ehighlight%20%2Egd%20%2Ex%7Bcolor%3A%23000%3Bbackground%2Dcolor%3A%23faa%7D%2Ehighlight%20%2Ege%7Bfont%2Dstyle%3Aitalic%7D%2Ehighlight%20%2Egr%7Bcolor%3A%23a00%7D%2Ehighlight%20%2Egh%7Bcolor%3A%23999%7D%2Ehighlight%20%2Egi%7Bcolor%3A%23000%3Bbackground%2Dcolor%3A%23dfd%7D%2Ehighlight%20%2Egi%20%2Ex%7Bcolor%3A%23000%3Bbackground%2Dcolor%3A%23afa%7D%2Ehighlight%20%2Ego%7Bcolor%3A%23888%7D%2Ehighlight%20%2Egp%7Bcolor%3A%23555%7D%2Ehighlight%20%2Egs%7Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Egu%7Bcolor%3A%23800080%3Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Egt%7Bcolor%3A%23a00%7D%2Ehighlight%20%2Ekc%2C%2Ehighlight%20%2Ekd%2C%2Ehighlight%20%2Ekn%2C%2Ehighlight%20%2Ekp%2C%2Ehighlight%20%2Ekr%7Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Ekt%7Bcolor%3A%23458%3Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Em%7Bcolor%3A%23099%7D%2Ehighlight%20%2Es%7Bcolor%3A%23d14%7D%2Ehighlight%20%2Ena%7Bcolor%3A%23008080%7D%2Ehighlight%20%2Enb%7Bcolor%3A%230086b3%7D%2Ehighlight%20%2Enc%7Bcolor%3A%23458%3Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Eno%7Bcolor%3A%23008080%7D%2Ehighlight%20%2Eni%7Bcolor%3A%23800080%7D%2Ehighlight%20%2Ene%2C%2Ehighlight%20%2Enf%7Bcolor%3A%23900%3Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Enn%7Bcolor%3A%23555%7D%2Ehighlight%20%2Ent%7Bcolor%3A%23000080%7D%2Ehighlight%20%2Env%7Bcolor%3A%23008080%7D%2Ehighlight%20%2Eow%7Bfont%2Dweight%3Abold%7D%2Ehighlight%20%2Ew%7Bcolor%3A%23bbb%7D%2Ehighlight%20%2Emf%2C%2Ehighlight%20%2Emh%2C%2Ehighlight%20%2Emi%2C%2Ehighlight%20%2Emo%7Bcolor%3A%23099%7D%2Ehighlight%20%2Esb%2C%2Ehighlight%20%2Esc%2C%2Ehighlight%20%2Esd%2C%2Ehighlight%20%2Es2%2C%2Ehighlight%20%2Ese%2C%2Ehighlight%20%2Esh%2C%2Ehighlight%20%2Esi%2C%2Ehighlight%20%2Esx%7Bcolor%3A%23d14%7D%2Ehighlight%20%2Esr%7Bcolor%3A%23009926%7D%2Ehighlight%20%2Es1%7Bcolor%3A%23d14%7D%2Ehighlight%20%2Ess%7Bcolor%3A%23990073%7D%2Ehighlight%20%2Ebp%7Bcolor%3A%23999%7D%2Ehighlight%20%2Evc%2C%2Ehighlight%20%2Evg%2C%2Ehighlight%20%2Evi%7Bcolor%3A%23008080%7D%2Ehighlight%20%2Eil%7Bcolor%3A%23099%7D%2Ehighlight%20%2Egc%7Bcolor%3A%23999%3Bbackground%2Dcolor%3A%23eaf2f5%7D%2Etype%2Dcsharp%20%2Ehighlight%20%2Ek%2C%2Etype%2Dcsharp%20%2Ehighlight%20%2Ekt%7Bcolor%3A%2300F%7D%2Etype%2Dcsharp%20%2Ehighlight%20%2Enf%7Bcolor%3A%23000%3Bfont%2Dweight%3Anormal%7D%2Etype%2Dcsharp%20%2Ehighlight%20%2Enc%7Bcolor%3A%232b91af%7D%2Etype%2Dcsharp%20%2Ehighlight%20%2Enn%7Bcolor%3A%23000%7D%2Etype%2Dcsharp%20%2Ehighlight%20%2Es%2C%2Etype%2Dcsharp%20%2Ehighlight%20%2Esc%7Bcolor%3A%23a31515%7D%0A" rel="stylesheet" type="text/css" />
+  <script type="text/javascript">/*<![CDATA[*/
+  /*
+  LaTeXMathML.js from http://math.etsu.edu/LaTeXMathML/
+  Adapted by Jeff Knisely and Douglas Woodall from ASCIIMathML.js v. 1.4.7,
+  (c) 2005 Peter Jipsen http://www.chapman.edu/~jipsen.
+  Released under the GNU General Public License version 2 or later.
+  See the GNU General Public License (at http://www.gnu.org/copyleft/gpl.html)
+  for more details.
+  */
+  var checkForMathML=true;var notifyIfNoMathML=true;var alertIfNoMathML=false;var mathcolor="";var mathfontfamily="";var showasciiformulaonhover=true;var isIE=document.createElementNS==null;if(document.getElementById==null)
+  alert("This webpage requires a recent browser such as \nMozilla/Netscape 7+ or Internet Explorer 6+MathPlayer")
+  function AMcreateElementXHTML(t){if(isIE)return document.createElement(t);else return document.createElementNS("http://www.w3.org/1999/xhtml",t);}
+  function AMnoMathMLNote(){var nd=AMcreateElementXHTML("h3");nd.setAttribute("align","center")
+  nd.appendChild(AMcreateElementXHTML("p"));nd.appendChild(document.createTextNode("To view the "));var an=AMcreateElementXHTML("a");an.appendChild(document.createTextNode("LaTeXMathML"));an.setAttribute("href","http://www.maths.nott.ac.uk/personal/drw/lm.html");nd.appendChild(an);nd.appendChild(document.createTextNode(" notation use Internet Explorer 6+"));an=AMcreateElementXHTML("a");an.appendChild(document.createTextNode("MathPlayer"));an.setAttribute("href","http://www.dessci.com/en/products/mathplayer/download.htm");nd.appendChild(an);nd.appendChild(document.createTextNode(" or Netscape/Mozilla/Firefox"));nd.appendChild(AMcreateElementXHTML("p"));return nd;}
+  function AMisMathMLavailable(){if(navigator.appName.slice(0,8)=="Netscape")
+  if(navigator.appVersion.slice(0,1)>="5")return null;else return AMnoMathMLNote();else if(navigator.appName.slice(0,9)=="Microsoft")
+  try{var ActiveX=new ActiveXObject("MathPlayer.Factory.1");return null;}catch(e){return AMnoMathMLNote();}
+  else return AMnoMathMLNote();}
+  var AMcal=[0xEF35,0x212C,0xEF36,0xEF37,0x2130,0x2131,0xEF38,0x210B,0x2110,0xEF39,0xEF3A,0x2112,0x2133,0xEF3B,0xEF3C,0xEF3D,0xEF3E,0x211B,0xEF3F,0xEF40,0xEF41,0xEF42,0xEF43,0xEF44,0xEF45,0xEF46];var AMfrk=[0xEF5D,0xEF5E,0x212D,0xEF5F,0xEF60,0xEF61,0xEF62,0x210C,0x2111,0xEF63,0xEF64,0xEF65,0xEF66,0xEF67,0xEF68,0xEF69,0xEF6A,0x211C,0xEF6B,0xEF6C,0xEF6D,0xEF6E,0xEF6F,0xEF70,0xEF71,0x2128];var AMbbb=[0xEF8C,0xEF8D,0x2102,0xEF8E,0xEF8F,0xEF90,0xEF91,0x210D,0xEF92,0xEF93,0xEF94,0xEF95,0xEF96,0x2115,0xEF97,0x2119,0x211A,0x211D,0xEF98,0xEF99,0xEF9A,0xEF9B,0xEF9C,0xEF9D,0xEF9E,0x2124];var CONST=0,UNARY=1,BINARY=2,INFIX=3,LEFTBRACKET=4,RIGHTBRACKET=5,SPACE=6,UNDEROVER=7,DEFINITION=8,TEXT=9,BIG=10,LONG=11,STRETCHY=12,MATRIX=13;var AMsqrt={input:"\\sqrt",tag:"msqrt",output:"sqrt",ttype:UNARY},AMroot={input:"\\root",tag:"mroot",output:"root",ttype:BINARY},AMfrac={input:"\\frac",tag:"mfrac",output:"/",ttype:BINARY},AMover={input:"\\stackrel",tag:"mover",output:"stackrel",ttype:BINARY},AMatop={input:"\\atop",tag:"mfrac",output:"",ttype:INFIX},AMchoose={input:"\\choose",tag:"mfrac",output:"",ttype:INFIX},AMsub={input:"_",tag:"msub",output:"_",ttype:INFIX},AMsup={input:"^",tag:"msup",output:"^",ttype:INFIX},AMtext={input:"\\mathrm",tag:"mtext",output:"text",ttype:TEXT},AMmbox={input:"\\mbox",tag:"mtext",output:"mbox",ttype:TEXT};var AMsymbols=[{input:"\\alpha",tag:"mi",output:"\u03B1",ttype:CONST},{input:"\\beta",tag:"mi",output:"\u03B2",ttype:CONST},{input:"\\gamma",tag:"mi",output:"\u03B3",ttype:CONST},{input:"\\delta",tag:"mi",output:"\u03B4",ttype:CONST},{input:"\\epsilon",tag:"mi",output:"\u03B5",ttype:CONST},{input:"\\varepsilon",tag:"mi",output:"\u025B",ttype:CONST},{input:"\\zeta",tag:"mi",output:"\u03B6",ttype:CONST},{input:"\\eta",tag:"mi",output:"\u03B7",ttype:CONST},{input:"\\theta",tag:"mi",output:"\u03B8",ttype:CONST},{input:"\\vartheta",tag:"mi",output:"\u03D1",ttype:CONST},{input:"\\iota",tag:"mi",output:"\u03B9",ttype:CONST},{input:"\\kappa",tag:"mi",output:"\u03BA",ttype:CONST},{input:"\\lambda",tag:"mi",output:"\u03BB",ttype:CONST},{input:"\\mu",tag:"mi",output:"\u03BC",ttype:CONST},{input:"\\nu",tag:"mi",output:"\u03BD",ttype:CONST},{input:"\\xi",tag:"mi",output:"\u03BE",ttype:CONST},{input:"\\pi",tag:"mi",output:"\u03C0",ttype:CONST},{input:"\\varpi",tag:"mi",output:"\u03D6",ttype:CONST},{input:"\\rho",tag:"mi",output:"\u03C1",ttype:CONST},{input:"\\varrho",tag:"mi",output:"\u03F1",ttype:CONST},{input:"\\varsigma",tag:"mi",output:"\u03C2",ttype:CONST},{input:"\\sigma",tag:"mi",output:"\u03C3",ttype:CONST},{input:"\\tau",tag:"mi",output:"\u03C4",ttype:CONST},{input:"\\upsilon",tag:"mi",output:"\u03C5",ttype:CONST},{input:"\\phi",tag:"mi",output:"\u03C6",ttype:CONST},{input:"\\varphi",tag:"mi",output:"\u03D5",ttype:CONST},{input:"\\chi",tag:"mi",output:"\u03C7",ttype:CONST},{input:"\\psi",tag:"mi",output:"\u03C8",ttype:CONST},{input:"\\omega",tag:"mi",output:"\u03C9",ttype:CONST},{input:"\\Gamma",tag:"mo",output:"\u0393",ttype:CONST},{input:"\\Delta",tag:"mo",output:"\u0394",ttype:CONST},{input:"\\Theta",tag:"mo",output:"\u0398",ttype:CONST},{input:"\\Lambda",tag:"mo",output:"\u039B",ttype:CONST},{input:"\\Xi",tag:"mo",output:"\u039E",ttype:CONST},{input:"\\Pi",tag:"mo",output:"\u03A0",ttype:CONST},{input:"\\Sigma",tag:"mo",output:"\u03A3",ttype:CONST},{input:"\\Upsilon",tag:"mo",output:"\u03A5",ttype:CONST},{input:"\\Phi",tag:"mo",output:"\u03A6",ttype:CONST},{input:"\\Psi",tag:"mo",output:"\u03A8",ttype:CONST},{input:"\\Omega",tag:"mo",output:"\u03A9",ttype:CONST},{input:"\\frac12",tag:"mo",output:"\u00BD",ttype:CONST},{input:"\\frac14",tag:"mo",output:"\u00BC",ttype:CONST},{input:"\\frac34",tag:"mo",output:"\u00BE",ttype:CONST},{input:"\\frac13",tag:"mo",output:"\u2153",ttype:CONST},{input:"\\frac23",tag:"mo",output:"\u2154",ttype:CONST},{input:"\\frac15",tag:"mo",output:"\u2155",ttype:CONST},{input:"\\frac25",tag:"mo",output:"\u2156",ttype:CONST},{input:"\\frac35",tag:"mo",output:"\u2157",ttype:CONST},{input:"\\frac45",tag:"mo",output:"\u2158",ttype:CONST},{input:"\\frac16",tag:"mo",output:"\u2159",ttype:CONST},{input:"\\frac56",tag:"mo",output:"\u215A",ttype:CONST},{input:"\\frac18",tag:"mo",output:"\u215B",ttype:CONST},{input:"\\frac38",tag:"mo",output:"\u215C",ttype:CONST},{input:"\\frac58",tag:"mo",output:"\u215D",ttype:CONST},{input:"\\frac78",tag:"mo",output:"\u215E",ttype:CONST},{input:"\\pm",tag:"mo",output:"\u00B1",ttype:CONST},{input:"\\mp",tag:"mo",output:"\u2213",ttype:CONST},{input:"\\triangleleft",tag:"mo",output:"\u22B2",ttype:CONST},{input:"\\triangleright",tag:"mo",output:"\u22B3",ttype:CONST},{input:"\\cdot",tag:"mo",output:"\u22C5",ttype:CONST},{input:"\\star",tag:"mo",output:"\u22C6",ttype:CONST},{input:"\\ast",tag:"mo",output:"\u002A",ttype:CONST},{input:"\\times",tag:"mo",output:"\u00D7",ttype:CONST},{input:"\\div",tag:"mo",output:"\u00F7",ttype:CONST},{input:"\\circ",tag:"mo",output:"\u2218",ttype:CONST},{input:"\\bullet",tag:"mo",output:"\u2022",ttype:CONST},{input:"\\oplus",tag:"mo",output:"\u2295",ttype:CONST},{input:"\\ominus",tag:"mo",output:"\u2296",ttype:CONST},{input:"\\otimes",tag:"mo",output:"\u2297",ttype:CONST},{input:"\\bigcirc",tag:"mo",output:"\u25CB",ttype:CONST},{input:"\\oslash",tag:"mo",output:"\u2298",ttype:CONST},{input:"\\odot",tag:"mo",output:"\u2299",ttype:CONST},{input:"\\land",tag:"mo",output:"\u2227",ttype:CONST},{input:"\\wedge",tag:"mo",output:"\u2227",ttype:CONST},{input:"\\lor",tag:"mo",output:"\u2228",ttype:CONST},{input:"\\vee",tag:"mo",output:"\u2228",ttype:CONST},{input:"\\cap",tag:"mo",output:"\u2229",ttype:CONST},{input:"\\cup",tag:"mo",output:"\u222A",ttype:CONST},{input:"\\sqcap",tag:"mo",output:"\u2293",ttype:CONST},{input:"\\sqcup",tag:"mo",output:"\u2294",ttype:CONST},{input:"\\uplus",tag:"mo",output:"\u228E",ttype:CONST},{input:"\\amalg",tag:"mo",output:"\u2210",ttype:CONST},{input:"\\bigtriangleup",tag:"mo",output:"\u25B3",ttype:CONST},{input:"\\bigtriangledown",tag:"mo",output:"\u25BD",ttype:CONST},{input:"\\dag",tag:"mo",output:"\u2020",ttype:CONST},{input:"\\dagger",tag:"mo",output:"\u2020",ttype:CONST},{input:"\\ddag",tag:"mo",output:"\u2021",ttype:CONST},{input:"\\ddagger",tag:"mo",output:"\u2021",ttype:CONST},{input:"\\lhd",tag:"mo",output:"\u22B2",ttype:CONST},{input:"\\rhd",tag:"mo",output:"\u22B3",ttype:CONST},{input:"\\unlhd",tag:"mo",output:"\u22B4",ttype:CONST},{input:"\\unrhd",tag:"mo",output:"\u22B5",ttype:CONST},{input:"\\sum",tag:"mo",output:"\u2211",ttype:UNDEROVER},{input:"\\prod",tag:"mo",output:"\u220F",ttype:UNDEROVER},{input:"\\bigcap",tag:"mo",output:"\u22C2",ttype:UNDEROVER},{input:"\\bigcup",tag:"mo",output:"\u22C3",ttype:UNDEROVER},{input:"\\bigwedge",tag:"mo",output:"\u22C0",ttype:UNDEROVER},{input:"\\bigvee",tag:"mo",output:"\u22C1",ttype:UNDEROVER},{input:"\\bigsqcap",tag:"mo",output:"\u2A05",ttype:UNDEROVER},{input:"\\bigsqcup",tag:"mo",output:"\u2A06",ttype:UNDEROVER},{input:"\\coprod",tag:"mo",output:"\u2210",ttype:UNDEROVER},{input:"\\bigoplus",tag:"mo",output:"\u2A01",ttype:UNDEROVER},{input:"\\bigotimes",tag:"mo",output:"\u2A02",ttype:UNDEROVER},{input:"\\bigodot",tag:"mo",output:"\u2A00",ttype:UNDEROVER},{input:"\\biguplus",tag:"mo",output:"\u2A04",ttype:UNDEROVER},{input:"\\int",tag:"mo",output:"\u222B",ttype:CONST},{input:"\\oint",tag:"mo",output:"\u222E",ttype:CONST},{input:":=",tag:"mo",output:":=",ttype:CONST},{input:"\\lt",tag:"mo",output:"<",ttype:CONST},{input:"\\gt",tag:"mo",output:">",ttype:CONST},{input:"\\ne",tag:"mo",output:"\u2260",ttype:CONST},{input:"\\neq",tag:"mo",output:"\u2260",ttype:CONST},{input:"\\le",tag:"mo",output:"\u2264",ttype:CONST},{input:"\\leq",tag:"mo",output:"\u2264",ttype:CONST},{input:"\\leqslant",tag:"mo",output:"\u2264",ttype:CONST},{input:"\\ge",tag:"mo",output:"\u2265",ttype:CONST},{input:"\\geq",tag:"mo",output:"\u2265",ttype:CONST},{input:"\\geqslant",tag:"mo",output:"\u2265",ttype:CONST},{input:"\\equiv",tag:"mo",output:"\u2261",ttype:CONST},{input:"\\ll",tag:"mo",output:"\u226A",ttype:CONST},{input:"\\gg",tag:"mo",output:"\u226B",ttype:CONST},{input:"\\doteq",tag:"mo",output:"\u2250",ttype:CONST},{input:"\\prec",tag:"mo",output:"\u227A",ttype:CONST},{input:"\\succ",tag:"mo",output:"\u227B",ttype:CONST},{input:"\\preceq",tag:"mo",output:"\u227C",ttype:CONST},{input:"\\succeq",tag:"mo",output:"\u227D",ttype:CONST},{input:"\\subset",tag:"mo",output:"\u2282",ttype:CONST},{input:"\\supset",tag:"mo",output:"\u2283",ttype:CONST},{input:"\\subseteq",tag:"mo",output:"\u2286",ttype:CONST},{input:"\\supseteq",tag:"mo",output:"\u2287",ttype:CONST},{input:"\\sqsubset",tag:"mo",output:"\u228F",ttype:CONST},{input:"\\sqsupset",tag:"mo",output:"\u2290",ttype:CONST},{input:"\\sqsubseteq",tag:"mo",output:"\u2291",ttype:CONST},{input:"\\sqsupseteq",tag:"mo",output:"\u2292",ttype:CONST},{input:"\\sim",tag:"mo",output:"\u223C",ttype:CONST},{input:"\\simeq",tag:"mo",output:"\u2243",ttype:CONST},{input:"\\approx",tag:"mo",output:"\u2248",ttype:CONST},{input:"\\cong",tag:"mo",output:"\u2245",ttype:CONST},{input:"\\Join",tag:"mo",output:"\u22C8",ttype:CONST},{input:"\\bowtie",tag:"mo",output:"\u22C8",ttype:CONST},{input:"\\in",tag:"mo",output:"\u2208",ttype:CONST},{input:"\\ni",tag:"mo",output:"\u220B",ttype:CONST},{input:"\\owns",tag:"mo",output:"\u220B",ttype:CONST},{input:"\\propto",tag:"mo",output:"\u221D",ttype:CONST},{input:"\\vdash",tag:"mo",output:"\u22A2",ttype:CONST},{input:"\\dashv",tag:"mo",output:"\u22A3",ttype:CONST},{input:"\\models",tag:"mo",output:"\u22A8",ttype:CONST},{input:"\\perp",tag:"mo",output:"\u22A5",ttype:CONST},{input:"\\smile",tag:"mo",output:"\u2323",ttype:CONST},{input:"\\frown",tag:"mo",output:"\u2322",ttype:CONST},{input:"\\asymp",tag:"mo",output:"\u224D",ttype:CONST},{input:"\\notin",tag:"mo",output:"\u2209",ttype:CONST},{input:"\\begin{eqnarray}",output:"X",ttype:MATRIX,invisible:true},{input:"\\begin{array}",output:"X",ttype:MATRIX,invisible:true},{input:"\\\\",output:"}&{",ttype:DEFINITION},{input:"\\end{eqnarray}",output:"}}",ttype:DEFINITION},{input:"\\end{array}",output:"}}",ttype:DEFINITION},{input:"\\big",tag:"mo",output:"X",atval:"1.2",ieval:"2.2",ttype:BIG},{input:"\\Big",tag:"mo",output:"X",atval:"1.6",ieval:"2.6",ttype:BIG},{input:"\\bigg",tag:"mo",output:"X",atval:"2.2",ieval:"3.2",ttype:BIG},{input:"\\Bigg",tag:"mo",output:"X",atval:"2.9",ieval:"3.9",ttype:BIG},{input:"\\left",tag:"mo",output:"X",ttype:LEFTBRACKET},{input:"\\right",tag:"mo",output:"X",ttype:RIGHTBRACKET},{input:"{",output:"{",ttype:LEFTBRACKET,invisible:true},{input:"}",output:"}",ttype:RIGHTBRACKET,invisible:true},{input:"(",tag:"mo",output:"(",atval:"1",ttype:STRETCHY},{input:"[",tag:"mo",output:"[",atval:"1",ttype:STRETCHY},{input:"\\lbrack",tag:"mo",output:"[",atval:"1",ttype:STRETCHY},{input:"\\{",tag:"mo",output:"{",atval:"1",ttype:STRETCHY},{input:"\\lbrace",tag:"mo",output:"{",atval:"1",ttype:STRETCHY},{input:"\\langle",tag:"mo",output:"\u2329",atval:"1",ttype:STRETCHY},{input:"\\lfloor",tag:"mo",output:"\u230A",atval:"1",ttype:STRETCHY},{input:"\\lceil",tag:"mo",output:"\u2308",atval:"1",ttype:STRETCHY},{input:")",tag:"mo",output:")",rtag:"mi",atval:"1",ttype:STRETCHY},{input:"]",tag:"mo",output:"]",rtag:"mi",atval:"1",ttype:STRETCHY},{input:"\\rbrack",tag:"mo",output:"]",rtag:"mi",atval:"1",ttype:STRETCHY},{input:"\\}",tag:"mo",output:"}",rtag:"mi",atval:"1",ttype:STRETCHY},{input:"\\rbrace",tag:"mo",output:"}",rtag:"mi",atval:"1",ttype:STRETCHY},{input:"\\rangle",tag:"mo",output:"\u232A",rtag:"mi",atval:"1",ttype:STRETCHY},{input:"\\rfloor",tag:"mo",output:"\u230B",rtag:"mi",atval:"1",ttype:STRETCHY},{input:"\\rceil",tag:"mo",output:"\u2309",rtag:"mi",atval:"1",ttype:STRETCHY},{input:"|",tag:"mo",output:"\u2223",atval:"1",ttype:STRETCHY},{input:"\\|",tag:"mo",output:"\u2225",atval:"1",ttype:STRETCHY},{input:"\\vert",tag:"mo",output:"\u2223",atval:"1",ttype:STRETCHY},{input:"\\Vert",tag:"mo",output:"\u2225",atval:"1",ttype:STRETCHY},{input:"\\mid",tag:"mo",output:"\u2223",atval:"1",ttype:STRETCHY},{input:"\\parallel",tag:"mo",output:"\u2225",atval:"1",ttype:STRETCHY},{input:"/",tag:"mo",output:"/",atval:"1.01",ttype:STRETCHY},{input:"\\backslash",tag:"mo",output:"\u2216",atval:"1",ttype:STRETCHY},{input:"\\setminus",tag:"mo",output:"\\",ttype:CONST},{input:"\\!",tag:"mspace",atname:"width",atval:"-0.167em",ttype:SPACE},{input:"\\,",tag:"mspace",atname:"width",atval:"0.167em",ttype:SPACE},{input:"\\>",tag:"mspace",atname:"width",atval:"0.222em",ttype:SPACE},{input:"\\:",tag:"mspace",atname:"width",atval:"0.222em",ttype:SPACE},{input:"\\;",tag:"mspace",atname:"width",atval:"0.278em",ttype:SPACE},{input:"~",tag:"mspace",atname:"width",atval:"0.333em",ttype:SPACE},{input:"\\quad",tag:"mspace",atname:"width",atval:"1em",ttype:SPACE},{input:"\\qquad",tag:"mspace",atname:"width",atval:"2em",ttype:SPACE},{input:"\\prime",tag:"mo",output:"\u2032",ttype:CONST},{input:"'",tag:"mo",output:"\u02B9",ttype:CONST},{input:"''",tag:"mo",output:"\u02BA",ttype:CONST},{input:"'''",tag:"mo",output:"\u2034",ttype:CONST},{input:"''''",tag:"mo",output:"\u2057",ttype:CONST},{input:"\\ldots",tag:"mo",output:"\u2026",ttype:CONST},{input:"\\cdots",tag:"mo",output:"\u22EF",ttype:CONST},{input:"\\vdots",tag:"mo",output:"\u22EE",ttype:CONST},{input:"\\ddots",tag:"mo",output:"\u22F1",ttype:CONST},{input:"\\forall",tag:"mo",output:"\u2200",ttype:CONST},{input:"\\exists",tag:"mo",output:"\u2203",ttype:CONST},{input:"\\Re",tag:"mo",output:"\u211C",ttype:CONST},{input:"\\Im",tag:"mo",output:"\u2111",ttype:CONST},{input:"\\aleph",tag:"mo",output:"\u2135",ttype:CONST},{input:"\\hbar",tag:"mo",output:"\u210F",ttype:CONST},{input:"\\ell",tag:"mo",output:"\u2113",ttype:CONST},{input:"\\wp",tag:"mo",output:"\u2118",ttype:CONST},{input:"\\emptyset",tag:"mo",output:"\u2205",ttype:CONST},{input:"\\infty",tag:"mo",output:"\u221E",ttype:CONST},{input:"\\surd",tag:"mo",output:"\\sqrt{}",ttype:DEFINITION},{input:"\\partial",tag:"mo",output:"\u2202",ttype:CONST},{input:"\\nabla",tag:"mo",output:"\u2207",ttype:CONST},{input:"\\triangle",tag:"mo",output:"\u25B3",ttype:CONST},{input:"\\therefore",tag:"mo",output:"\u2234",ttype:CONST},{input:"\\angle",tag:"mo",output:"\u2220",ttype:CONST},{input:"\\diamond",tag:"mo",output:"\u22C4",ttype:CONST},{input:"\\Diamond",tag:"mo",output:"\u25C7",ttype:CONST},{input:"\\neg",tag:"mo",output:"\u00AC",ttype:CONST},{input:"\\lnot",tag:"mo",output:"\u00AC",ttype:CONST},{input:"\\bot",tag:"mo",output:"\u22A5",ttype:CONST},{input:"\\top",tag:"mo",output:"\u22A4",ttype:CONST},{input:"\\square",tag:"mo",output:"\u25AB",ttype:CONST},{input:"\\Box",tag:"mo",output:"\u25A1",ttype:CONST},{input:"\\wr",tag:"mo",output:"\u2240",ttype:CONST},{input:"\\arccos",tag:"mi",output:"arccos",ttype:UNARY,func:true},{input:"\\arcsin",tag:"mi",output:"arcsin",ttype:UNARY,func:true},{input:"\\arctan",tag:"mi",output:"arctan",ttype:UNARY,func:true},{input:"\\arg",tag:"mi",output:"arg",ttype:UNARY,func:true},{input:"\\cos",tag:"mi",output:"cos",ttype:UNARY,func:true},{input:"\\cosh",tag:"mi",output:"cosh",ttype:UNARY,func:true},{input:"\\cot",tag:"mi",output:"cot",ttype:UNARY,func:true},{input:"\\coth",tag:"mi",output:"coth",ttype:UNARY,func:true},{input:"\\csc",tag:"mi",output:"csc",ttype:UNARY,func:true},{input:"\\deg",tag:"mi",output:"deg",ttype:UNARY,func:true},{input:"\\det",tag:"mi",output:"det",ttype:UNARY,func:true},{input:"\\dim",tag:"mi",output:"dim",ttype:UNARY,func:true},{input:"\\exp",tag:"mi",output:"exp",ttype:UNARY,func:true},{input:"\\gcd",tag:"mi",output:"gcd",ttype:UNARY,func:true},{input:"\\hom",tag:"mi",output:"hom",ttype:UNARY,func:true},{input:"\\inf",tag:"mo",output:"inf",ttype:UNDEROVER},{input:"\\ker",tag:"mi",output:"ker",ttype:UNARY,func:true},{input:"\\lg",tag:"mi",output:"lg",ttype:UNARY,func:true},{input:"\\lim",tag:"mo",output:"lim",ttype:UNDEROVER},{input:"\\liminf",tag:"mo",output:"liminf",ttype:UNDEROVER},{input:"\\limsup",tag:"mo",output:"limsup",ttype:UNDEROVER},{input:"\\ln",tag:"mi",output:"ln",ttype:UNARY,func:true},{input:"\\log",tag:"mi",output:"log",ttype:UNARY,func:true},{input:"\\max",tag:"mo",output:"max",ttype:UNDEROVER},{input:"\\min",tag:"mo",output:"min",ttype:UNDEROVER},{input:"\\Pr",tag:"mi",output:"Pr",ttype:UNARY,func:true},{input:"\\sec",tag:"mi",output:"sec",ttype:UNARY,func:true},{input:"\\sin",tag:"mi",output:"sin",ttype:UNARY,func:true},{input:"\\sinh",tag:"mi",output:"sinh",ttype:UNARY,func:true},{input:"\\sup",tag:"mo",output:"sup",ttype:UNDEROVER},{input:"\\tan",tag:"mi",output:"tan",ttype:UNARY,func:true},{input:"\\tanh",tag:"mi",output:"tanh",ttype:UNARY,func:true},{input:"\\gets",tag:"mo",output:"\u2190",ttype:CONST},{input:"\\leftarrow",tag:"mo",output:"\u2190",ttype:CONST},{input:"\\to",tag:"mo",output:"\u2192",ttype:CONST},{input:"\\rightarrow",tag:"mo",output:"\u2192",ttype:CONST},{input:"\\leftrightarrow",tag:"mo",output:"\u2194",ttype:CONST},{input:"\\uparrow",tag:"mo",output:"\u2191",ttype:CONST},{input:"\\downarrow",tag:"mo",output:"\u2193",ttype:CONST},{input:"\\updownarrow",tag:"mo",output:"\u2195",ttype:CONST},{input:"\\Leftarrow",tag:"mo",output:"\u21D0",ttype:CONST},{input:"\\Rightarrow",tag:"mo",output:"\u21D2",ttype:CONST},{input:"\\Leftrightarrow",tag:"mo",output:"\u21D4",ttype:CONST},{input:"\\iff",tag:"mo",output:"~\\Longleftrightarrow~",ttype:DEFINITION},{input:"\\Uparrow",tag:"mo",output:"\u21D1",ttype:CONST},{input:"\\Downarrow",tag:"mo",output:"\u21D3",ttype:CONST},{input:"\\Updownarrow",tag:"mo",output:"\u21D5",ttype:CONST},{input:"\\mapsto",tag:"mo",output:"\u21A6",ttype:CONST},{input:"\\longleftarrow",tag:"mo",output:"\u2190",ttype:LONG},{input:"\\longrightarrow",tag:"mo",output:"\u2192",ttype:LONG},{input:"\\longleftrightarrow",tag:"mo",output:"\u2194",ttype:LONG},{input:"\\Longleftarrow",tag:"mo",output:"\u21D0",ttype:LONG},{input:"\\Longrightarrow",tag:"mo",output:"\u21D2",ttype:LONG},{input:"\\Longleftrightarrow",tag:"mo",output:"\u21D4",ttype:LONG},{input:"\\longmapsto",tag:"mo",output:"\u21A6",ttype:CONST},AMsqrt,AMroot,AMfrac,AMover,AMsub,AMsup,AMtext,AMmbox,AMatop,AMchoose,{input:"\\acute",tag:"mover",output:"\u00B4",ttype:UNARY,acc:true},{input:"\\grave",tag:"mover",output:"\u0060",ttype:UNARY,acc:true},{input:"\\breve",tag:"mover",output:"\u02D8",ttype:UNARY,acc:true},{input:"\\check",tag:"mover",output:"\u02C7",ttype:UNARY,acc:true},{input:"\\dot",tag:"mover",output:".",ttype:UNARY,acc:true},{input:"\\ddot",tag:"mover",output:"..",ttype:UNARY,acc:true},{input:"\\mathring",tag:"mover",output:"\u00B0",ttype:UNARY,acc:true},{input:"\\vec",tag:"mover",output:"\u20D7",ttype:UNARY,acc:true},{input:"\\overrightarrow",tag:"mover",output:"\u20D7",ttype:UNARY,acc:true},{input:"\\overleftarrow",tag:"mover",output:"\u20D6",ttype:UNARY,acc:true},{input:"\\hat",tag:"mover",output:"\u005E",ttype:UNARY,acc:true},{input:"\\widehat",tag:"mover",output:"\u0302",ttype:UNARY,acc:true},{input:"\\tilde",tag:"mover",output:"~",ttype:UNARY,acc:true},{input:"\\widetilde",tag:"mover",output:"\u02DC",ttype:UNARY,acc:true},{input:"\\bar",tag:"mover",output:"\u203E",ttype:UNARY,acc:true},{input:"\\overbrace",tag:"mover",output:"\uFE37",ttype:UNARY,acc:true},{input:"\\overbracket",tag:"mover",output:"\u23B4",ttype:UNARY,acc:true},{input:"\\overline",tag:"mover",output:"\u00AF",ttype:UNARY,acc:true},{input:"\\underbrace",tag:"munder",output:"\uFE38",ttype:UNARY,acc:true},{input:"\\underbracket",tag:"munder",output:"\u23B5",ttype:UNARY,acc:true},{input:"\\underline",tag:"munder",output:"\u00AF",ttype:UNARY,acc:true},{input:"\\displaystyle",tag:"mstyle",atname:"displaystyle",atval:"true",ttype:UNARY},{input:"\\textstyle",tag:"mstyle",atname:"displaystyle",atval:"false",ttype:UNARY},{input:"\\scriptstyle",tag:"mstyle",atname:"scriptlevel",atval:"1",ttype:UNARY},{input:"\\scriptscriptstyle",tag:"mstyle",atname:"scriptlevel",atval:"2",ttype:UNARY},{input:"\\textrm",tag:"mstyle",output:"\\mathrm",ttype:DEFINITION},{input:"\\mathbf",tag:"mstyle",atname:"mathvariant",atval:"bold",ttype:UNARY},{input:"\\textbf",tag:"mstyle",atname:"mathvariant",atval:"bold",ttype:UNARY},{input:"\\mathit",tag:"mstyle",atname:"mathvariant",atval:"italic",ttype:UNARY},{input:"\\textit",tag:"mstyle",atname:"mathvariant",atval:"italic",ttype:UNARY},{input:"\\mathtt",tag:"mstyle",atname:"mathvariant",atval:"monospace",ttype:UNARY},{input:"\\texttt",tag:"mstyle",atname:"mathvariant",atval:"monospace",ttype:UNARY},{input:"\\mathsf",tag:"mstyle",atname:"mathvariant",atval:"sans-serif",ttype:UNARY},{input:"\\mathbb",tag:"mstyle",atname:"mathvariant",atval:"double-struck",ttype:UNARY,codes:AMbbb},{input:"\\mathcal",tag:"mstyle",atname:"mathvariant",atval:"script",ttype:UNARY,codes:AMcal},{input:"\\mathfrak",tag:"mstyle",atname:"mathvariant",atval:"fraktur",ttype:UNARY,codes:AMfrk},{input:"\\textcolor",tag:"mstyle",atname:"mathvariant",atval:"mathcolor",ttype:BINARY},{input:"\\colorbox",tag:"mstyle",atname:"mathvariant",atval:"background",ttype:BINARY}];function compareNames(s1,s2){if(s1.input>s2.input)return 1
+  else return-1;}
+  var AMnames=[];function AMinitSymbols(){AMsymbols.sort(compareNames);for(i=0;i<AMsymbols.length;i++)AMnames[i]=AMsymbols[i].input;}
+  var AMmathml="http://www.w3.org/1998/Math/MathML";function AMcreateElementMathML(t){if(isIE)return document.createElement("m:"+t);else return document.createElementNS(AMmathml,t);}
+  function AMcreateMmlNode(t,frag){if(isIE)var node=document.createElement("m:"+t);else var node=document.createElementNS(AMmathml,t);node.appendChild(frag);return node;}
+  function newcommand(oldstr,newstr){AMsymbols=AMsymbols.concat([{input:oldstr,tag:"mo",output:newstr,ttype:DEFINITION}]);}
+  function AMremoveCharsAndBlanks(str,n){var st;st=str.slice(n);for(var i=0;i<st.length&&st.charCodeAt(i)<=32;i=i+1);return st.slice(i);}
+  function AMposition(arr,str,n){if(n==0){var h,m;n=-1;h=arr.length;while(n+1<h){m=(n+h)>>1;if(arr[m]<str)n=m;else h=m;}
+  return h;}else
+  for(var i=n;i<arr.length&&arr[i]<str;i++);return i;}
+  function AMgetSymbol(str){var k=0;var j=0;var mk;var st;var tagst;var match="";var more=true;for(var i=1;i<=str.length&&more;i++){st=str.slice(0,i);j=k;k=AMposition(AMnames,st,j);if(k<AMnames.length&&str.slice(0,AMnames[k].length)==AMnames[k]){match=AMnames[k];mk=k;i=match.length;}
+  more=k<AMnames.length&&str.slice(0,AMnames[k].length)>=AMnames[k];}
+  AMpreviousSymbol=AMcurrentSymbol;if(match!=""){AMcurrentSymbol=AMsymbols[mk].ttype;return AMsymbols[mk];}
+  AMcurrentSymbol=CONST;k=1;st=str.slice(0,1);if("0"<=st&&st<="9")tagst="mn";else tagst=(("A">st||st>"Z")&&("a">st||st>"z")?"mo":"mi");return{input:st,tag:tagst,output:st,ttype:CONST};}
+  var AMpreviousSymbol,AMcurrentSymbol;function AMparseSexpr(str){var symbol,node,result,result2,i,st,newFrag=document.createDocumentFragment();str=AMremoveCharsAndBlanks(str,0);symbol=AMgetSymbol(str);if(symbol==null||symbol.ttype==RIGHTBRACKET)
+  return[null,str,null];if(symbol.ttype==DEFINITION){str=symbol.output+AMremoveCharsAndBlanks(str,symbol.input.length);symbol=AMgetSymbol(str);if(symbol==null||symbol.ttype==RIGHTBRACKET)
+  return[null,str,null];}
+  str=AMremoveCharsAndBlanks(str,symbol.input.length);switch(symbol.ttype){case SPACE:node=AMcreateElementMathML(symbol.tag);node.setAttribute(symbol.atname,symbol.atval);return[node,str,symbol.tag];case UNDEROVER:if(isIE){if(symbol.input.substr(0,4)=="\\big"){str="\\"+symbol.input.substr(4)+str;symbol=AMgetSymbol(str);symbol.ttype=UNDEROVER;str=AMremoveCharsAndBlanks(str,symbol.input.length);}}
+  return[AMcreateMmlNode(symbol.tag,document.createTextNode(symbol.output)),str,symbol.tag];case CONST:var output=symbol.output;if(isIE){if(symbol.input=="'")
+  output="\u2032";else if(symbol.input=="''")
+  output="\u2033";else if(symbol.input=="'''")
+  output="\u2033\u2032";else if(symbol.input=="''''")
+  output="\u2033\u2033";else if(symbol.input=="\\square")
+  output="\u25A1";else if(symbol.input.substr(0,5)=="\\frac"){var denom=symbol.input.substr(6,1);if(denom=="5"||denom=="6"){str=symbol.input.replace(/\\frac/,"\\frac ")+str;return[node,str,symbol.tag];}}}
+  node=AMcreateMmlNode(symbol.tag,document.createTextNode(output));return[node,str,symbol.tag];case LONG:node=AMcreateMmlNode(symbol.tag,document.createTextNode(symbol.output));node.setAttribute("minsize","1.5");node.setAttribute("maxsize","1.5");node=AMcreateMmlNode("mover",node);node.appendChild(AMcreateElementMathML("mspace"));return[node,str,symbol.tag];case STRETCHY:if(isIE&&symbol.input=="\\backslash")
+  symbol.output="\\";node=AMcreateMmlNode(symbol.tag,document.createTextNode(symbol.output));if(symbol.input=="|"||symbol.input=="\\vert"||symbol.input=="\\|"||symbol.input=="\\Vert"){node.setAttribute("lspace","0em");node.setAttribute("rspace","0em");}
+  node.setAttribute("maxsize",symbol.atval);if(symbol.rtag!=null)
+  return[node,str,symbol.rtag];else
+  return[node,str,symbol.tag];case BIG:var atval=symbol.atval;if(isIE)
+  atval=symbol.ieval;symbol=AMgetSymbol(str);if(symbol==null)
+  return[null,str,null];str=AMremoveCharsAndBlanks(str,symbol.input.length);node=AMcreateMmlNode(symbol.tag,document.createTextNode(symbol.output));if(isIE){var space=AMcreateElementMathML("mspace");space.setAttribute("height",atval+"ex");node=AMcreateMmlNode("mrow",node);node.appendChild(space);}else{node.setAttribute("minsize",atval);node.setAttribute("maxsize",atval);}
+  return[node,str,symbol.tag];case LEFTBRACKET:if(symbol.input=="\\left"){symbol=AMgetSymbol(str);if(symbol!=null){if(symbol.input==".")
+  symbol.invisible=true;str=AMremoveCharsAndBlanks(str,symbol.input.length);}}
+  result=AMparseExpr(str,true,false);if(symbol==null||(typeof symbol.invisible=="boolean"&&symbol.invisible))
+  node=AMcreateMmlNode("mrow",result[0]);else{node=AMcreateMmlNode("mo",document.createTextNode(symbol.output));node=AMcreateMmlNode("mrow",node);node.appendChild(result[0]);}
+  return[node,result[1],result[2]];case MATRIX:if(symbol.input=="\\begin{array}"){var mask="";symbol=AMgetSymbol(str);str=AMremoveCharsAndBlanks(str,0);if(symbol==null)
+  mask="l";else{str=AMremoveCharsAndBlanks(str,symbol.input.length);if(symbol.input!="{")
+  mask="l";else do{symbol=AMgetSymbol(str);if(symbol!=null){str=AMremoveCharsAndBlanks(str,symbol.input.length);if(symbol.input!="}")
+  mask=mask+symbol.input;}}while(symbol!=null&&symbol.input!=""&&symbol.input!="}");}
+  result=AMparseExpr("{"+str,true,true);node=AMcreateMmlNode("mtable",result[0]);mask=mask.replace(/l/g,"left ");mask=mask.replace(/r/g,"right ");mask=mask.replace(/c/g,"center ");node.setAttribute("columnalign",mask);node.setAttribute("displaystyle","false");if(isIE)
+  return[node,result[1],null];var lspace=AMcreateElementMathML("mspace");lspace.setAttribute("width","0.167em");var rspace=AMcreateElementMathML("mspace");rspace.setAttribute("width","0.167em");var node1=AMcreateMmlNode("mrow",lspace);node1.appendChild(node);node1.appendChild(rspace);return[node1,result[1],null];}else{result=AMparseExpr("{"+str,true,true);node=AMcreateMmlNode("mtable",result[0]);if(isIE)
+  node.setAttribute("columnspacing","0.25em");else
+  node.setAttribute("columnspacing","0.167em");node.setAttribute("columnalign","right center left");node.setAttribute("displaystyle","true");node=AMcreateMmlNode("mrow",node);return[node,result[1],null];}
+  case TEXT:if(str.charAt(0)=="{")i=str.indexOf("}");else i=0;if(i==-1)
+  i=str.length;st=str.slice(1,i);if(st.charAt(0)==" "){node=AMcreateElementMathML("mspace");node.setAttribute("width","0.33em");newFrag.appendChild(node);}
+  newFrag.appendChild(AMcreateMmlNode(symbol.tag,document.createTextNode(st)));if(st.charAt(st.length-1)==" "){node=AMcreateElementMathML("mspace");node.setAttribute("width","0.33em");newFrag.appendChild(node);}
+  str=AMremoveCharsAndBlanks(str,i+1);return[AMcreateMmlNode("mrow",newFrag),str,null];case UNARY:result=AMparseSexpr(str);if(result[0]==null)return[AMcreateMmlNode(symbol.tag,document.createTextNode(symbol.output)),str];if(typeof symbol.func=="boolean"&&symbol.func){st=str.charAt(0);if(st=="^"||st=="_"||st==","){return[AMcreateMmlNode(symbol.tag,document.createTextNode(symbol.output)),str,symbol.tag];}else{node=AMcreateMmlNode("mrow",AMcreateMmlNode(symbol.tag,document.createTextNode(symbol.output)));if(isIE){var space=AMcreateElementMathML("mspace");space.setAttribute("width","0.167em");node.appendChild(space);}
+  node.appendChild(result[0]);return[node,result[1],symbol.tag];}}
+  if(symbol.input=="\\sqrt"){if(isIE){var space=AMcreateElementMathML("mspace");space.setAttribute("height","1.2ex");space.setAttribute("width","0em");node=AMcreateMmlNode(symbol.tag,result[0])
+  node.appendChild(space);return[node,result[1],symbol.tag];}else
+  return[AMcreateMmlNode(symbol.tag,result[0]),result[1],symbol.tag];}else if(typeof symbol.acc=="boolean"&&symbol.acc){node=AMcreateMmlNode(symbol.tag,result[0]);var output=symbol.output;if(isIE){if(symbol.input=="\\hat")
+  output="\u0302";else if(symbol.input=="\\widehat")
+  output="\u005E";else if(symbol.input=="\\bar")
+  output="\u00AF";else if(symbol.input=="\\grave")
+  output="\u0300";else if(symbol.input=="\\tilde")
+  output="\u0303";}
+  var node1=AMcreateMmlNode("mo",document.createTextNode(output));if(symbol.input=="\\vec"||symbol.input=="\\check")
+  node1.setAttribute("maxsize","1.2");if(isIE&&symbol.input=="\\bar")
+  node1.setAttribute("maxsize","0.5");if(symbol.input=="\\underbrace"||symbol.input=="\\underline")
+  node1.setAttribute("accentunder","true");else
+  node1.setAttribute("accent","true");node.appendChild(node1);if(symbol.input=="\\overbrace"||symbol.input=="\\underbrace")
+  node.ttype=UNDEROVER;return[node,result[1],symbol.tag];}else{if(!isIE&&typeof symbol.codes!="undefined"){for(i=0;i<result[0].childNodes.length;i++)
+  if(result[0].childNodes[i].nodeName=="mi"||result[0].nodeName=="mi"){st=(result[0].nodeName=="mi"?result[0].firstChild.nodeValue:result[0].childNodes[i].firstChild.nodeValue);var newst=[];for(var j=0;j<st.length;j++)
+  if(st.charCodeAt(j)>64&&st.charCodeAt(j)<91)newst=newst+
+  String.fromCharCode(symbol.codes[st.charCodeAt(j)-65]);else newst=newst+st.charAt(j);if(result[0].nodeName=="mi")
+  result[0]=AMcreateElementMathML("mo").appendChild(document.createTextNode(newst));else result[0].replaceChild(AMcreateElementMathML("mo").appendChild(document.createTextNode(newst)),result[0].childNodes[i]);}}
+  node=AMcreateMmlNode(symbol.tag,result[0]);node.setAttribute(symbol.atname,symbol.atval);if(symbol.input=="\\scriptstyle"||symbol.input=="\\scriptscriptstyle")
+  node.setAttribute("displaystyle","false");return[node,result[1],symbol.tag];}
+  case BINARY:result=AMparseSexpr(str);if(result[0]==null)return[AMcreateMmlNode("mo",document.createTextNode(symbol.input)),str,null];result2=AMparseSexpr(result[1]);if(result2[0]==null)return[AMcreateMmlNode("mo",document.createTextNode(symbol.input)),str,null];if(symbol.input=="\\textcolor"||symbol.input=="\\colorbox"){var tclr=str.match(/\{\s*([#\w]+)\s*\}/);str=str.replace(/\{\s*[#\w]+\s*\}/,"");if(tclr!=null){if(IsColorName.test(tclr[1].toLowerCase())){tclr=LaTeXColor[tclr[1].toLowerCase()];}else{tclr=tclr[1];}
+  node=AMcreateElementMathML("mstyle");node.setAttribute(symbol.atval,tclr);node.appendChild(result2[0]);return[node,result2[1],symbol.tag];}}
+  if(symbol.input=="\\root"||symbol.input=="\\stackrel")newFrag.appendChild(result2[0]);newFrag.appendChild(result[0]);if(symbol.input=="\\frac")newFrag.appendChild(result2[0]);return[AMcreateMmlNode(symbol.tag,newFrag),result2[1],symbol.tag];case INFIX:str=AMremoveCharsAndBlanks(str,symbol.input.length);return[AMcreateMmlNode("mo",document.createTextNode(symbol.output)),str,symbol.tag];default:return[AMcreateMmlNode(symbol.tag,document.createTextNode(symbol.output)),str,symbol.tag];}}
+  function AMparseIexpr(str){var symbol,sym1,sym2,node,result,tag,underover;str=AMremoveCharsAndBlanks(str,0);sym1=AMgetSymbol(str);result=AMparseSexpr(str);node=result[0];str=result[1];tag=result[2];symbol=AMgetSymbol(str);if(symbol.ttype==INFIX){str=AMremoveCharsAndBlanks(str,symbol.input.length);result=AMparseSexpr(str);if(result[0]==null)
+  result[0]=AMcreateMmlNode("mo",document.createTextNode("\u25A1"));str=result[1];tag=result[2];if(symbol.input=="_"||symbol.input=="^"){sym2=AMgetSymbol(str);tag=null;underover=((sym1.ttype==UNDEROVER)||(node.ttype==UNDEROVER));if(symbol.input=="_"&&sym2.input=="^"){str=AMremoveCharsAndBlanks(str,sym2.input.length);var res2=AMparseSexpr(str);str=res2[1];tag=res2[2];node=AMcreateMmlNode((underover?"munderover":"msubsup"),node);node.appendChild(result[0]);node.appendChild(res2[0]);}else if(symbol.input=="_"){node=AMcreateMmlNode((underover?"munder":"msub"),node);node.appendChild(result[0]);}else{node=AMcreateMmlNode((underover?"mover":"msup"),node);node.appendChild(result[0]);}
+  node=AMcreateMmlNode("mrow",node);}else{node=AMcreateMmlNode(symbol.tag,node);if(symbol.input=="\\atop"||symbol.input=="\\choose")
+  node.setAttribute("linethickness","0ex");node.appendChild(result[0]);if(symbol.input=="\\choose")
+  node=AMcreateMmlNode("mfenced",node);}}
+  return[node,str,tag];}
+  function AMparseExpr(str,rightbracket,matrix){var symbol,node,result,i,tag,newFrag=document.createDocumentFragment();do{str=AMremoveCharsAndBlanks(str,0);result=AMparseIexpr(str);node=result[0];str=result[1];tag=result[2];symbol=AMgetSymbol(str);if(node!=undefined){if((tag=="mn"||tag=="mi")&&symbol!=null&&typeof symbol.func=="boolean"&&symbol.func){var space=AMcreateElementMathML("mspace");space.setAttribute("width","0.167em");node=AMcreateMmlNode("mrow",node);node.appendChild(space);}
+  newFrag.appendChild(node);}}while((symbol.ttype!=RIGHTBRACKET)&&symbol!=null&&symbol.output!="");tag=null;if(symbol.ttype==RIGHTBRACKET){if(symbol.input=="\\right"){str=AMremoveCharsAndBlanks(str,symbol.input.length);symbol=AMgetSymbol(str);if(symbol!=null&&symbol.input==".")
+  symbol.invisible=true;if(symbol!=null)
+  tag=symbol.rtag;}
+  if(symbol!=null)
+  str=AMremoveCharsAndBlanks(str,symbol.input.length);var len=newFrag.childNodes.length;if(matrix&&len>0&&newFrag.childNodes[len-1].nodeName=="mrow"&&len>1&&newFrag.childNodes[len-2].nodeName=="mo"&&newFrag.childNodes[len-2].firstChild.nodeValue=="&"){var pos=[];var m=newFrag.childNodes.length;for(i=0;matrix&&i<m;i=i+2){pos[i]=[];node=newFrag.childNodes[i];for(var j=0;j<node.childNodes.length;j++)
+  if(node.childNodes[j].firstChild.nodeValue=="&")
+  pos[i][pos[i].length]=j;}
+  var row,frag,n,k,table=document.createDocumentFragment();for(i=0;i<m;i=i+2){row=document.createDocumentFragment();frag=document.createDocumentFragment();node=newFrag.firstChild;n=node.childNodes.length;k=0;for(j=0;j<n;j++){if(typeof pos[i][k]!="undefined"&&j==pos[i][k]){node.removeChild(node.firstChild);row.appendChild(AMcreateMmlNode("mtd",frag));k++;}else frag.appendChild(node.firstChild);}
+  row.appendChild(AMcreateMmlNode("mtd",frag));if(newFrag.childNodes.length>2){newFrag.removeChild(newFrag.firstChild);newFrag.removeChild(newFrag.firstChild);}
+  table.appendChild(AMcreateMmlNode("mtr",row));}
+  return[table,str];}
+  if(typeof symbol.invisible!="boolean"||!symbol.invisible){node=AMcreateMmlNode("mo",document.createTextNode(symbol.output));newFrag.appendChild(node);}}
+  return[newFrag,str,tag];}
+  function AMparseMath(str){var result,node=AMcreateElementMathML("mstyle");var cclr=str.match(/\\color\s*\{\s*([#\w]+)\s*\}/);str=str.replace(/\\color\s*\{\s*[#\w]+\s*\}/g,"");if(cclr!=null){if(IsColorName.test(cclr[1].toLowerCase())){cclr=LaTeXColor[cclr[1].toLowerCase()];}else{cclr=cclr[1];}
+  node.setAttribute("mathcolor",cclr);}else{if(mathcolor!="")node.setAttribute("mathcolor",mathcolor);};if(mathfontfamily!="")node.setAttribute("fontfamily",mathfontfamily);node.appendChild(AMparseExpr(str.replace(/^\s+/g,""),false,false)[0]);node=AMcreateMmlNode("math",node);if(showasciiformulaonhover)
+  node.setAttribute("title",str.replace(/\s+/g," "));if(false){var fnode=AMcreateElementXHTML("font");fnode.setAttribute("face",mathfontfamily);fnode.appendChild(node);return fnode;}
+  return node;}
+  function AMstrarr2docFrag(arr,linebreaks){var newFrag=document.createDocumentFragment();var expr=false;for(var i=0;i<arr.length;i++){if(expr)newFrag.appendChild(AMparseMath(arr[i]));else{var arri=(linebreaks?arr[i].split("\n\n"):[arr[i]]);newFrag.appendChild(AMcreateElementXHTML("span").appendChild(document.createTextNode(arri[0])));for(var j=1;j<arri.length;j++){newFrag.appendChild(AMcreateElementXHTML("p"));newFrag.appendChild(AMcreateElementXHTML("span").appendChild(document.createTextNode(arri[j])));}}
+  expr=!expr;}
+  return newFrag;}
+  function AMprocessNodeR(n,linebreaks){var mtch,str,arr,frg,i;if(n.childNodes.length==0){if((n.nodeType!=8||linebreaks)&&n.parentNode.nodeName!="form"&&n.parentNode.nodeName!="FORM"&&n.parentNode.nodeName!="textarea"&&n.parentNode.nodeName!="TEXTAREA"&&n.parentNode.nodeName!="pre"&&n.parentNode.nodeName!="PRE"){str=n.nodeValue;if(!(str==null)){str=str.replace(/\r\n\r\n/g,"\n\n");str=str.replace(/\x20+/g," ");str=str.replace(/\s*\r\n/g," ");mtch=(str.indexOf("\$")==-1?false:true);str=str.replace(/([^\\])\$/g,"$1 \$");str=str.replace(/^\$/," \$");arr=str.split(" \$");for(i=0;i<arr.length;i++)
+  arr[i]=arr[i].replace(/\\\$/g,"\$");if(arr.length>1||mtch){if(checkForMathML){checkForMathML=false;var nd=AMisMathMLavailable();AMnoMathML=nd!=null;if(AMnoMathML&&notifyIfNoMathML)
+  if(alertIfNoMathML)
+  alert("To view the ASCIIMathML notation use Internet Explorer 6 +\nMathPlayer (free from www.dessci.com)\nor Firefox/Mozilla/Netscape");else AMbody.insertBefore(nd,AMbody.childNodes[0]);}
+  if(!AMnoMathML){frg=AMstrarr2docFrag(arr,n.nodeType==8);var len=frg.childNodes.length;n.parentNode.replaceChild(frg,n);return len-1;}else return 0;}}}else return 0;}else if(n.nodeName!="math"){for(i=0;i<n.childNodes.length;i++)
+  i+=AMprocessNodeR(n.childNodes[i],linebreaks);}
+  return 0;}
+  function AMprocessNode(n,linebreaks,spanclassAM){var frag,st;if(spanclassAM!=null){frag=document.getElementsByTagName("span")
+  for(var i=0;i<frag.length;i++)
+  if(frag[i].className=="AM")
+  AMprocessNodeR(frag[i],linebreaks);}else{try{st=n.innerHTML;}catch(err){}
+  if(st==null||st.indexOf("\$")!=-1)
+  AMprocessNodeR(n,linebreaks);}
+  if(isIE){frag=document.getElementsByTagName('math');for(var i=0;i<frag.length;i++)frag[i].update()}}
+  var inAppendix=false;var sectionCntr=0;var IEcommentWarning=true;var biblist=[];var bibcntr=0;var LaTeXCounter=[];LaTeXCounter["definition"]=0;LaTeXCounter["proposition"]=0;LaTeXCounter["lemma"]=0;LaTeXCounter["theorem"]=0;LaTeXCounter["corollary"]=0;LaTeXCounter["example"]=0;LaTeXCounter["exercise"]=0;LaTeXCounter["subsection"]=0;LaTeXCounter["subsubsection"]=0;LaTeXCounter["figure"]=0;LaTeXCounter["equation"]=0;LaTeXCounter["table"]=0;var LaTeXColor=[];LaTeXColor["greenyellow"]="#D9FF4F";LaTeXColor["yellow"]="#FFFF00";LaTeXColor["goldenrod"]="#FFE529";LaTeXColor["dandelion"]="#FFB529";LaTeXColor["apricot"]="#FFAD7A";LaTeXColor["peach"]="#FF804D";LaTeXColor["melon"]="#FF8A80";LaTeXColor["yelloworange"]="#FF9400";LaTeXColor["orange"]="#FF6321";LaTeXColor["burntorange"]="#FF7D00";LaTeXColor["bittersweet"]="#C20300";LaTeXColor["redorange"]="#FF3B21";LaTeXColor["mahogany"]="#A60000";LaTeXColor["maroon"]="#AD0000";LaTeXColor["brickred"]="#B80000";LaTeXColor["red"]="#FF0000";LaTeXColor["orangered"]="#FF0080";LaTeXColor["rubinered"]="#FF00DE";LaTeXColor["wildstrawberry"]="#FF0A9C";LaTeXColor["salmon"]="#FF789E";LaTeXColor["carnationpink"]="#FF5EFF";LaTeXColor["magenta"]="#FF00FF";LaTeXColor["violetred"]="#FF30FF";LaTeXColor["rhodamine"]="#FF2EFF";LaTeXColor["mulberry"]="#A314FA";LaTeXColor["redviolet"]="#9600A8";LaTeXColor["fuchsia"]="#7303EB";LaTeXColor["lavender"]="#FF85FF";LaTeXColor["thistle"]="#E069FF";LaTeXColor["orchid"]="#AD5CFF";LaTeXColor["darkorchid"]="#9933CC";LaTeXColor["purple"]="#8C24FF";LaTeXColor["plum"]="#8000FF";LaTeXColor["violet"]="#361FFF";LaTeXColor["royalpurple"]="#401AFF";LaTeXColor["blueviolet"]="#1A0DF5";LaTeXColor["periwinkle"]="#6E73FF";LaTeXColor["cadetblue"]="#616EC4";LaTeXColor["cornflowerblue"]="#59DEFF";LaTeXColor["midnightblue"]="#007091";LaTeXColor["navyblue"]="#0F75FF";LaTeXColor["royalblue"]="#0080FF";LaTeXColor["blue"]="#0000FF";LaTeXColor["cerulean"]="#0FE3FF";LaTeXColor["cyan"]="#00FFFF";LaTeXColor["processblue"]="#0AFFFF";LaTeXColor["skyblue"]="#61FFE0";LaTeXColor["turquoise"]="#26FFCC";LaTeXColor["tealblue"]="#1FFAA3";LaTeXColor["aquamarine"]="#2EFFB2";LaTeXColor["bluegreen"]="#26FFAB";LaTeXColor["emerald"]="#00FF80";LaTeXColor["junglegreen"]="#03FF7A";LaTeXColor["seagreen"]="#4FFF80";LaTeXColor["green"]="#00FF00";LaTeXColor["forestgreen"]="#00E000";LaTeXColor["pinegreen"]="#00BF29";LaTeXColor["limegreen"]="#80FF00";LaTeXColor["yellowgreen"]="#8FFF42";LaTeXColor["springgreen"]="#BDFF3D";LaTeXColor["olivegreen"]="#009900";LaTeXColor["rawsienna"]="#8C0000";LaTeXColor["sepia"]="#4D0000";LaTeXColor["brown"]="#660000";LaTeXColor["tan"]="#DB9470";LaTeXColor["gray"]="#808080";LaTeXColor["grey"]="#808080";LaTeXColor["black"]="#000000";LaTeXColor["white"]="#FFFFFF";var IsColorName=/^(?:greenyellow|yellow|goldenrod|dandelion|apricot|peach|melon|yelloworange|orange|burntorange|bittersweet|redorange|mahogany|maroon|brickred|red|orangered|rubinered|wildstrawberry|salmon|carnationpink|magenta|violetred|rhodamine|mulberry|redviolet|fuchsia|lavender|thistle|orchid|darkorchid|purple|plum|violet|royalpurple|blueviolet|periwinkle|cadetblue|cornflowerblue|midnightblue|navyblue|royalblue|blue|cerulean|cyan|processblue|skyblue|turquoise|tealblue|aquamarine|bluegreen|emerald|junglegreen|seagreen|green|forestgreen|pinegreen|limegreen|yellowgreen|springgreen|olivegreen|rawsienna|sepia|brown|tan|gray|grey|black|white)$/;var IsCounter=/^(?:definition|proposition|lemma|theorem|corollary|example|exercise|subsection|subsubsection|figure|equation|table)$/;var IsLaTeXElement=/^(?:displayequation|title|author|address|date|abstract|keyword|section|subsection|subsubsection|ref|cite|thebibliography|definition|proposition|lemma|theorem|corollary|example|exercise|itemize|enumerate|enddefinition|endproposition|endlemma|endtheorem|endcorollary|endexample|endexercise|enditemize|endenumerate|LaTeXMathMLlabel|LaTeXMathML|smallskip|medskip|bigskip|quote|quotation|endquote|endquotation|center|endcenter|description|enddescription|inlinemath)$/;var IsTextOnlyArea=/^(?:form|textarea|pre)$/i;var tableid=0;function makeNumberString(cntr){if(sectionCntr>0){if(inAppendix){return"A"+sectionCntr+"."+cntr;}else{return sectionCntr+"."+cntr;}}else{return""+cntr;}};function LaTeXpreProcess(thebody){var TheBody=thebody;if(TheBody.hasChildNodes()){if(!(IsLaTeXElement.test(TheBody.className)))
+  {for(var i=0;i<TheBody.childNodes.length;i++){LaTeXpreProcess(TheBody.childNodes[i])}}}
+  else{if(TheBody.nodeType==3&&!(IsTextOnlyArea.test(TheBody.parentNode.nodeName)))
+  {var str=TheBody.nodeValue;if(!(str==null)){str=str.replace(/\\%/g,"<per>");str=str.replace(/%[^\n]*(?=\n)/g,"");str=str.replace(/%[^\r]*(?=\r)/g,"");str=str.replace(/%[^\n]*$/,"")
+  if(isIE&&str.match(/%/g)!=null&&IEcommentWarning){alert("Comments may not have parsed properly.  Try putting in <pre class='LaTeX><div>..</div></pre> structure.");IEcommentWarning=false;}
+  str=str.replace(/<per>/g,"%");if(str.match(/XXX[\s\S]*/)!=null){var tmp=str.match(/XXX[\s\S]*/)[0];var tmpstr=tmp.charCodeAt(7)+"::"+tmp.charCodeAt(8)+"::"+tmp.charCodeAt(9)+"::"+tmp.charCodeAt(10)+"::"+tmp.charCodeAt(11)+"::"+tmp.charCodeAt(12)+"::"+tmp.charCodeAt(13);alert(tmpstr);}
+  str=str.replace(/([^\\])\\(\s)/g,"$1\u00A0$2");str=str.replace(/\\quad/g,"\u2001");str=str.replace(/\\qquad/g,"\u2001\u2001");str=str.replace(/\\enspace/g,"\u2002");str=str.replace(/\\;/g,"\u2004");str=str.replace(/\\:/g,"\u2005");str=str.replace(/\\,/g,"\u2006");str=str.replace(/\\thinspace/g,"\u200A");str=str.replace(/([^\\])~/g,"$1\u00A0");str=str.replace(/\\~/g,"~");str=str.replace(/\\\[/g," <DEQ> $\\displaystyle{");str=str.replace(/\\\]/g,"}$ <DEQ> ");str=str.replace(/\$\$/g,"${$<DEQ>$}$");str=str.replace(/\\begin\s*\{\s*array\s*\}/g,"\\begin{array}");str=str.replace(/\\end\s*\{\s*array\s*\}/g,"\\end{array}");str=str.replace(/\\begin\s*\{\s*eqnarray\s*\}/g,"  <DEQ>eqno$\\begin{eqnarray}");str=str.replace(/\\end\s*\{\s*eqnarray\s*\}/g,"\\end{eqnarray}$<DEQ>  ");str=str.replace(/\\begin\s*\{\s*eqnarray\*\s*\}/g,"  <DEQ>$\\begin{eqnarray}");str=str.replace(/\\end\s*\{\s*eqnarray\*\s*\}/g,"\\end{eqnarray}$<DEQ>  ");str=str.replace(/\\begin\s*\{\s*displaymath\s*\}/g," <DEQ> $\\displaystyle{");str=str.replace(/\\end\s*\{\s*displaymath\s*\}/g,"}$ <DEQ> ");str=str.replace(/\\begin\s*\{\s*equation\s*\*\s*\}/g," <DEQ> $\\displaystyle{");str=str.replace(/\\end\s*\{\s*equation\s*\*\s*\}/g,"}$ <DEQ> ");str=str.replace(/\\begin\s*\{\s*equation\s*\}/g," <DEQ>eqno$\\displaystyle{");str=str.replace(/\\end\s*\{\s*equation\s*\}/g,"}$ <DEQ> ");str=str.split("<DEQ>");var newFrag=document.createDocumentFragment();for(var i=0;i<str.length;i++){if(i%2){var DEQtable=document.createElement("table");DEQtable.className='displayequation';var DEQtbody=document.createElement("tbody");var DEQtr=document.createElement("tr");var DEQtdeq=document.createElement("td");DEQtdeq.className='eq';str[i]=str[i].replace(/\$\}\$/g,"$\\displaystyle{");str[i]=str[i].replace(/\$\{\$/g,"}");var lbl=str[i].match(/\\label\s*\{\s*(\w+)\s*\}/);var ISeqno=str[i].match(/^eqno/);str[i]=str[i].replace(/^eqno/," ");str[i]=str[i].replace(/\\label\s*\{\s*\w+\s*\}/," ");DEQtdeq.appendChild(document.createTextNode(str[i]));DEQtr.appendChild(DEQtdeq);str[i]=str[i].replace(/\\nonumber/g,"");if(ISeqno!=null||lbl!=null){var DEQtdno=document.createElement("td");DEQtdno.className='eqno';LaTeXCounter["equation"]++;var eqnoString=makeNumberString(LaTeXCounter["equation"]);var DEQanchor=document.createElement("a");if(lbl!=null){DEQanchor.id=lbl[1]};DEQanchor.className="eqno";var anchorSpan=document.createElement("span");anchorSpan.className="eqno";anchorSpan.style.display="none";anchorSpan.appendChild(document.createTextNode(eqnoString));DEQanchor.appendChild(anchorSpan);DEQtdno.appendChild(DEQanchor);var DEQspan=document.createElement("span");DEQspan.className="eqno";DEQspan.appendChild(document.createTextNode("("+eqnoString+")"));DEQtdno.appendChild(DEQspan);DEQtr.appendChild(DEQtdno);}
+  DEQtbody.appendChild(DEQtr);DEQtable.appendChild(DEQtbody);newFrag.appendChild(DEQtable);}
+  else{str[i]=str[i].replace(/\$\}\$/g,"");str[i]=str[i].replace(/\$\{\$/g,"");str[i]=str[i].replace(/\\maketitle/g,"");str[i]=str[i].replace(/\\begin\s*\{\s*document\s*\}/g,"");str[i]=str[i].replace(/\\end\s*\{\s*document\s*\}/g,"");str[i]=str[i].replace(/\\documentclass[^\}]*?\}/g,"");str[i]=str[i].replace(/\\usepackage[^\}]*?\}/g,"");str[i]=str[i].replace(/\\noindent/g,"");str[i]=str[i].replace(/\\notag/g,"");str[i]=str[i].replace(/\\ref\s*\{\s*(\w+)\}/g," \\[ref\\]$1\\[ ");str[i]=str[i].replace(/\\url\s*\{\s*([^\}\n]+)\}/g," \\[url\\]$1\\[ ");str[i]=str[i].replace(/\\href\s*\{\s*([^\}]+)\}\s*\{\s*([^\}]+)\}/g," \\[href\\]$1\\]$2\\[ ");str[i]=str[i].replace(/\\cite\s*\{\s*(\w+)\}/g," \\[cite\\]$1\\[ ");str[i]=str[i].replace(/\\qed/g,"\u220E");str[i]=str[i].replace(/\\endproof/g,"\u220E");str[i]=str[i].replace(/\\proof/g,"\\textbf{Proof: }");str[i]=str[i].replace(/\\n(?=\s)/g," \\[br\\] \\[ ");str[i]=str[i].replace(/\\newline/g," \\[br\\] \\[ ");str[i]=str[i].replace(/\\linebreak/g," \\[br\\] \\[ ");str[i]=str[i].replace(/\\smallskip/g," \\[logicalbreak\\]smallskip\\[ ");str[i]=str[i].replace(/\\medskip/g," \\[logicalbreak\\]medskip\\[ ");str[i]=str[i].replace(/\\bigskip/g," \\[logicalbreak\\]bigskip\\[ ");str[i]=str[i].replace(/[\n\r]+[ \f\n\r\t\v\u2028\u2029]*[\n\r]+/g," \\[logicalbreak\\]LaTeXMathML\\[ ");if(isIE){str[i]=str[i].replace(/\r/g," ");}
+  str[i]=str[i].replace(/\\bibitem\s*([^\{]*\{\s*\w*\s*\})/g," \\[bibitem\\]$1\\[ ");str[i]=str[i].replace(/\\bibitem\s*/g," \\[bibitem\\] \\[ ");str[i]=str[i].replace(/\\item\s*\[\s*(\w+)\s*\]/g," \\[alistitem\\]$1\\[ ");str[i]=str[i].replace(/\\item\s*/g," \\[alistitem\\] \\[ ");str[i]=str[i].replace(/\\appendix/g," \\[appendix\\] \\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*figure\s*\}([\s\S]+?)\\end\s*\{\s*figure\s*\}/g," \\[figure\\]$1\\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*table\s*\}([\s\S]+?)\\end\s*\{\s*table\s*\}/g," \\[table\\]$1\\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*theorem\s*\}/g," \\[theorem\\]Theorem \\[ ");str[i]=str[i].replace(/\\end\s*\{\s*theorem\s*\}/g," \\[endtheorem\\] \\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*definition\s*\}/g," \\[definition\\]Definition \\[ ");str[i]=str[i].replace(/\\end\s*\{\s*definition\s*\}/g," \\[enddefinition\\] \\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*lemma\s*\}/g," \\[lemma\\]Lemma \\[ ");str[i]=str[i].replace(/\\end\s*\{\s*lemma\s*\}/g," \\[endlemma\\] \\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*corollary\s*\}/g," \\[corollary\\]Corollary \\[ ");str[i]=str[i].replace(/\\end\s*\{\s*corollary\s*\}/g," \\[endcorollary\\] \\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*proposition\s*\}/g," \\[proposition\\]Proposition \\[ ");str[i]=str[i].replace(/\\end\s*\{\s*proposition\s*\}/g," \\[endproposition\\] \\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*example\s*\}/g," \\[example\\]Example \\[ ");str[i]=str[i].replace(/\\end\s*\{\s*example\s*\}/g," \\[endexample\\] \\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*exercise\s*\}/g," \\[exercise\\]Exercise \\[ ");str[i]=str[i].replace(/\\end\s*\{\s*exercise\s*\}/g," \\[endexercise\\] \\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*thebibliography\s*\}\s*\{\s*\w+\s*\}/g," \\[thebibliography\\]References \\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*thebibliography\s*\}/g," \\[thebibliography\\]References \\[ ");str[i]=str[i].replace(/\\end\s*\{\s*thebibliography\s*\}/g," \\[endthebibliography\\]References \\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*proof\s*\}/g," \\[proof\\]Proof: \\[ ");if(isIE){str[i]=str[i].replace(/\\end\s*\{\s*proof\s*\}/g,"\u220E \\[endproof\\] \\[ ");}else{str[i]=str[i].replace(/\\end\s*\{\s*proof\s*\}/g," \\[endproof\\] \\[ ");}
+  str[i]=str[i].replace(/\\title\s*\{\s*([^\}]+)\}/g," \\[title\\] \\[$1 \\[endtitle\\] \\[ ");str[i]=str[i].replace(/\\author\s*\{\s*([^\}]+)\}/g," \\[author\\] \\[$1 \\[endauthor\\] \\[ ");str[i]=str[i].replace(/\\address\s*\{\s*([^\}]+)\}/g," \\[address\\] \\[$1 \\[endaddress\\] \\[ ");str[i]=str[i].replace(/\\date\s*\{\s*([^\}]+)\}/g," \\[date\\] \\[$1 \\[enddate\\] \\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*keyword\s*\}/g," \\[keyword\\] \\[ ");str[i]=str[i].replace(/\\end\s*\{\s*keyword\s*\}/g," \\[endkeyword\\] \\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*abstract\s*\}/g," \\[abstract\\] \\[ ");str[i]=str[i].replace(/\\end\s*\{\s*abstract\s*\}/g," \\[endabstract\\] \\[ ");str[i]=str[i].replace(/\\begin\s*\{\s*(?!array|tabular)(\w+)\s*\}/g," \\[$1\\] \\[ ");str[i]=str[i].replace(/\\end\s*\{\s*(?!array|tabular)(\w+)\s*\}/g," \\[end$1\\] \\[ ");var sectionIndex=str[i].search(/\\section\s*\{\s*[\s\S]+\}/);while(sectionIndex>=0){str[i]=str[i].replace(/\\section\s*\{/," \\[section\\]");var delimcnt=1;for(var ii=sectionIndex;ii<str[i].length;ii++){if(str[i].charAt(ii)=="{"){delimcnt++};if(str[i].charAt(ii)=="}"){delimcnt--};if(delimcnt==0){str[i]=str[i].substring(0,ii)+"\\[ "+str[i].substring(ii+1,str[i].length);break;}};sectionIndex=str[i].search(/\\section\s*\{\s*[\s\S]+\}/);}
+  sectionIndex=str[i].search(/\\subsection\s*\{\s*[\s\S]+\}/);while(sectionIndex>=0){str[i]=str[i].replace(/\\subsection\s*\{/," \\[subsection\\]");var delimcnt=1;for(var ii=sectionIndex;ii<str[i].length;ii++){if(str[i].charAt(ii)=="{"){delimcnt++};if(str[i].charAt(ii)=="}"){delimcnt--};if(delimcnt==0){str[i]=str[i].substring(0,ii)+"\\[ "+str[i].substring(ii+1,str[i].length);break;}};sectionIndex=str[i].search(/\\subsection\s*\{\s*[\s\S]+\}/);}
+  sectionIndex=str[i].search(/\\subsubsection\s*\{\s*[\s\S]+\}/);while(sectionIndex>=0){str[i]=str[i].replace(/\\subsubsection\s*\{/," \\[subsubsection\\]");var delimcnt=1;for(var ii=sectionIndex;ii<str[i].length;ii++){if(str[i].charAt(ii)=="{"){delimcnt++};if(str[i].charAt(ii)=="}"){delimcnt--};if(delimcnt==0){str[i]=str[i].substring(0,ii)+"\\[ "+str[i].substring(ii+1,str[i].length);break;}};sectionIndex=str[i].search(/\\subsubsection\s*\{\s*[\s\S]+\}/);}
+  var CatToNextEven="";var strtmp=str[i].split("\\[");for(var j=0;j<strtmp.length;j++){if(j%2){var strtmparray=strtmp[j].split("\\]");switch(strtmparray[0]){case"section":var nodeTmp=document.createElement("H2");nodeTmp.className='section';sectionCntr++;for(var div in LaTeXCounter){LaTeXCounter[div]=0};var nodeAnchor=document.createElement("a");if(inAppendix){nodeAnchor.className='appendixsection';}else{nodeAnchor.className='section';}
+  var nodeNumString=makeNumberString("");var anchorSpan=document.createElement("span");anchorSpan.className="section";anchorSpan.style.display="none";anchorSpan.appendChild(document.createTextNode(nodeNumString));nodeAnchor.appendChild(anchorSpan);nodeTmp.appendChild(nodeAnchor);var nodeSpan=document.createElement("span");nodeSpan.className='section';nodeSpan.appendChild(document.createTextNode(nodeNumString+" "));nodeTmp.appendChild(nodeSpan);nodeTmp.appendChild(document.createTextNode(strtmparray[1]));newFrag.appendChild(nodeTmp);break;case"subsection":var nodeTmp=document.createElement("H3");nodeTmp.className='subsection';LaTeXCounter["subsection"]++;LaTeXCounter["subsubsection"]=0;var nodeAnchor=document.createElement("a");nodeAnchor.className='subsection';var nodeNumString=makeNumberString(LaTeXCounter["subsection"]);var anchorSpan=document.createElement("span");anchorSpan.className="subsection";anchorSpan.style.display="none";anchorSpan.appendChild(document.createTextNode(nodeNumString));nodeAnchor.appendChild(anchorSpan);nodeTmp.appendChild(nodeAnchor);var nodeSpan=document.createElement("span");nodeSpan.className='subsection';nodeSpan.appendChild(document.createTextNode(nodeNumString+". "));nodeTmp.appendChild(nodeSpan);nodeTmp.appendChild(document.createTextNode(strtmparray[1]));newFrag.appendChild(nodeTmp);break;case"subsubsection":var nodeTmp=document.createElement("H4");nodeTmp.className='subsubsection';LaTeXCounter["subsubsection"]++;var nodeAnchor=document.createElement("a");nodeAnchor.className='subsubsection';var nodeNumString=makeNumberString(LaTeXCounter["subsection"]+"."+LaTeXCounter["subsubsection"]);var anchorSpan=document.createElement("span");anchorSpan.className="subsubsection";anchorSpan.style.display="none";anchorSpan.appendChild(document.createTextNode(nodeNumString));nodeAnchor.appendChild(anchorSpan);nodeTmp.appendChild(nodeAnchor);var nodeSpan=document.createElement("span");nodeSpan.className='subsubsection';nodeSpan.appendChild(document.createTextNode(nodeNumString+". "));nodeTmp.appendChild(nodeSpan);nodeTmp.appendChild(document.createTextNode(strtmparray[1]));newFrag.appendChild(nodeTmp);break;case"href":var nodeTmp=document.createElement("a");nodeTmp.className='LaTeXMathML';nodeTmp.href=strtmparray[1];nodeTmp.appendChild(document.createTextNode(strtmparray[2]));newFrag.appendChild(nodeTmp);break;case"url":var nodeTmp=document.createElement("a");nodeTmp.className='LaTeXMathML';nodeTmp.href=strtmparray[1];nodeTmp.appendChild(document.createTextNode(strtmparray[1]));newFrag.appendChild(nodeTmp);break;case"figure":var nodeTmp=document.createElement("table");nodeTmp.className='figure';var FIGtbody=document.createElement("tbody");var FIGlbl=strtmparray[1].match(/\\label\s*\{\s*(\w+)\s*\}/);strtmparray[1]=strtmparray[1].replace(/\\label\s*\{\w+\}/g,"");var capIndex=strtmparray[1].search(/\\caption\s*\{[\s\S]+\}/);var FIGcap="";if(capIndex>=0){var tmp=strtmparray[1];var delimcnt=0;var capstart=-1;for(var pos=capIndex;pos<tmp.length;pos++){if(tmp.charAt(pos)=="{"){delimcnt++};if(tmp.charAt(pos)=="}"){delimcnt--};if(delimcnt==1&&capstart<0){capstart=pos+1};if(delimcnt==0&&capstart>0){capend=pos-1;FIGcap=tmp.substring(capstart,pos);break}}}
+  var FIGtr2=document.createElement("tr");var FIGtd2=document.createElement("td");FIGtd2.className="caption";var FIGanchor=document.createElement("a");FIGanchor.className="figure";if(FIGlbl!=null){FIGanchor.id=FIGlbl[1];}
+  LaTeXCounter["figure"]++;var fignmbr=makeNumberString(LaTeXCounter["figure"]);var anchorSpan=document.createElement("span");anchorSpan.className="figure";anchorSpan.style.display="none";anchorSpan.appendChild(document.createTextNode(fignmbr));FIGanchor.appendChild(anchorSpan);FIGtd2.appendChild(FIGanchor);var FIGspan=document.createElement("span");FIGspan.className="figure";FIGspan.appendChild(document.createTextNode("Figure "+fignmbr+". "));FIGtd2.appendChild(FIGspan);FIGtd2.appendChild(document.createTextNode(""+FIGcap));FIGtr2.appendChild(FIGtd2);FIGtbody.appendChild(FIGtr2);var IsSpecial=false;var FIGinfo=strtmparray[1].match(/\\includegraphics\s*\{([^\}]+)\}/);if(FIGinfo==null){FIGinfo=strtmparray[1].match(/\\includegraphics\s*\[[^\]]*\]\s*\{\s*([^\}]+)\s*\}/);}
+  if(FIGinfo==null){FIGinfo=strtmparray[1].match(/\\special\s*\{\s*([^\}]+)\}/);IsSpecial=true};if(FIGinfo!=null){var FIGtr1=document.createElement("tr");var FIGtd1=document.createElement("td");FIGtd1.className="image";var FIGimg=document.createElement("img");var FIGsrc=FIGinfo[1];FIGimg.src=FIGsrc;FIGimg.alt="Figure "+FIGsrc+" did not load";FIGimg.title="Figure "+fignmbr+". "+FIGcap;FIGimg.id="figure"+fignmbr;FIGtd1.appendChild(FIGimg);FIGtr1.appendChild(FIGtd1);FIGtbody.appendChild(FIGtr1);}
+  nodeTmp.appendChild(FIGtbody);newFrag.appendChild(nodeTmp);break;case"table":var nodeTmp=document.createElement("table");if(strtmparray[1].search(/\\centering/)>=0){nodeTmp.className='LaTeXtable centered';nodeTmp.align="center";}else{nodeTmp.className='LaTeXtable';};tableid++;nodeTmp.id="LaTeXtable"+tableid;var TABlbl=strtmparray[1].match(/\\label\s*\{\s*(\w+)\s*\}/);strtmparray[1]=strtmparray[1].replace(/\\label\s*\{\w+\}/g,"");var capIndex=strtmparray[1].search(/\\caption\s*\{[\s\S]+\}/);var TABcap="";if(capIndex>=0){var tmp=strtmparray[1];var delimcnt=0;var capstart=-1;for(var pos=capIndex;pos<tmp.length;pos++){if(tmp.charAt(pos)=="{"){delimcnt++};if(tmp.charAt(pos)=="}"){delimcnt--};if(delimcnt==1&&capstart<0){capstart=pos+1};if(delimcnt==0&&capstart>0){capend=pos-1;TABcap=tmp.substring(capstart,pos);break}}}
+  if(TABcap!=""){var TABtbody=document.createElement("tbody");var TABcaption=document.createElement("caption");TABcaption.className="LaTeXtable centered";var TABanchor=document.createElement("a");TABanchor.className="LaTeXtable";if(TABlbl!=null){TABanchor.id=TABlbl[1];}
+  LaTeXCounter["table"]++;var tabnmbr=makeNumberString(LaTeXCounter["table"]);var anchorSpan=document.createElement("span");anchorSpan.className="LaTeXtable";anchorSpan.style.display="none";anchorSpan.appendChild(document.createTextNode(tabnmbr));TABanchor.appendChild(anchorSpan);TABcaption.appendChild(TABanchor);var TABspan=document.createElement("span");TABspan.className="LaTeXtable";TABspan.appendChild(document.createTextNode("Table "+tabnmbr+". "));TABcaption.appendChild(TABspan);TABcaption.appendChild(document.createTextNode(""+TABcap));nodeTmp.appendChild(TABcaption);}
+  var TABinfo=strtmparray[1].match(/\\begin\s*\{\s*tabular\s*\}([\s\S]+)\\end\s*\{\s*tabular\s*\}/);if(TABinfo!=null){var TABtbody=document.createElement('tbody');var TABrow=null;var TABcell=null;var row=0;var col=0;var TABalign=TABinfo[1].match(/^\s*\{([^\}]+)\}/);TABinfo=TABinfo[1].replace(/^\s*\{[^\}]+\}/,"");TABinfo=TABinfo.replace(/\\hline/g,"");TABalign[1]=TABalign[1].replace(/\|/g,"");TABalign[1]=TABalign[1].replace(/\s/g,"");TABinfo=TABinfo.split("\\\\");for(row=0;row<TABinfo.length;row++){TABrow=document.createElement("tr");TABinfo[row]=TABinfo[row].split("&");for(col=0;col<TABinfo[row].length;col++){TABcell=document.createElement("td");switch(TABalign[1].charAt(col)){case"l":TABcell.align="left";break;case"c":TABcell.align="center";break;case"r":TABcell.align="right";break;default:TABcell.align="left";};TABcell.appendChild(document.createTextNode(TABinfo[row][col]));TABrow.appendChild(TABcell);}
+  TABtbody.appendChild(TABrow);}
+  nodeTmp.appendChild(TABtbody);}
+  newFrag.appendChild(nodeTmp);break;case"logicalbreak":var nodeTmp=document.createElement("p");nodeTmp.className=strtmparray[1];nodeTmp.appendChild(document.createTextNode("\u00A0"));newFrag.appendChild(nodeTmp);break;case"appendix":inAppendix=true;sectionCntr=0;break;case"alistitem":var EndDiv=document.createElement("div");EndDiv.className="endlistitem";newFrag.appendChild(EndDiv);var BegDiv=document.createElement("div");BegDiv.className="listitem";if(strtmparray[1]!=" "){var BegSpan=document.createElement("span");BegSpan.className="listitemmarker";var boldBegSpan=document.createElement("b");boldBegSpan.appendChild(document.createTextNode(strtmparray[1]+" "));BegSpan.appendChild(boldBegSpan);BegDiv.appendChild(BegSpan);}
+  newFrag.appendChild(BegDiv);break;case"br":newFrag.appendChild(document.createElement("br"));break;case"bibitem":newFrag.appendChild(document.createElement("br"));var nodeTmp=document.createElement("a");nodeTmp.className='bibitem';var nodeSpan=document.createElement("span");nodeSpan.className='bibitem';bibcntr++;var lbl=strtmparray[1].match(/\{\s*(\w+)\s*\}/);strtmparray[1]=strtmparray[1].replace(/\s*\{\s*\w+\s*\}/g,"");strtmparray[1]=strtmparray[1].replace(/^\s*\[/,"");strtmparray[1]=strtmparray[1].replace(/\s*\]$/,"");strtmparray[1]=strtmparray[1].replace(/^\s+|\s+$/g,"");if(lbl==null){biblist[bibcntr]="bibitem"+bibcntr}else{biblist[bibcntr]=lbl[1];};nodeTmp.name=biblist[bibcntr];nodeTmp.id=biblist[bibcntr];if(strtmparray[1]!=""){nodeSpan.appendChild(document.createTextNode(strtmparray[1]));}else{nodeSpan.appendChild(document.createTextNode("["+bibcntr+"]"));}
+  nodeTmp.appendChild(nodeSpan);newFrag.appendChild(nodeTmp);break;case"cite":var nodeTmp=document.createElement("a");nodeTmp.className='cite';nodeTmp.name='cite';nodeTmp.href="#"+strtmparray[1];newFrag.appendChild(nodeTmp);break;case"ref":var nodeTmp=document.createElement("a");nodeTmp.className='ref';nodeTmp.name='ref';nodeTmp.href="#"+strtmparray[1];newFrag.appendChild(nodeTmp);break;default:var nodeTmp=document.createElement("div");nodeTmp.className=strtmparray[0];if(IsCounter.test(strtmparray[0])){LaTeXCounter[strtmparray[0]]++;var nodeAnchor=document.createElement("a");nodeAnchor.className=strtmparray[0];var divnum=makeNumberString(LaTeXCounter[strtmparray[0]]);var anchorSpan=document.createElement("span");anchorSpan.className=strtmparray[0];anchorSpan.appendChild(document.createTextNode(divnum));anchorSpan.style.display="none";nodeAnchor.appendChild(anchorSpan);nodeTmp.appendChild(nodeAnchor);var nodeSpan=document.createElement("span");nodeSpan.className=strtmparray[0];nodeSpan.appendChild(document.createTextNode(strtmparray[1]+" "+divnum+". "));nodeTmp.appendChild(nodeSpan);}
+  if(isIE){if(strtmparray[0]==("thebibliography"||"abstract"||"keyword"||"proof")){var nodeSpan=document.createElement("span");nodeSpan.className=strtmparray[0];nodeSpan.appendChild(document.createTextNode(strtmparray[1]));nodeTmp.appendChild(nodeSpan);}}
+  if(strtmparray[0]=="endenumerate"||strtmparray[0]=="enditemize"||strtmparray[0]=="enddescription"){var endDiv=document.createElement("div");endDiv.className="endlistitem";newFrag.appendChild(endDiv);}
+  newFrag.appendChild(nodeTmp);if(strtmparray[0]=="enumerate"||strtmparray[0]=="itemize"||strtmparray[0]=="description"){var endDiv=document.createElement("div");endDiv.className="listitem";newFrag.appendChild(endDiv);}}}else{strtmp[j]=strtmp[j].replace(/\\\$/g,"<per>");strtmp[j]=strtmp[j].replace(/\$([^\$]+)\$/g," \\[$1\\[ ");strtmp[j]=strtmp[j].replace(/<per>/g,"\\$");strtmp[j]=strtmp[j].replace(/\\begin\s*\{\s*math\s*\}([\s\S]+?)\\end\s*\{\s*math\s*\}/g," \\[$1\\[ ");var strtmptmp=strtmp[j].split("\\[");for(var jjj=0;jjj<strtmptmp.length;jjj++){if(jjj%2){var nodeTmp=document.createElement("span");nodeTmp.className='inlinemath';nodeTmp.appendChild(document.createTextNode("$"+strtmptmp[jjj]+"$"));newFrag.appendChild(nodeTmp);}else{var TagIndex=strtmptmp[jjj].search(/\\\w+/);var tmpIndex=TagIndex;while(tmpIndex>-1){if(/^\\textcolor/.test(strtmptmp[jjj].substring(TagIndex,strtmptmp[jjj].length))){strtmptmp[jjj]=strtmptmp[jjj].replace(/\\textcolor\s*\{\s*(\w+)\s*\}\s*/," \\[textcolor\\]$1\\]|");}else{if(/^\\colorbox/.test(strtmptmp[jjj].substring(TagIndex,strtmptmp[jjj].length))){strtmptmp[jjj]=strtmptmp[jjj].replace(/\\colorbox\s*\{\s*(\w+)\s*\}\s*/," \\[colorbox\\]$1\\]|");}else{strtmptmp[jjj]=strtmptmp[jjj].substring(0,TagIndex)+strtmptmp[jjj].substring(TagIndex,strtmptmp[jjj].length).replace(/\\\s*(\w+)\s*/," \\[$1\\]|");}}
+  TagIndex+=strtmptmp[jjj].substring(TagIndex,strtmptmp[jjj].length).search(/\|/);TagIndex++;strtmptmp[jjj]=strtmptmp[jjj].replace(/\\\]\|/,"\\] ");if(strtmptmp[jjj].charAt(TagIndex)=="{"){strtmptmp[jjj]=strtmptmp[jjj].substring(0,TagIndex)+strtmptmp[jjj].substring(TagIndex+1,strtmptmp[jjj].length);var delimcnt=1;for(var kk=TagIndex;kk<strtmptmp[jjj].length;kk++){if(strtmptmp[jjj].charAt(kk)=="{"){delimcnt++};if(strtmptmp[jjj].charAt(kk)=="}"){delimcnt--};if(delimcnt==0){break;}}
+  strtmptmp[jjj]=strtmptmp[jjj].substring(0,kk)+"\\[ "+strtmptmp[jjj].substring(kk+1,strtmptmp[jjj].length);TagIndex=kk+3;}else{strtmptmp[jjj]=strtmptmp[jjj].substring(0,TagIndex)+"\\[ "+strtmptmp[jjj].substring(TagIndex+1,strtmptmp[jjj].length);TagIndex=TagIndex+3;}
+  if(TagIndex<strtmptmp[jjj].length){tmpIndex=strtmptmp[jjj].substring(TagIndex,strtmptmp[jjj].length).search(/\\\w+/);}
+  else{tmpIndex=-1};TagIndex+=tmpIndex;}
+  strtmptmp[jjj]=strtmptmp[jjj].replace(/\\\\\s*\\\\/g,"\\\\");strtmptmp[jjj]=strtmptmp[jjj].replace(/\\\\/g," \\[br\\] \\[ ");strtmptmp[jjj]=strtmptmp[jjj].replace(/\\label\s*\{\s*(\w+)\s*\}/g," \\[a\\]$1\\[ ");var strlbls=strtmptmp[jjj].split("\\[");for(var jj=0;jj<strlbls.length;jj++){if(jj%2){var strtmparray=strlbls[jj].split("\\]");switch(strtmparray[0]){case"textcolor":var nodeTmp=document.createElement("span");nodeTmp.className='LaTeXColor';if(IsColorName.test(strtmparray[1].toLowerCase())){nodeTmp.style.color=LaTeXColor[strtmparray[1].toLowerCase()];}else{nodeTmp.style.color=strtmparray[1];};nodeTmp.appendChild(document.createTextNode(strtmparray[2]));newFrag.appendChild(nodeTmp);break;case"colorbox":var nodeTmp=document.createElement("span");nodeTmp.className='LaTeXColor';if(IsColorName.test(strtmparray[1].toLowerCase())){nodeTmp.style.background=LaTeXColor[strtmparray[1].toLowerCase()];}else{nodeTmp.style.background=strtmparray[1];};nodeTmp.appendChild(document.createTextNode(strtmparray[2]));newFrag.appendChild(nodeTmp);break;case"br":newFrag.appendChild(document.createElement("br"));break;case"a":var nodeTmp=document.createElement("a");nodeTmp.className='LaTeXMathMLlabel';nodeTmp.id=strtmparray[1];nodeTmp.style.display="none";newFrag.appendChild(nodeTmp);break;default:var nodeTmp=document.createElement("span");nodeTmp.className=strtmparray[0];nodeTmp.appendChild(document.createTextNode(strtmparray[1]))
+  newFrag.appendChild(nodeTmp);}}else{newFrag.appendChild(document.createTextNode(strlbls[jj]));}}}}}}}};TheBody.parentNode.replaceChild(newFrag,TheBody);}}}
+  return TheBody;}
+  function LaTeXDivsAndRefs(thebody){var TheBody=thebody;var EndDivClass=null;var AllDivs=TheBody.getElementsByTagName("div");var lbl2id="";var lblnode=null;for(var i=AllDivs.length-1;i>=0;i--){EndDivClass=AllDivs[i].className.match(/end\w+/);if(EndDivClass!=null){EndDivClass=EndDivClass[0];var DivClass=EndDivClass.substring(3,EndDivClass.length);var EndDivNode=AllDivs[i];break;}}
+  while(EndDivClass!=null){var newFrag=document.createDocumentFragment();var RootNode=EndDivNode.parentNode;var ClassCount=1;while(EndDivNode.previousSibling!=null&&ClassCount>0){switch(EndDivNode.previousSibling.className){case EndDivClass:ClassCount++;newFrag.insertBefore(EndDivNode.previousSibling,newFrag.firstChild);break;case DivClass:if(EndDivNode.previousSibling.nodeName=="DIV"){ClassCount--;if(lbl2id!=""){EndDivNode.previousSibling.id=lbl2id;lbl2id=""}
+  if(ClassCount==0){RootNode=EndDivNode.previousSibling;}else{newFrag.insertBefore(EndDivNode.previousSibling,newFrag.firstChild);}};break;case'LaTeXMathMLlabel':lbl2id=EndDivNode.previousSibling.id;EndDivNode.parentNode.removeChild(EndDivNode.previousSibling);break;default:newFrag.insertBefore(EndDivNode.previousSibling,newFrag.firstChild);}}
+  RootNode.appendChild(newFrag);EndDivNode.parentNode.removeChild(EndDivNode);AllDivs=TheBody.getElementsByTagName("DIV");for(i=AllDivs.length-1;i>=0;i--){EndDivClass=AllDivs[i].className.match(/end\w+/);if(EndDivClass!=null){ClassCount=0;EndDivClass=EndDivClass[0];DivClass=EndDivClass.substring(3,EndDivClass.length);EndDivNode=AllDivs[i];RootNode=EndDivNode.parentNode;break;}}}
+  var AllDivs=TheBody.getElementsByTagName("div");var DIV2LI=null;for(var i=0;i<AllDivs.length;i++){if(AllDivs[i].className=="itemize"||AllDivs[i].className=="enumerate"||AllDivs[i].className=="description"){if(AllDivs[i].className=="itemize"){RootNode=document.createElement("UL");}else{RootNode=document.createElement("OL");}
+  RootNode.className='LaTeXMathML';if(AllDivs[i].hasChildNodes()){AllDivs[i].removeChild(AllDivs[i].firstChild)};while(AllDivs[i].hasChildNodes()){if(AllDivs[i].firstChild.hasChildNodes()){DIV2LI=document.createElement("LI");while(AllDivs[i].firstChild.hasChildNodes()){DIV2LI.appendChild(AllDivs[i].firstChild.firstChild);}
+  if(DIV2LI.firstChild.className=="listitemmarker"){DIV2LI.style.listStyleType="none";}
+  RootNode.appendChild(DIV2LI)}
+  AllDivs[i].removeChild(AllDivs[i].firstChild);}
+  AllDivs[i].appendChild(RootNode);}}
+  var AllAnchors=TheBody.getElementsByTagName("a");for(var i=0;i<AllAnchors.length;i++){if(AllAnchors[i].className=="ref"||AllAnchors[i].className=="cite"){var label=AllAnchors[i].href.match(/\#(\w+)/);if(label!=null){var labelNode=document.getElementById(label[1]);if(labelNode!=null){var TheSpans=labelNode.getElementsByTagName("SPAN");if(TheSpans!=null){var refNode=TheSpans[0].cloneNode(true);refNode.style.display="inline"
+  refNode.className=AllAnchors[i].className;AllAnchors[i].appendChild(refNode);}}}}}
+  return TheBody;}
+  var AMbody;var AMnoMathML=false,AMtranslated=false;function translate(spanclassAM){if(!AMtranslated){AMtranslated=true;AMinitSymbols();var LaTeXContainers=[];var AllContainers=document.getElementsByTagName('*');var ExtendName="";for(var k=0,l=0;k<AllContainers.length;k++){ExtendName=" "+AllContainers[k].className+" ";if(ExtendName.match(/\sLaTeX\s/)!=null){LaTeXContainers[l]=AllContainers[k];l++;}};if(LaTeXContainers.length>0){for(var m=0;m<LaTeXContainers.length;m++){AMbody=LaTeXContainers[m];try{AMbody=LaTeXDivsAndRefs(LaTeXpreProcess(AMbody));}catch(err){alert("Unknown Error: Defaulting to Original LaTeXMathML");}
+  if(AMbody.tagName=="PRE"){var PreChilds=document.createDocumentFragment();var DivChilds=document.createElement("DIV");while(AMbody.hasChildNodes()){DivChilds.appendChild(AMbody.firstChild);}
+  PreChilds.appendChild(DivChilds);AMbody.parentNode.replaceChild(PreChilds,AMbody);AMbody=DivChilds;}
+  AMprocessNode(AMbody,false,spanclassAM);}}else{AMbody=document.getElementsByTagName("body")[0];try{AMbody=LaTeXDivsAndRefs(LaTeXpreProcess(AMbody));}catch(err){alert("Unknown Error: Defaulting to Original LaTeXMathML");}
+  AMprocessNode(AMbody,false,spanclassAM);}}}
+  if(isIE){document.write("<object id=\"mathplayer\" classid=\"clsid:32F66A20-7614-11D4-BD11-00104BD3F987\"></object>");document.write("<?import namespace=\"m\" implementation=\"#mathplayer\"?>");}
+  function generic()
+  {translate();};if(typeof window.addEventListener!='undefined')
+  {window.addEventListener('load',generic,false);}
+  else if(typeof document.addEventListener!='undefined')
+  {document.addEventListener('load',generic,false);}
+  else if(typeof window.attachEvent!='undefined')
+  {window.attachEvent('onload',generic);}
+  else
+  {if(typeof window.onload=='function')
+  {var existing=onload;window.onload=function()
+  {existing();generic();};}
+  else
+  {window.onload=generic;}}
+  /*]]>*/
+  </script>
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#學習狀況報告書">學習狀況報告書</a></li>
+<li><a href="#ende">Ende</a><ul>
+<li><a href="#模式mode">模式(mode)</a><ul>
+<li><a href="#modes-an-ubiquitous-yet-overlooked-concept-in-programming">Modes: An Ubiquitous yet Overlooked Concept in Programming</a></li>
+</ul></li>
+<li><a href="#不定參數">不定參數</a><ul>
+<li><a href="#the-need-for-another-hierarchy-of-universes-in-system-programming-languages">The need for another hierarchy of universes in system programming languages</a></li>
+</ul></li>
+<li><a href="#基礎實作">基礎實作</a><ul>
+<li><a href="#fundamental-impl">fundamental impl</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#pts-pure-type-systems">PTS (Pure Type Systems)</a></li>
+<li><a href="#lambda-calculus-系列文章">Lambda Calculus 系列文章</a><ul>
+<li><a href="#lambda-calculus-2---stlc">Lambda Calculus (2 - STLC)</a><ul>
+<li><a href="#定義">定義</a></li>
+<li><a href="#歸約">歸約</a></li>
+<li><a href="#type-checking">type checking</a></li>
+<li><a href="#實例">實例</a></li>
+<li><a href="#補充">補充</a></li>
+</ul></li>
+<li><a href="#lambda-calculus-6---curry-howard-correspondence">Lambda Calculus (6 - Curry-Howard correspondence)</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="學習狀況報告書">學習狀況報告書</h1>
+<p>本報告書分為三大部分： 其第一部分為我設計（但尚未實作）的程式語言—Ende—的突破性創新。 作為上一部分的承接， 第二部分是我的程式作品， 我實作了一個非常精簡、極為抽象但卻具有代表性意義的程式語言的核心。 第三部分則是一系列的筆記， 是我在學習程式語言理論數年後對於型別系統所歸結出的學習心得， 這樣的心得並非以感想的方式呈現， 而是描述仔細的技術細節， 希望讀者可以透徹理解並吸收基本的型別系統。 整份報告書的內容目前都公佈於網路上各處並持續更新。 畢竟目前這方面的中文資源並不多， 希望我能貢獻我的知識而達到拋磚引玉的效果。</p>
+<h1 id="ende">Ende</h1>
+<p><strong>Ende</strong>是我在學習C, Java, Scala, Haskell, Agda, Idris, Rust …等程式語言後， 結合各語言特色， 創造出來的心目中最理想的程式語言。 當然， 並沒有一個客觀的標準決定一個程式語言的好與壞， 因此儘管我會根據理論上一般被視為較為細緻， 甚至可以說是優勢的型別系統考量加入到系統內， 我仍不免將其它部分的設計訴諸主觀偏好。 在本報告書接下來的部分中， 我會首先以中文表達對於Ende的概覽， 接著包含較為技術性的內容， 為了讓不只華人圈的人能理解我的想法， 當初我選擇的是以英文撰寫它們， 在此也就不特別把那些部分再重新翻譯回中文。 除此之外， 語言中包含語法和其它較為不重要抑或是瑣碎的細節被放在我的Github專案：<a href="https://github.com/AndyShiue/Ende-readme/blob/master/README.md">Ende-readme</a>上， 全部以英文撰寫。</p>
+<p>我想先解釋的是， Ende到底為什麼能被我想出來。 我的意思是這樣子： 如果Ende是那種博士級的成果， 例如<a href="https://github.com/mortberg/cubicaltt">cubicaltt</a>， 我是絕對不可能想到的。 以突破性來說， Ende的充其量只不過是「竊取」我看過語言的一些特色， 然後在它們最根本的尖端玩一些小把戲， 把一些特殊使用案例做成正確的或者是僅僅延伸它而已。 甚至， 假如你是所謂「學院派」的學者， 我指的是那些推崇最純粹的純函數式語言的人， Ende對這樣的人並沒有什麼意義。 相對於理論界最有代表性的<a href="https://www.haskell.org">Haskell</a>來說， 我最喜歡的程式語言是<a href="https://www.rust-lang.org">Rust</a>。 幸好就某方面想， 的確不是每個人都這麼在乎純函數式的典範。</p>
+<p>在我心目中， Ende的主要特色有3個， 分別是：</p>
+<ol style="list-style-type: decimal">
+<li>模式</li>
+<li>不定參數</li>
+<li>基礎實作</li>
+</ol>
+<p>接下來的各段落將分別解釋這3個特色。</p>
+<h2 id="模式mode">模式(mode)</h2>
+<p>模式這個點子是受到了<a href="http://wiki.portal.chalmers.se/agda/pmwiki.php">Agda</a>這個語言的啟發， Agda最讓我喜歡的特色是： 在Agda中， 語言結構的「種類」很少， 基本上除了一般常數的宣告之外， 就只有資料型態(<code>data</code>)的定義而已。 （註：Agda中的變數較類似於數學中的變數， 並不是真正可變的， 為了避免提供錯誤的印象， 在此將這類語言中的變數稱為常數。） <a href="http://wiki.portal.chalmers.se/agda/pmwiki.php?n=ForkedReferenceManual.Records"><code>record</code></a>（在其他語言中又被稱為<code>struct</code>）可以被視為資料型態的另一種定義方式， 但本質上和以<code>data</code>所定義出的資料型態是沒有差別的。</p>
+<p>問題是這樣， 在Agda的世界中， 要怎麼模擬一般語言裡面豐富的語言結構呢？ Agda把我所謂「語言的結構」移轉凝聚到了一個特定的結構內， 而這樣的結構， 也是在<a href="https://zh.wikipedia.org/wiki/%E5%87%BD%E6%95%B8%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80">函數式編程</a>裡面最核心最重要， 甚至賦予了函數式編程其名的那樣結構：函數。</p>
+<p>Agda在函數上……動了些手腳。 更精確地來說， 是在函數的參數上。 參數能以不同的「模式」被傳入函數中， 而這樣該被傳入的模式被決定於函數的定義方而非使用方， 這些模式分別為：</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>一般模式</strong>：就一般般的模式，沒有什麼好說的……</p></li>
+<li><p><strong>隱形模式</strong>： 一個隱形模式的參數預設下會盡量被自動推導， 也就是說， 你不用顯式(explicitly)輸入任何參數。 這是怎麼辦到的呢？ 原因是在<a href="https://zh.wikipedia.org/wiki/%E4%BE%9D%E8%B5%96%E7%B1%BB%E5%9E%8B">依值型別(dependent types)</a>的世界中， 參數能被依賴， 而被依賴者的資訊就這樣在依賴者上留下了個「印記」， 就像母親小時候的教育在孩子身上留下了印記一樣： 由這些印記， 我們能倒推回其依賴者的身份資訊。</p></li>
+<li><p><strong>環境模式</strong>： 環境模式中， 參數同樣可以被隱式(implicitly)推導， 但卻並不是依照「印記」而這麼做， 而是根據「環境」。 當有一個這樣的參數該被隱式推導， 你(我是在比喻參數)便開始問周遭的人： 「我該怎麼做？」 環境中的人給予了你答覆之後， 你再根據自己（其實是編譯器）的判斷做出決定。</p></li>
+</ol>
+<p>以上是Agda的部分， 接下來要說的是Ende。 Ende的點子是把模式這樣的概念和「相(phase)」進行了結合： 所謂的「相」指的是程式運行的時期。 一般來說（至少就我想討論的概念來說）， 程式只會有兩個相而已， 其一是編譯時期， 而另一者為執行時期。 在Agda裡面， 相的概念幾乎被抹去了， 因為Agda是如此純粹的純函數式語言， 以至於兩個相在其上得到了統合。 Ende的看法是， 我把這兩個相分開處理， 根據這兩個相， 我們能引申得到四種模式， 而這四種模式分別為……</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>一般模式</strong>： 同樣沒有什麼好說的， 參數一般在執行時期被傳入。</p></li>
+<li><p><strong>常模式</strong>： 類似Agda的隱形模式， 但參數只能在編譯時期被傳入。</p></li>
+<li><p><strong>環境模式</strong>： 和Agda一樣， 同樣是在編譯時期詢問環境而得到結論。</p></li>
+<li><p><strong>拍(<span class="LaTeX">$\Pi$</span>)模式</strong>： 拍模式無論在各種方面上都和一般模式差距不大， 主要的差別在於， 拍模式的參數能被依賴， 而一般模式的沒有辦法。</p></li>
+</ol>
+<p>總而言之， 模式把語言中的結構濃縮成了函數上參數的模式， 而之所以要把相和模式掛鉤， 是因為這樣能更容易對於程式的效率進行保證。</p>
+<p>以下為先前為模式所撰寫， 較為技術性的英文介紹：</p>
+<h3 id="modes-an-ubiquitous-yet-overlooked-concept-in-programming">Modes: An Ubiquitous yet Overlooked Concept in Programming</h3>
+<p>The first programming language that I learned seriously is Java. I’ve quickly come out with an interpretation that whatever language features in Java correspond to parts of speech. Variables are nouns; <code>this</code> is the subject and the arguments after the name of the method call are objects; methods are verbs and interfaces are adjectives.</p>
+<p>But what are the adverbs? Well, it’s pretty obvious that programming languages aren’t natural languages so not everything has an analogy in natural languages. But, hey, recently I realized there actually <em>is</em> something roughly corresponds to adverbs, which I called <em>argument modes</em>, <strong>modes</strong>, for short. Modes are ways to call a function or to annotate the data with more information. One may ask, “Is there more than one way to call a method in Java?” Actually, there are 4 modes in Java, but arguments of 2 modes can only be called implicitly. Now let’s see an example with all 4 modes in Java.</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">interface</span> Stream&lt;T&gt; {
+    <span class="co">// ...</span>
+    &lt;R&gt; Stream&lt;R&gt; <span class="fu">map</span>(Function&lt;? <span class="kw">super</span> T, ? <span class="kw">extends</span> R&gt; mapper);
+    <span class="co">// ...</span>
+}</code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p>the <strong>normal</strong> mode: Here, the argument <code>mapper</code> is in the normal mode, which is the only mode in which arguments can always be supplied explicitly at runtime in Java.</p></li>
+<li><p>the <strong>type</strong> mode: They are arguments of generics, which are introduced in Java SE 5. Examples are the <code>T</code> in <code>Stream&lt;T&gt;</code> and the <code>R</code> before <code>Stream&lt;R&gt;</code>. They are enclosed in angle brackets (<code>&lt;&gt;</code>), and some of them can only be inferred, such as the <code>&lt;R&gt;</code> in front of the method declaration and the 2 <code>?</code>’s.</p></li>
+<li><p>the <strong><code>super</code></strong> mode: Appears as <code>T</code> in <code>? super T</code> in the source code. Always have to be passed implicitly. Defines the lower bound of the type.</p></li>
+<li><p>the <strong><code>extends</code></strong> mode: Appears as <code>R</code> in <code>? extends R</code>. Similar to the previous mode.</p></li>
+</ol>
+<p>We can see that modes provide ways to pass some information to methods and classes, either explicitly or implicitly. However, is the concept of modes also presented in other languages? From now on, let’s focus on another language, Haskell, which provides a more advanced type system compared to Java. In Haskell, functions are first-class members, and classes can abstract over higher-kinded types. With language extensions, we can use even more advanced features.</p>
+<p>Haskell has 3 modes. Now I’m going to show all of them in the follow example. The following <code>fmap</code> function is similar to the <code>map</code> function in Java, but is more flexible by abstracting over the container type.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">fmap<span class="ot"> ::</span> forall f a b<span class="fu">.</span> <span class="dt">Functor</span> f <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b</code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p>the <strong>normal</strong> mode: The actual parameters passed at runtime, such as the values of types <code>a -&gt; b</code> and <code>f a</code>. The same as the normal mode in Java.</p></li>
+<li><p>the <strong><code>forall</code></strong> mode: The arguments after the keyword <code>forall</code>, which are <code>f</code>, <code>a</code>, <code>b</code>. Similar to the type mode in Java. Can only be inferred until GHC 8. After GHC 8, type arguments can be explicitly provided using the syntax <code>@a</code> Types themselves also have types, which are called kinds. for example, <code>f</code> has kind <code>* -&gt; *</code>. Ultimately, with extension <code>TypeInType</code> turned on, kinds and types are the same, e.g. <code>* :: *</code>.</p></li>
+<li><p>the <strong>constraint</strong> mode: The constraints before the fat arrow (<code>=&gt;</code>). Constraints are adjectives. In the example, sending an argument (<code>f</code>) to the class <code>Functor</code> gives you a constraint, but classes can have zero or more arguments and constraints need not be classes with arguments passed in (with language extensions).</p></li>
+</ol>
+<p>We’ve seen that Java and Haskell both have several modes, and many other languages also do. However, the syntaxes among the modes are “unequal” in either Java or Haskell. Every mode has its own syntax, and they don’t look similar at all. In the following section, I will present a hypothetical dependently-typed system programming language without subtyping with more unified syntax and view among the possible modes.</p>
+<p>In this hypothetical language, all modes of arguments can be called explicitly, either optionally or not. And I don’t use angle brackets, because they could make parsing more difficult or ambiguous. In former C++ versions, you cannot write <code>A&lt;B&lt;C&gt;&gt;</code> instead of the uglier <code>A&lt;B&lt;C&gt; &gt;</code>, because the trailing <code>&gt;&gt;</code> would be parsed as an operator. Rust also faced a similar problem. Thus, the best solution in my opinion is to fully eliminate angle brackets. In fact, I’m going to use only 2 kinds of delimiters, <code>()</code> and <code>[]</code>, preserving <code>{}</code> for other uses.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>normal</strong> mode: The same as above. Unlike Haskell, arguments in normal mode cannot be curried because it’s closer to the behavior of current machines. If arguments in normal mode could be curried, the compiler often has to generate several uncurried functions or return lambdas. Of course, functions can still be partially applied using explicit lambdas. Examples:</p>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">fn</span> factorial : (Uint) -&gt; Uint;</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">fn</span> max : (Int, Int) -&gt; Int;</code></pre></div></li>
+<li><p><strong>const</strong> mode: Before introducing const mode, I’m going to talk about const functions. Const functions are pure functions that always terminate, e.g. the above <code>factorial</code> and <code>max</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">const</span> <span class="kw">fn</span> factorial : (Uint) -&gt; Uint;</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">const</span> <span class="kw">fn</span> max : (Int, Int) -&gt; Int;</code></pre></div>
+<p>The idea is that const functions can simply be evaluated at compile time if all the arguments are known at compile time. Const functions need not to be evaluated at compile time, though. In fact, it must be able to be evaluated at runtime. In most dependently-typed languages, including this hypothetical one, types are themselves first-class values, and user-defined data types are also constants (the type, not the term of the type). All small types have type (or kind) <code>Type</code>.</p>
+<p>Now, return to const mode. Arguments in const mode must be evaluated in compile time, so they must be either a literal (including data types) or a const function applied with (recursively) constants. For example,</p>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">const</span> <span class="kw">fn</span> apply : [From : Type, To : Type](From -&gt; To, From) -&gt; To;</code></pre></div>
+<p>This function simply applies its first argument to its second argument.</p>
+<p>What’s the difference between the previous <code>max</code> function and the following <code>max2</code> function, though?</p>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">const</span> <span class="kw">fn</span> max2 : [_ : Int, _ : Int]() -&gt; Int;</code></pre></div>
+<p>First, <code>max2</code> can only be evaluated at compile time, not at runtime. More importantly, arguments in const mode are supposed to be <strong>inferred</strong>, resembling the type mode in java, but much more powerful. Arguments of <code>max2</code> can never be inferred, so they should not be in const mode.</p>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="co">// Invocations:</span>
+
+max(<span class="dv">0</span>, <span class="dv">1</span>);
+apply(factorial, <span class="dv">42</span>); <span class="co">// Arguments in const mode are inferred.</span>
+
+<span class="co">// Doesn't work:</span>
+<span class="co">// max2(); // Cannot infer its arguments in const mode.</span></code></pre></div>
+<p>Moreover, arguments in const mode are able to be curried, so <code>max2[a, b]</code> and <code>max2[a][b]</code> are interchangeable. There are 2 reasons for it:</p>
+<ol style="list-style-type: decimal">
+<li><p>users are not supposed to do heavy calculation at compile time, so performance isn’t that important.</p></li>
+<li><p>In Scala, generics cannot be curried, you need to use a hack called <em>type lambda</em> if you want to partially apply a generic data type. The reason why it’s a hack is not only it’s syntactically verbose, but also it makes type inference unpredictable.</p></li>
+</ol>
+<p>Now let’s consider another feature of the const mode: The type of the arguments can also be inferred when declaring the function. <code>apply</code> can also be written as below:</p>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">const</span> <span class="kw">fn</span> apply : [From, To](From -&gt; To, From) -&gt; To;</code></pre></div>
+<p>And the well-known <code>id</code> function could be declared as:</p>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">const</span> <span class="kw">fn</span> id : [T](T) -&gt; T;</code></pre></div></li>
+<li><p><strong>instance</strong> mode: The hypothetical programming language is in fact heavily inspired by Agda. The beauty of Agda in my opinion is that it provides a uniform way to define sorts of information, therefore no <code>class</code> versus <code>interface</code> in Java or <code>data</code> versus <code>class</code> in Haskell. The boundary between types and classification of types disappeared, and the differences are represented with different modes.</p>
+<p>The idea of <code>data</code> and <code>class</code> doesn’t necessarily need to be unified in this language, though. But in this language, instances are just another kind of argument, (usually automatically) being passed to functions in a similar syntax. instance arguments are enclosed in <code>[()]</code>, for example:</p>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">const</span> <span class="kw">fn</span> map[F, A, B][(Functor[F])](F[A], A -&gt; B) -&gt; F[B];</code></pre></div>
+<p>Notice that <code>[(Foo)]</code> should not be parsed (either by human beings or compilers) as <code>[ (Foo) ]</code> because <code>[A]</code> means <code>[A : _]</code> and putting a pair of parentheses around the argument doesn’t make much sense. Also notice that instance mode is more similar to normal mode than const mode is because <code>(Bar)</code> and <code>[(Bar)]</code> mean <code>(_ : Bar)</code> and <code>[(_ : Bar)]</code>, respectively.</p></li>
+<li><p><strong>pi</strong> mode: In a dependently-typed language, types can depend on terms. But in our language this could not be done … yet. Being enclosed in <code>([])</code>, arguments in pi mode are similar to ones in const mode such that <code>([T])</code> represents <code>([T : _])</code>, but also arguments in pi mode can be provided at runtime and cannot be curried.</p></li>
+</ol>
+<h4 id="summary">Summary</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">normal</th>
+<th align="center">const</th>
+<th align="center">instance</th>
+<th align="center">pi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>T</code> means</td>
+<td align="center"><code>(_ : T)</code></td>
+<td align="center"><code>[T : _]</code></td>
+<td align="center"><code>[(_ : T)]</code></td>
+<td align="center"><code>([T : _])</code></td>
+</tr>
+<tr class="even">
+<td align="center">type inference</td>
+<td align="center">no</td>
+<td align="center">yes</td>
+<td align="center">no</td>
+<td align="center">yes</td>
+</tr>
+<tr class="odd">
+<td align="center">phase (if not <code>const fn</code>)</td>
+<td align="center">runtime</td>
+<td align="center">compile time</td>
+<td align="center">compile time</td>
+<td align="center">runtime</td>
+</tr>
+<tr class="even">
+<td align="center">curryable</td>
+<td align="center">no</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">no</td>
+</tr>
+<tr class="odd">
+<td align="center">argument inference</td>
+<td align="center">no</td>
+<td align="center">yes</td>
+<td align="center">proof search</td>
+<td align="center">?</td>
+</tr>
+<tr class="even">
+<td align="center">can be dependent on</td>
+<td align="center">no</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="不定參數">不定參數</h2>
+<p>如果你學的是Java或C#之類的程式語言的話， 你應該會知道如果要呼叫具有不定數量參數的函數， 尾端各參數的型別必須是一樣的。 但為什麼要有這個限制？ 如果你聽說過Haskell的不定參數實作的話， 你會知道Haskell中的不定參數不一定要是同一個型別， 而可以是兩個型別交替， 或者是任意你想要的型別排列。 Haskell的策略是在編譯時期使用介面來達到這樣的效果， 在Ende裡面， 我不使用介面， 而是使用上面說的模式， 使用常模式在編譯時期把型別的排列傳入， 並對於<a href="https://en.wikipedia.org/wiki/Type_theory#Universe_types">宇宙(universe)</a>之間是否應該有繼承關係給了一個肯定的建議， 同時導入了另一系列的平行宇宙， 以最大化對於函數參數數量進行多型的能力。</p>
+<p>以下為英文的詳細介紹，在用詞上可能較為精確。</p>
+<h3 id="the-need-for-another-hierarchy-of-universes-in-system-programming-languages">The need for another hierarchy of universes in system programming languages</h3>
+<p>In the first edition of Martin-Löf’s type theory preprinted in 1971, Martin-Löf introduced a universe, normally called <span class="LaTeX">$\mathcal{U}$</span>, in his theory. It contains (i.e. is the type of) all types including the universe itself. After the theory was quickly found to be inconsistent by Girard, Martin-Löf then presented a so called “predicative” theory, with a hierarchy of universes, each usually written with a subscript, e.g. <span class="LaTeX">$\mathcal{U}_0$</span>, <span class="LaTeX">$\mathcal{U}_1$</span>, <span class="LaTeX">$\mathcal{U}_2$</span> …, and the type of each universe is the higher one universe. So, for example, the type of <span class="LaTeX">$\mathcal{U}_0$</span> is <span class="LaTeX">$\mathcal{U}_1$</span>, and the type of <span class="LaTeX">$\mathcal{U}_1$</span> is <span class="LaTeX">$\mathcal{U}_2$</span>, and going on and on. In this article, I exploit the need for (at least) one other hierarchy of universes, written <span class="LaTeX">$..\mathcal{U}_n$</span>, in which <span class="LaTeX">$n$</span> is a natural number in the metatheory, as in the above notation <span class="LaTeX">$\mathcal{U}_n$</span>.</p>
+<p>To explain why other hierarchies of universes would be useful in a system programming language, one should know what system programming is. System programming is the idea of writing the most efficient program possible; in order to do it, one usually has to have the ability to sacrifice some abstraction and step into the world of direct pointer manipulation, abandon referential transparency, etc. in order to be the closest to the bare metal machine. The abstraction to sacrifice that I will focus on is Currying, a technique implemented mainly by functional programming languages with the ability to regard functions as first-class objects. In layman’s term, Currying is the idea of eliminating multi-argument functions with single-argument ones. To achieve it, one sends the arguments one by one to each function that all of each but the last returns a function abstracting over the rest of the arguments. In the view of category theory, that is possible because of the natural isomorphism between the hom-functor between <span class="LaTeX">$A \times B$</span> and <span class="LaTeX">$C$</span> and the hom-functor between <span class="LaTeX">$A$</span> and <span class="LaTeX">$C^B$</span> in cartesian closed categories. In a system programming language, we shall minimize the gap between the code the programmers write and the native settings on bare metal. However, computers nowadays have functions that receive several arguments at once. If we apply the well-known simplification from multi- to single-argument functions, either the compiler has to generate several partially applied helper functions, or (sometimes necessarily) function pointers have to be passed around. In either case, Currying induce an overhead to the machine.</p>
+<p>Sometimes zero-cost abstractions is achieved by fallbacking to a lower-level outset, retaining the ability to build higher abstraction. In Currying, the case we focus on, I propose to provide not only uncurried functions by default, but also special mechanisms to be generic over arity. Below is an example of such a function, in which we sum up 2 natural numbers inductively:</p>
+<p><span class="LaTeX">$\begin{array}{@{}l@{}l@{}l@{}} sum( &amp; 0 &amp; : \mathbb{N}, r: \mathbb{N}): \mathbb{N} = r \\ sum( &amp; Succ(l) &amp; : \mathbb{N}, r: \mathbb{N}): \mathbb{N} = Succ(sum(l, r)) \end{array}$</span></p>
+<p>Note that <span class="LaTeX">$sum(a)$</span> shouldn’t be allowed without an explicit lambda because of what is explained. The next one is a function summing up its arbitrarily many arguments, being generic over arity:</p>
+<p><span class="LaTeX">$\begin{array}{@{}l@{}l@{}} sumAll() &amp; : \mathbb{N} = 0 \\ sumAll(head: \mathbb{N}, \ulcorner tail \lrcorner: ?_1) &amp; : \mathbb{N} = sum(head, sumAll(\ulcorner tail \lrcorner)) \end{array}$</span></p>
+<p><span class="LaTeX">$\ulcorner foo \lrcorner$</span> can be seen as flattening a list of arguments. As usual, the pattern matching syntax <span class="LaTeX">$\ulcorner _ \lrcorner$</span> is for deconstructing value, and the term syntax <span class="LaTeX">$\ulcorner _ \lrcorner$</span> is for constructing one. Specifically, if someone writes <span class="LaTeX">$sumAll(1, 2, 3)$</span>, pattern matching matches <span class="LaTeX">$head$</span> to <span class="LaTeX">$1$</span> and <span class="LaTeX">$tail$</span> to <span class="LaTeX">$2, 3$</span>; the <span class="LaTeX">$\ulcorner _ \lrcorner$</span> syntax is meant to collect several arguments. On the other hand, the recursive call on the right hand side is applied with the arguments <span class="LaTeX">$\ulcorner tail \lrcorner$</span>. Here, the same syntax expands the arguments we collected.</p>
+<p>What should be the type of <span class="LaTeX">$\ulcorner tail \lrcorner$</span>? The most obvious choice is that it should be a homogeneous list generic over some type <span class="LaTeX">$T$</span>. In lots of programming languages without Currying, variable arguments is implemented that way. However, it could sometimes be too restrictive. For example, it cannot express the arguments in the argument list is alternating between some type <span class="LaTeX">$T$</span> and another type <span class="LaTeX">$U$</span>. What is the way to build abstraction in programming languages? An obvious and primitive notion are functions. Therefore, directly or indirectly, what should be filled into <span class="LaTeX">$?_1$</span> should call a compile-time function that generates the argument list. Why “compile-time”? We can then monomorphize the function upfront before running it, making the overhead minimal. The whole idea of compile-time functions and arguments is described previously with the concept of modes. I’m just going to make a very brief review of the notion we need to proceed.</p>
+<p>I introduce another way to pass arguments, called const mode, in which the arguments must be supplied at compile time. Arguments in const mode are written inside brackets (<span class="LaTeX">$[]$</span>) and can be inferred. Actually, the type of the argument list should be an argument in const mode. We can call purely functional const function in const mode. Now the <span class="LaTeX">$sumAll$</span> example can be fully defined using const mode and a const function called <span class="LaTeX">$replicate$</span>, which is a function generating the list of arguments of the same type replicating <span class="LaTeX">$n$</span> times:</p>
+<p><span class="LaTeX">$\begin{array}{@{}l@{}l@{}l@{}} replicate[0: \mathbb{N}] &amp; (T: \mathcal{U}) : ?_2 = \ulcorner \lrcorner \\ replicate[Succ(n): \mathbb{N}] &amp; (T: \mathcal{U}) : ?_2 = \ulcorner T, replicate[n](T) \lrcorner \end{array} \\ \begin{array}{@{}l@{}l@{}l@{}} sumAll &amp; () &amp; : \mathbb{N} = 0 \\ sumAll[Args: replicate(\mathbb{N})] &amp; (head: \mathbb{N}, \ulcorner tail \lrcorner: Args) &amp; : \mathbb{N} = sum(head, sumAll(\ulcorner tail \lrcorner)) \end{array}$</span></p>
+<p>How would <span class="LaTeX">$?_2$</span> be, then? If we say the type of a heterogeneous list is the list of the types of each member of the list, we might want the type of the list to also be heterogeneous. Fortunately, we don’t have to recurse forever to build higher-order argument lists because of a feature of normal type systems: The type of the type of any value is a universe. With a cumulative hierarchy of universes <span class="LaTeX">$\mathcal{U}_0 &lt;: \mathcal{U}_1 &lt;: \mathcal{U}_2 ...$</span>, we can assign each <span class="LaTeX">$\mathcal{U}_n$</span> a universe <span class="LaTeX">$..\mathcal{U}_n$</span> which is a list the types of which is <span class="LaTeX">$\mathcal{U}_n$</span> and have arbitrary length; because of cumulativity, the types of all arguments belong to a sufficiently large <span class="LaTeX">$\mathcal{U}_n$</span>.</p>
+<p>Therefore, <span class="LaTeX">$?_2$</span> would be <span class="LaTeX">$..\mathcal{U}_n$</span>, for a sufficiently large <span class="LaTeX">$n$</span>. The new hierarchy of types should also be cumulative, and it seems straightforward to say that <span class="LaTeX">$..\mathcal{U}_0 &lt;: ..\mathcal{U}_1 &lt;: ..\mathcal{U}_2 ...$</span>, i.e. <span class="LaTeX">$..\mathcal{U}_n$</span> is covariant over <span class="LaTeX">$\mathcal{U}_n$</span>.</p>
+<h2 id="基礎實作">基礎實作</h2>
+<p>在Agda裡面， 環境模式的作用和Haskell裡面的介面類似： 環境模式中你會向環境進行詢問， 而環境中的其他人事實上比喻的是所謂的「實作」。 但為何Haskell要創造新的語言結構， 亦即介面， 而不用原本的record呢？ 乍看之下， 它們似乎是很不一樣的概念， 但卻在Agda中得到了統合。 Haskell不像Agda這麼做的原因是介面之間有繼承關係， 任何實作子介面的資料型態都必定也實作母介面。 在Ende中， 類似於Agda， 並沒有介面這樣的獨立概念。 和Agda的不同之處在於， Ende確實提供了一個能定義介面間繼承關係的方法， 它被稱為「基礎實作」。 基礎實作事實上不是只能用來實作介面間的繼承， 但…..我也想不到它的其他用處了…… 不過就語言的角度來看， 基本實作只不過是語言中的一個後門而已， 和傳統的實作差異並不大， 因此我認為它嚴格上能算是某些概念的統合， 而不是硬生生的把兩個不同的概念試圖牽扯在一起。 我在探索Ende的時候還意外發現了一件事， 事實上我不僅能模擬介面， 連傳統物件導向中的類別也能被模擬， 但問題……又是出在繼承， 我目前還不確定那樣的問題是否能被解決。</p>
+<p>有關基礎實作的資訊， 我並不像上面的兩個創新曾在部落格上發布獨立的英文文章， 詳細的細節被寫在Ende-readme， 但可能需要前後文較容易讀懂， 以下仍然節錄Ende-readme中談論<a href="https://github.com/AndyShiue/Ende-readme#fundamental-impl">基礎實作</a>的小部分</p>
+<h3 id="fundamental-impl">fundamental impl</h3>
+<p>What we don’t have yet is the ability to define one <code>record</code> to be a supertrait of another <code>record</code>. In other words, asserting if you implement a trait, another trait must be implemented. You may ask, isn’t the above <code>impl</code> functions enough? Not really. Imagine you want to define an <code>Abelian</code> trait, the code you need to add would be:</p>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust">record Abelian[T] = abelian {
+    unit : T,
+    <span class="kw">fn</span> append(<span class="kw">self</span> : T, T) -&gt; T,
+    <span class="kw">fn</span> inverse(<span class="kw">self</span> : T) -&gt; T,
+};
+
+<span class="kw">impl</span> abelianToGroup[T][(Abelian[T])] -&gt; Group[T] = {
+    group {
+       unit =&gt; unit,
+       append =&gt; append,
+       inverse =&gt; inverse,
+    }
+};</code></pre></div>
+<p>That’s a lot of boilerplate! The code is very similar to implementing <code>Monoid</code>s for <code>Group</code>s; we have to write this kind of code again and again while creating an inheritance tree of <code>record</code>s. That is not tolerable. Imagine if we can write code like this:</p>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust">-- The <span class="kw">type</span> `Abelian` carries no additional data,
+-- but it extends the trait `Group`.
+data Abelian[T] = abelian;
+-- The extension happens here.
+<span class="kw">impl</span> abelianExtendsGroup[T] ;
+    -&gt; Extends[Abelian[T], Group[T]] = extension</code></pre></div>
+<p>It’s really concise code! But how do we get an instance of type <code>Group[T]</code> given the instances of types <code>Abelian[T]</code> and <code>Extends[Abelian[T], Group[T]]</code>? It’s actually a hack: we need more <code>impl</code>s. I’ll try to explain it.</p>
+<h4 id="the-hack">The Hack</h4>
+<p>First, I’ll provide the hacky part of the source code:</p>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust">record Extends[A, B] = extension;
+
+-- Ignore the `const` keyword before `fn` <span class="kw">for</span> now.
+<span class="kw">const</span> <span class="kw">fn</span> implicitly[T][(inst : T)] -&gt; T = inst;
+
+fundamental <span class="kw">impl</span> superTrait[A, B][(A, Extends[A, B])]
+    -&gt; B = implicitly[B];</code></pre></div>
+<p>The basic idea is that no matter what <code>A</code> and <code>B</code> are, if <code>impl</code>s of <code>A</code> and <code>Extends[A, B]</code> are in scope, <code>impl</code> of <code>B</code> is made in scope. In the revised version of example of <code>Abelian</code>, because both <code>impl</code>s of <code>Abelian[T]</code> and <code>Extends[Abelian[T], Group[T]]</code> are in scope, <code>impl</code> of <code>Group[T]</code> is also made in scope. Why is the keyword <code>fundamental</code> before the <code>impl superTrait</code> required then? To know why it’s needed, we need to go deeper to know how an <code>impl</code> is found.</p>
+<h4 id="searching-for-impls">Searching for <code>impl</code>s</h4>
+<p>First, we search for <code>impl</code> objects. We add an <code>impl</code> object in scope to the current <strong><code>impl</code> context</strong> if the trait it implements is also in scope.</p>
+<p>Second, we add the <code>impl</code> functions to the <code>impl</code> context. There is a necessary limitation of normal <code>impl</code> functions: a normal <code>impl</code> function can only have a return type that is not a variable, so the example below does’t work:</p>
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust">-- Doesn<span class="ot">'t</span> compile.
+-- <span class="kw">impl</span> abuseOfImplicitly[T] -&gt; T = implicitly[T];</code></pre></div>
+<p>The reason why some limitation is needed is because we want to make searching <code>impl</code>s more predictable, so that we can filter out the <code>impl</code> functions that doesn’t retern an <code>impl</code> of a type in scope. Without the limitation, the <code>impl</code> searching process could stuck at some weird recursive <code>impl</code>.</p>
+<p>And <code>fundamental impl</code>s surpass that limitation. It has to be used more carefully, but I don’t think there’s a lot of uses of it. In fact the only one I can think of is trait inheritance. The <code>impl</code>s of the return types of the <code>fundamental impl</code>s are recursively added to the <code>impl</code> context no matter whether the type it implements is in scope or not.</p>
+<h1 id="pts-pure-type-systems">PTS (Pure Type Systems)</h1>
+<p>I’ll only present the type checking part and omit other things because the report is limited to have below 30 pages; The full implementation including tests is put on a Github repository, <a href="https://github.com/AndyShiue/pts">pts</a>. Currently, this project can only be used as a library, not an application, because I haven’t dealt with parsing stuff.</p>
+<p>This is an implementation of <em>pure type systems</em> written in the Rust programming language. It’s basically a rewrite from the Haskell version, <a href="http://augustss.blogspot.tw/2007/10/simpler-easier-in-recent-paper-simply.html">Simpler, Easier!</a></p>
+<hr />
+<p>Installation:</p>
+<ol style="list-style-type: decimal">
+<li><p>First make sure <a href="https://www.rust-lang.org/en-US/">Rust</a> (and obviously also <a href="https://git-scm.com"><code>git</code></a>) has already been installed on your machine.</p></li>
+<li><p>Clone this repository: <code>git clone https://github.com/AndyShiue/pts.git</code></p></li>
+<li><p>Navigate to the root of the project: <code>cd pts</code></p></li>
+<li><p>Run <code>cargo test</code> to run all the tests in the project. It might takes some time.</p></li>
+</ol>
+<hr />
+<p>Originally, lambda calculus is invented to be a Turing-complete model of computation. Subsequent works add type systems on top of the lambda calculus, usually making it <strong>not</strong> Turing-complete, but stronger type systems lead to the ability to write mathematical proofs in it. Pure type systems are a generalization of the lambda cube, which consists of the simply typed lambda calculus, system F, calculus of constructions, etc.. They can be served as fundamental core languages for real-world functional programming languages. Dependent types, the idea that types can be dependent on terms, is also a very powerful feature of a type system. The users of this library can implement their own pure type systems either having or not having dependent types. More generally speaking, with this library, you can define your own pure type systems, consisting one or more, or even infinite sorts, and the relationship between them.</p>
+<p>Source code below.</p>
+<hr />
+<div class="sourceCode"><pre class="sourceCode rust"><code class="sourceCode rust"><span class="kw">use</span> std::fmt::{<span class="kw">self</span>, <span class="bu">Debug</span>, <span class="bu">Display</span>};
+<span class="kw">use</span> std::hash::<span class="bu">Hash</span>;
+<span class="kw">use</span> std::collections::{HashSet, HashMap};
+
+<span class="co">// A newtype wrapper representing a symbol.</span>
+<span class="at">#[</span>derive<span class="at">(</span><span class="bu">Clone</span><span class="at">,</span> <span class="bu">Debug</span><span class="at">,</span> <span class="bu">PartialEq</span><span class="at">,</span> <span class="bu">Eq</span><span class="at">,</span> <span class="bu">Hash</span><span class="at">)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> Symbol(<span class="kw">pub</span> <span class="dt">String</span>);
+
+<span class="kw">impl</span> <span class="bu">Display</span> <span class="kw">for</span> Symbol {
+    <span class="kw">fn</span> fmt(&amp;<span class="kw">self</span>, f: &amp;<span class="kw">mut</span> fmt::Formatter) -&gt; fmt::<span class="dt">Result</span> {
+        <span class="pp">write!</span>(f, <span class="st">&quot;{}&quot;</span>, <span class="kw">self</span>.<span class="dv">0</span>)
+    }
+}
+
+<span class="co">// The type of terms generic over pure type systems.</span>
+<span class="at">#[</span>derive<span class="at">(</span><span class="bu">Clone</span><span class="at">,</span> <span class="bu">Debug</span><span class="at">,</span> <span class="bu">PartialEq</span><span class="at">,</span> <span class="bu">Eq</span><span class="at">,</span> <span class="bu">Hash</span><span class="at">)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> Term&lt;System: PureTypeSystem&gt; {
+    Var(Symbol),
+    App(<span class="dt">Box</span>&lt;Term&lt;System&gt;&gt;, <span class="dt">Box</span>&lt;Term&lt;System&gt;&gt;),
+    Lam(Symbol, <span class="dt">Box</span>&lt;Term&lt;System&gt;&gt;, <span class="dt">Box</span>&lt;Term&lt;System&gt;&gt;),
+    Pi(Symbol, <span class="dt">Box</span>&lt;Term&lt;System&gt;&gt;, <span class="dt">Box</span>&lt;Term&lt;System&gt;&gt;),
+    Sort(System::Sort),
+}
+
+<span class="kw">impl</span>&lt;System: PureTypeSystem&gt; <span class="bu">Display</span> <span class="kw">for</span> Term&lt;System&gt; {
+    <span class="kw">fn</span> fmt(&amp;<span class="kw">self</span>, f: &amp;<span class="kw">mut</span> fmt::Formatter) -&gt; fmt::<span class="dt">Result</span> {
+        <span class="kw">use</span> Term::*;
+        <span class="kw">match</span> *<span class="kw">self</span> {
+            Var(Symbol(<span class="kw">ref</span> <span class="dt">str</span>)) =&gt; <span class="pp">write!</span>(f, <span class="st">&quot;{}&quot;</span>, <span class="dt">str</span>),
+            App(<span class="kw">ref</span> left, <span class="kw">ref</span> right) =&gt;
+                <span class="pp">write!</span>(f, <span class="st">&quot;({} {})&quot;</span>, left, right),
+            Lam(<span class="kw">ref</span> bound, <span class="kw">ref</span> ty, <span class="kw">ref</span> inner) =&gt;
+                <span class="pp">write!</span>(f, <span class="st">&quot;(</span><span class="sc">\\</span><span class="st">{}: {}. {})&quot;</span>, bound, ty, inner),
+            Pi(<span class="kw">ref</span> bound, <span class="kw">ref</span> left, <span class="kw">ref</span> right) =&gt;
+                <span class="pp">write!</span>(f, <span class="st">&quot;({}: {}) -&gt; {}&quot;</span>, bound, left, right),
+            Sort(<span class="kw">ref</span> sort) =&gt; <span class="pp">write!</span>(f, <span class="st">&quot;{}&quot;</span>, sort),
+        }
+    }
+}
+
+<span class="co">// The trait classifying a pure type system.</span>
+<span class="co">// It consists of 3 things, respectively:</span>
+<span class="co">// 1. Its sort, this is represented as an associated type.</span>
+<span class="co">// 2. `axiom`, which is a function from any sort to its super-sort.</span>
+<span class="co">//    It returns an `Option` because some sort may not belong to any other sorts,</span>
+<span class="co">//    i.e. it's already the largest sort in the system.</span>
+<span class="co">// 3. `rule`, the purpose of this function is to specify the type of a function</span>
+<span class="co">//    from the type of its argument and its return type.</span>
+<span class="co">//    If a function has type T1 -&gt; T2, the type of T1 is s1 and the type of T2</span>
+<span class="co">//    is s2, then the type of the whole function is rule(s1, s2).</span>
+<span class="co">//    Again, `rule` returns an `Option` because the function type isn't always</span>
+<span class="co">//    well-formed.</span>
+<span class="kw">pub</span> <span class="kw">trait</span> PureTypeSystem: <span class="bu">Clone</span> + <span class="bu">Debug</span> {
+    <span class="kw">type</span> Sort: Copy + Clone + Debug + Display + Eq + Hash;
+    <span class="kw">fn</span> axiom(sort: <span class="kw">Self</span>::Sort) -&gt; <span class="dt">Option</span>&lt;<span class="kw">Self</span>::Sort&gt;;
+    <span class="kw">fn</span> rule(s1: <span class="kw">Self</span>::Sort, s2: <span class="kw">Self</span>::Sort) -&gt; <span class="dt">Option</span>&lt;<span class="kw">Self</span>::Sort&gt;;
+}
+
+<span class="kw">impl</span>&lt;System: PureTypeSystem&gt; Term&lt;System&gt; {
+
+    <span class="co">// The starting point of type checking.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> type_check(<span class="kw">self</span>) -&gt; <span class="dt">Result</span>&lt;Term&lt;System&gt;, <span class="dt">String</span>&gt; {
+        <span class="kw">self</span>.type_check_with_context(HashMap::new())
+    }
+
+    <span class="co">// And the real implementation of the type checking.</span>
+    <span class="co">// We need to store typing information in a map called `context`.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> type_check_with_context(<span class="kw">self</span>, context: HashMap&lt;Symbol, Term&lt;System&gt;&gt;)
+        -&gt; <span class="dt">Result</span>&lt;Term&lt;System&gt;, <span class="dt">String</span>&gt; {
+        <span class="kw">use</span> <span class="kw">self</span>::Term::*;
+        <span class="kw">match</span> <span class="kw">self</span> {
+            <span class="co">// Simply lookup the context if I hit a variable.</span>
+            Var(v) =&gt; {
+                <span class="kw">match</span> context.get(&amp;v) {
+                    <span class="cn">Some</span>(ty) =&gt; <span class="cn">Ok</span>(ty.clone()),
+                    <span class="cn">None</span> =&gt; <span class="cn">Err</span>(<span class="pp">format!</span>(<span class="st">&quot;Cannot find variable {}.&quot;</span>, &amp;v.<span class="dv">0</span>))
+                }
+            }
+            <span class="co">// If I hit an application ...</span>
+            App(left, right) =&gt; {
+                <span class="co">// First see if the left hand side type checks.</span>
+                <span class="kw">let</span> left_ty = <span class="pp">try!</span>(
+                    left.type_check_with_context(context.clone())
+                );
+                <span class="co">// If `left_ty` isn't a function in its `whnf` form, output an</span>
+                <span class="co">// error.</span>
+                <span class="kw">match</span> left_ty.whnf() {
+                    Pi(bound, ty_in, ty_out) =&gt; {
+                        <span class="co">// Let's then type check the right hand side.</span>
+                        <span class="kw">let</span> right_ty = <span class="pp">try!</span>(right.clone()
+                                                 .type_check_with_context(
+                                                      context.clone())
+                                                  );
+                        <span class="co">// If the type of the right hand side matches the type</span>
+                        <span class="co">// of the argument of the `Pi` type, substitute the</span>
+                        <span class="co">// return type with the right hand side.</span>
+                        <span class="co">// The return type can have free occurences of the bound</span>
+                        <span class="co">// variable because now we are working with dependent</span>
+                        <span class="co">// types.</span>
+                        <span class="kw">if</span> right_ty.beta_eq(&amp;ty_in) {
+                            <span class="cn">Ok</span>(ty_out.substitute(&amp;bound, &amp;right))
+                        } <span class="kw">else</span> {
+                            <span class="co">// If the types doesn't match, return an error.</span>
+                            <span class="cn">Err</span>(
+                                <span class="pp">format!</span>(
+                                    <span class="st">&quot;Expected something of type {}, </span><span class="sc">\</span>
+<span class="st">                                     found that of type {}.&quot;</span>,
+                                    ty_in, right_ty
+                                )
+                            )
+                        }
+                    }
+                    left_ty =&gt;
+                        <span class="cn">Err</span>(<span class="pp">format!</span>(<span class="st">&quot;Expected lambda, found value of type {}.&quot;</span>,
+                                    left_ty))
+                }
+            }
+            <span class="co">// If I hit a lambda ...</span>
+            Lam(bound, ty, inner) =&gt; {
+                <span class="co">// Check if the type of the argument is well-formed,</span>
+                <span class="co">// if it is, proceed ...</span>
+                <span class="pp">try!</span>(ty.clone().type_check_with_context(context.clone()));
+                <span class="kw">let</span> <span class="kw">mut</span> new_context = context;
+                <span class="co">// Insert the bound variable into the new context.</span>
+                new_context.insert(bound.clone(), *ty.clone());
+                <span class="co">// And type check the right hand side of the lambda with the new</span>
+                <span class="co">// context.</span>
+                <span class="kw">let</span> inner_type =
+                    <span class="pp">try!</span>(inner.type_check_with_context(new_context));
+                <span class="cn">Ok</span>(Pi(bound, ty, <span class="dt">Box</span>::new(inner_type)))
+            }
+            <span class="co">// If I hit a `Pi` ...</span>
+            Pi(bound, left, right) =&gt; {
+                <span class="co">// First, type check the type of the bound variable.</span>
+                <span class="co">// It must be a `Sort`, otherwise output an error.</span>
+                <span class="kw">if</span> <span class="kw">let</span> Sort(left_sort) = <span class="pp">try!</span>(left.clone()
+                                                  .type_check_with_context(
+                                                       context.clone()
+                                                   )
+                                                  .map(Term::whnf)) {
+                    <span class="co">// Create a new context, the same as what we did in the case</span>
+                    <span class="co">// of `Lam`.</span>
+                    <span class="kw">let</span> <span class="kw">mut</span> new_context = context;
+                    <span class="co">// Insert the bound variable.</span>
+                    new_context.insert(bound, *left);
+                    <span class="co">// type check the right hand side of the `Pi` with the new</span>
+                    <span class="co">// context.</span>
+                    <span class="kw">let</span> right_kind = <span class="pp">try!</span>(right.clone()
+                                               .type_check_with_context(
+                                                    new_context
+                                                )
+                                               .map(Term::whnf));
+                    <span class="co">// Again, check if the type of the return type is a `Sort`.</span>
+                    <span class="kw">if</span> <span class="kw">let</span> Sort(right_sort) = right_kind {
+                        <span class="co">// Call `rule` to get the type of the whole function</span>
+                        <span class="co">// type.</span>
+                        <span class="kw">let</span> new_sort =
+                            System::rule(left_sort.clone(), right_sort.clone());
+                        <span class="kw">match</span> new_sort {
+                            <span class="cn">Some</span>(sort) =&gt; <span class="kw">return</span> <span class="cn">Ok</span>(Sort(sort.clone())),
+                            <span class="co">// If such rule doesn't exist, output an error.</span>
+                            <span class="cn">None</span> =&gt; {
+                                <span class="kw">let</span> error_message = <span class="pp">format!</span>(
+                                    <span class="st">&quot;Rule ({}, {}, _) doesn't exist.&quot;</span>,
+                                    left_sort, right_sort
+                                );
+                                <span class="cn">Err</span>(error_message)
+                            }
+                        }
+                    } <span class="kw">else</span> {
+                        <span class="cn">Err</span>(<span class="pp">format!</span>(<span class="st">&quot;Type {} isn't inhabited.&quot;</span>, right))
+                    }
+                } <span class="kw">else</span> {
+                    <span class="cn">Err</span>(<span class="pp">format!</span>(<span class="st">&quot;Type {} isn't inhabited.&quot;</span>, left))
+                }
+            }
+            <span class="co">// Finally, type check the sorts. It's an easy case. We just need to</span>
+            <span class="co">// call `axiom`.</span>
+            Sort(sort) =&gt; {
+                <span class="kw">match</span> System::axiom(sort) {
+                    <span class="cn">Some</span>(new_sort) =&gt; <span class="cn">Ok</span>(Sort(new_sort.clone())),
+                    <span class="cn">None</span> =&gt;
+                        <span class="cn">Err</span>(<span class="pp">format!</span>(<span class="st">&quot;Sort {} doesn't have a super-sort.&quot;</span>, sort)),
+                }
+            }
+        }
+    }
+
+    <span class="co">// This function substitutes all occurences of the variable `from` into the</span>
+    <span class="co">// term `to`.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> substitute(<span class="kw">self</span>, from: &amp;Symbol, to: &amp;Term&lt;System&gt;) -&gt; Term&lt;System&gt; {
+        <span class="pp">panic!</span>(<span class="st">&quot;Source code omitted for brevity.&quot;</span>);
+    }
+
+    <span class="co">// The purpose of this function is to get the *Weak Head Normal Form* of a</span>
+    <span class="co">// term.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> whnf(<span class="kw">self</span>) -&gt; Term&lt;System&gt; {
+        <span class="pp">panic!</span>(<span class="st">&quot;Source code omitted for brevity.&quot;</span>);
+    }
+
+}</code></pre></div>
+<h1 id="lambda-calculus-系列文章">Lambda Calculus 系列文章</h1>
+<p>以下為我寫的lambda calculus系列教學文章， 所有文章集結於我的<a href="http://andyshiue.github.io/lambda/2016/09/24/table-of-contents.html">部落格</a>上， 因篇幅關係， 這邊僅節錄其中幾篇。</p>
+<h2 id="lambda-calculus-2---stlc">Lambda Calculus (2 - STLC)</h2>
+<p>講完untyped lambda， 接下來就要講typed lambda啦。 顧名思義， typed lambda就是有type的lambda， 因此必須要被type check； 一個合理的type checker不會讓所有程式都type check成功， 而是只接受特定的一些「正確的」程式， 因此讓程式的錯誤能在編譯時期就被找出來。</p>
+<h3 id="定義">定義</h3>
+<p>我們首先從simply typed lambda calculus開始， 以下將會取簡稱STLC。 STLC的term中， 唯一的差別就在於lambda的綁定變數增加了型別標記， 原本的lambda</p>
+<p><span class="LaTeX">$\lambda x. t$</span></p>
+<p>會變成</p>
+<p><span class="LaTeX">$\lambda x: T. t$</span></p>
+<p>其中的<span class="LaTeX">$T$</span>是一個type， 代表了參數應要有的型態， 假如傳入的參數有著其它型態， type check便不會通過。</p>
+<p>現在問題來了， lambda的型態又是什麼？ 一個lambda的資訊主要由兩個部分構成， 一個是參數的type， 另外一個則是值的type， 我們把一個lambda的type寫成<span class="LaTeX">$T \to U$</span>， 其中<span class="LaTeX">$T$</span>是參數的type， <span class="LaTeX">$U$</span>則是回傳值的type。 一個type為<span class="LaTeX">$T \to U$</span>的lambda， 在接收一個type為<span class="LaTeX">$T$</span>的參數後， 會傳回type為<span class="LaTeX">$U$</span>的運算式。</p>
+<p>全部組合起來吧， 我們的新系統裡面會有term和type兩個階層， 接下來我要分別定義term和type由什麼組成， 其中type包含了：</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="LaTeX">$Base$</span>， 這是最基本的type， 它不能被當成一個函數。 假設<span class="LaTeX">$t_1: Base$</span>(這代表著<span class="LaTeX">$t_1$</span>的型別是<span class="LaTeX">$Base$</span>)， 則<span class="LaTeX">$t_1 t_2$</span>絕對無法通過type check。</p></li>
+<li><p><span class="LaTeX">$T_1 \to T_2$</span>， 對所有type <span class="LaTeX">$T_1$</span>和<span class="LaTeX">$T_2$</span>， 函數型別<span class="LaTeX">$T_1 \to T_2$</span>是一個type。 也就是說， 我們能夠從<span class="LaTeX">$Base$</span>開始， 建構一系列更複雜的type， 例如像<span class="LaTeX">$Base \to Base$</span>、<span class="LaTeX">$Base \to (Base \to Base)$</span>、<span class="LaTeX">$(Base \to Base) \to Base$</span>……</p></li>
+</ol>
+<p>term則包含了：</p>
+<ol style="list-style-type: decimal">
+<li><p>變數</p></li>
+<li><p>對所有變數名稱<span class="LaTeX">$x$</span>， 所有term <span class="LaTeX">$t$</span>， 和所有type <span class="LaTeX">$T$</span>， <span class="LaTeX">$\lambda x: T. t$</span>是一個term。</p></li>
+<li><p>對所有運算式<span class="LaTeX">$t_1$</span>， 和所有運算式<span class="LaTeX">$t_2$</span>， <span class="LaTeX">$t_1 t_2$</span>是一個term。</p></li>
+</ol>
+<p>在以上對term和type的定義中， 我省略了這句話：</p>
+<blockquote>
+<p>除上述之外， 沒有任何其它東西是運算式。</p>
+</blockquote>
+<p>因為這是顯而易見的， 從今以後我都將省略之， 並且我要導入一個更簡潔的表示法：</p>
+<p><span class="LaTeX">$\begin{array}{rcl} term(t) ::= &amp; \mathbf{var} (x) \\  | &amp; \lambda x: T. t \\  | &amp; t t \\ type(T) ::= &amp; Base \\  | &amp; T \to T \end{array}$</span></p>
+<p>這樣的表示法相當於上面用文字對term和type的定義， 兩相對照之下， 應該不難理解它的意思。 用Haskell可以寫成這樣：</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Symbol</span> <span class="fu">=</span> <span class="dt">Symbol</span> <span class="dt">String</span>
+<span class="kw">data</span> <span class="dt">Term</span> <span class="fu">=</span> <span class="dt">Var</span> <span class="dt">Symbol</span>
+          <span class="fu">|</span> <span class="dt">Lam</span> <span class="dt">Symbol</span> <span class="dt">Type</span> <span class="dt">Term</span>
+          <span class="fu">|</span> <span class="dt">App</span> <span class="dt">Term</span> <span class="dt">Term</span>
+<span class="kw">data</span> <span class="dt">Type</span> <span class="fu">=</span> <span class="dt">Base</span>
+          <span class="fu">|</span> <span class="dt">Arrow</span> <span class="dt">Type</span> <span class="dt">Type</span></code></pre></div>
+<p>值得一提的是， <span class="LaTeX">$\to$</span>是<strong>右結合</strong>的， 換句話說， <span class="LaTeX">$T \to U \to V$</span>代表的是<span class="LaTeX">$T \to (U \to V)$</span>。 為什麼呢？ 還記得前面提到的柯里化(Currying)吧， <span class="LaTeX">$f \: a \: b$</span>中的<span class="LaTeX">$f$</span>可以被理解成接收兩個參數的函數， 假設<span class="LaTeX">$a$</span>的型別為<span class="LaTeX">$A$</span>、<span class="LaTeX">$b$</span>的型別為<span class="LaTeX">$B$</span>， 則<span class="LaTeX">$f$</span>的型別會是<span class="LaTeX">$A \to (B \to C)$</span>。 在大多的情況中， 我們都希望柯里化能運作， 因此我們把<span class="LaTeX">$\to$</span>定義成右結合的。</p>
+<h3 id="歸約">歸約</h3>
+<p>STLC的歸約和untyped lambda中的歸約差不多， 畢竟兩者唯一的差別就只在綁定變數上多了個型別， 而目前型別在執行時期是不需要的， 不過現在我們大可不必管歸約策略了， 為什麼呢？ 因為在STLC中， 所有term都有NF， 並且任何term都能在有限步<span class="LaTeX">$\beta$</span>-歸約後達到它的NF， 所以你大可把所有term歸約成NF， 這是型別系統帶來的好處。 當然， 這代表著我們沒有辦法在STLC裡面跑一個無窮迴圈， 例如像是前面提到的<span class="LaTeX">$\Omega$</span>在STLC中便不存在， 也就是說STLC並不是圖靈完全的。</p>
+<p>為什麼<span class="LaTeX">$\Omega$</span>不存在？ 複習一下， <span class="LaTeX">$\Omega \stackrel{def}{\equiv} (\lambda x. x x)(\lambda x. x x)$</span>， 現在假設我們要為它的綁定變數加上型別， 變成<span class="LaTeX">$\Omega \stackrel{def}{\equiv} (\lambda x: ?. x x)(\lambda x: ?. x x)$</span>， 問號中要填入什麼？ 這個問題是無解的。</p>
+<h3 id="type-checking">type checking</h3>
+<p>接下來要講type checking了， 先來讓大家嘗鮮一下， 以下這堆莫名其妙的符號解釋了STLC的type checking是怎麼進行的：</p>
+<p><span class="LaTeX">$\begin{array}{lcl} (var) &amp; \Gamma \vdash x: T &amp; \mbox{if } x: T \in \Gamma \\ (appl) &amp; \dfrac{\Gamma \vdash t_1: T \to U \qquad \Gamma \vdash t_2: T}{\Gamma \vdash t_1 t_2: U} \\ (abst) &amp; \dfrac{\Gamma, x: T \vdash t: U }{\Gamma \vdash (\lambda x: T. t): T \to U} \end{array}$</span></p>
+<p>接下來我會用直覺解釋要怎麼進行type check， 然後再引導讀者理解上面這些符號代表的意義。</p>
+<h4 id="概述">概述</h4>
+<p>首先我先來定義何謂term的<em>內外層</em>， 以untyped lambda來說， <span class="LaTeX">$(\lambda x. x x)$</span>在<span class="LaTeX">$(\lambda x. x x)(\lambda x. x x)$</span>的內層， 而<span class="LaTeX">$x x$</span>又在<span class="LaTeX">$(\lambda x. x x)$</span>的更內層。 注意綁定變數<span class="LaTeX">$x$</span>不在<span class="LaTeX">$(\lambda x. x x)$</span>的內層， 那只是一個變數而已， 不是一個term。</p>
+<p>還記得目前有哪些term吧： 變數、lambda、函數調用。 當我們在term的最外層時， 可能遇到的肯定是這三者的其中一個， 現在我打算對這三個可能性逐個擊破， 首先先講遇到函數調用時怎麼辦： 當遇到函數調用時， 有兩個內層的term， 左邊那個必須是函數， 右邊則是丟給左邊那個函數的參數， 而且右邊那個term的型別必須要和左邊函數綁定變數後面標示的型別互相吻合。 我們只要分別對左右邊進行type check， 再確定左邊是不是個函數， 而且它標示的型別和右邊term相吻合就好。</p>
+<p>如果遇到了一個lambda <span class="LaTeX">$\lambda x: T. t$</span>， 則我們要把<span class="LaTeX">$x$</span>的型別是<span class="LaTeX">$T$</span>這個事實記錄下來， 然後在這個事實的大前提下， 檢查<span class="LaTeX">$t$</span>的型別是什麼。 就把<span class="LaTeX">$t$</span>的型別叫做<span class="LaTeX">$U$</span>好了， 那麼整個lambda的型別就是<span class="LaTeX">$T \to U$</span>， 因為有可能<span class="LaTeX">$x \in FV(t)$</span>， 所以<span class="LaTeX">$x$</span>的型別資訊在檢查<span class="LaTeX">$t$</span>的型別時是必要的。</p>
+<p>用更精確的詞來說， 當遇到一個lambda <span class="LaTeX">$\lambda x: T. t$</span>時， 我們把<span class="LaTeX">$x$</span>的型別是<span class="LaTeX">$T$</span>這樣的資訊存放在<strong>語境</strong>中， 然後用這樣的語境檢查<span class="LaTeX">$t$</span>的型別， 如果在lambda的內層遇到另一個lambda要怎麼辦？ 只要把它的綁定變數也加入語境就好了， 然後用這個更改過的語境檢查更內層term的type。</p>
+<p>最後， 如果遇到變數怎麼辦？ 要是單獨一個<span class="LaTeX">$x$</span>在檢查型別時肯定是會失敗的， 我們根本沒辦法決定<span class="LaTeX">$x$</span>的型別啊！ 但<span class="LaTeX">$\lambda x: Base. x$</span>卻應該被成功編譯， 為什麼呢？ 因為在檢查內層的<span class="LaTeX">$x$</span>時， 我們的語境已經含有了<span class="LaTeX">$x: Base$</span>的資料， 現在能用這樣的資料檢查內層<span class="LaTeX">$x$</span>的型態。 換句話說， 遇到變數時， 我們只要在語境中進行搜索就好了。</p>
+<p>回到那堆符號上。</p>
+<h4 id="符號">符號</h4>
+<p><span class="LaTeX">$(var) \quad \Gamma \vdash x: T \quad \mbox{if } x: T \in \Gamma$</span></p>
+<p>我們把<span class="LaTeX">$\Gamma \vdash x: T$</span>叫做一個<strong>裁決</strong>， 裁決什麼？ 裁決了<span class="LaTeX">$x$</span>的type是<span class="LaTeX">$T$</span>。 由什麼裁決？ 由語境<span class="LaTeX">$\Gamma$</span>， <span class="LaTeX">$\Gamma$</span>代表著語境， 要如何進行這個裁決呢？ 看看後面的<span class="LaTeX">$\mbox{if } x: T \in \Gamma$</span>， 這告訴我們如果在語境<span class="LaTeX">$\Gamma$</span>中找到了<span class="LaTeX">$x$</span>的type是<span class="LaTeX">$T$</span>， 我們便能進行裁決： <span class="LaTeX">$\in$</span>讀成<em>屬於</em>。 整個組合起來是這樣： 如果<span class="LaTeX">$x: T$</span>在語境<span class="LaTeX">$\Gamma$</span>中， 則由<span class="LaTeX">$\Gamma$</span>可以裁決<span class="LaTeX">$x$</span>的型別是<span class="LaTeX">$T$</span>。</p>
+<p>不難對吧？ 而且還很像是廢話。</p>
+<p><span class="LaTeX">$(appl) \quad \dfrac{\Gamma \vdash t_1: T \to U \qquad \Gamma \vdash t_2: T}{\Gamma \vdash t_1 t_2: U}$</span></p>
+<p>你應該立刻會注意到那條橫線， 橫線上頭的裁決被稱為<strong>前提</strong>， 下面則是<strong>結論</strong>。 要是前提都成立的話， 結論便也成立， 前提有兩個， 第一個是<span class="LaTeX">$\Gamma \vdash t_1: T \to U$</span>， 這是一個<span class="LaTeX">$\Gamma$</span>對<span class="LaTeX">$t_1: T \to U$</span>的裁決； 第二個是<span class="LaTeX">$\Gamma \vdash t_2: T$</span>， 這是一個<span class="LaTeX">$\Gamma$</span>對<span class="LaTeX">$t_2: T$</span>的裁決； 結論是<span class="LaTeX">$\Gamma \vdash t_1 t_2: U$</span>， 這是一個<span class="LaTeX">$\Gamma$</span>對<span class="LaTeX">$t_1 t_2: U$</span>的裁決。 全部組合起來， 如果在<span class="LaTeX">$\Gamma$</span>裁決<span class="LaTeX">$t_1: T \to U$</span>和<span class="LaTeX">$t_2: T$</span>的前提下， <span class="LaTeX">$\Gamma$</span>對<span class="LaTeX">$t_1 t_2: U$</span>的裁決成立。 以目前來說也能反過來讀， 要檢查<span class="LaTeX">$t_1 t_2$</span>的型別， 只要檢查<span class="LaTeX">$\Gamma$</span>能否裁決<span class="LaTeX">$t_1: T \to U$</span>和<span class="LaTeX">$t_2: T$</span>就好， 然後回傳結果<span class="LaTeX">$U$</span>。 這也就是我們type check函數調用的方法， 接下來要講如何type check lambda：</p>
+<p><span class="LaTeX">$(abst) \quad \dfrac{\Gamma, x: T \vdash t: U }{\Gamma \vdash (\lambda x: T. t): T \to U}$</span></p>
+<p>這邊出現了新的符號：逗號， 只要解釋這個逗號的意義， 整個應該就能被讀懂了。 <span class="LaTeX">$\Gamma, x: T$</span>代表的是在<span class="LaTeX">$\Gamma$</span>上加上<span class="LaTeX">$x: T$</span>的新語境， 一整個讀起來會是這樣： 若<span class="LaTeX">$\Gamma$</span>加上<span class="LaTeX">$x: T$</span>的新語境能裁決<span class="LaTeX">$t: U$</span>， <span class="LaTeX">$\Gamma$</span>便能裁決<span class="LaTeX">$x: T. t$</span>的型別是<span class="LaTeX">$T \to U$</span>， type check時只要反過來讀就好。</p>
+<h3 id="實例">實例</h3>
+<p>來舉個實際例子好了， 我們試著找找看<span class="LaTeX">$(\lambda x: Base \to Base. x)(\lambda y: Base. y)$</span>的型別。 首先看看最外層的term， 它是一個函數調用， 因此我們應該要先試圖檢查左右兩邊的型別， 然後根據這樣的資料檢查一整個term的型別， 用符號表示是這樣：</p>
+<p><span class="LaTeX">$(appl) \quad \dfrac{\Gamma \vdash (\lambda x: Base \to Base. x): ?_1 \qquad \Gamma \vdash (\lambda y: Base. y): ?_2}{\Gamma \vdash (\lambda x: Base \to Base. x)(\lambda y: Base. y): ?_3}$</span></p>
+<p>只要解決了<span class="LaTeX">$?_1$</span>和<span class="LaTeX">$?_2$</span>， 你就知道<span class="LaTeX">$?_3$</span>要填入什麼。 先解決<span class="LaTeX">$?_1$</span>， 注意到了這個term是個lambda， 因此我們要在這裡套用<span class="LaTeX">$(abst)$</span>：</p>
+<p><span class="LaTeX">$(abst) \quad \dfrac{\Gamma, x: Base \to Base \vdash x: ?_4 }{\Gamma \vdash (\lambda x: Base \to Base. x): ?_1}$</span></p>
+<p>現在我們想知道<span class="LaTeX">$?_4$</span>是什麼。 我們已經遇到了一個變數， 因此接下來應該要用<span class="LaTeX">$(var)$</span>求得<span class="LaTeX">$?_4$</span>。 在這邊， 我們根本不需要<span class="LaTeX">$\Gamma$</span>， 因為<span class="LaTeX">$\vdash$</span>左邊的語境中已經有<span class="LaTeX">$x$</span>的型別資訊了， 而這代表著<span class="LaTeX">$\Gamma$</span>可以是個<strong>空語境</strong>， 寫作<span class="LaTeX">$\emptyset$</span>， 我來提出一個解釋語境究竟是什麼的想法： 語境是<em>自由變數的型別資料</em>， 為什麼檢查lambda的型別時要把約束變數的資料加入到語境裡面呢？ 因為原本在<span class="LaTeX">$\lambda x. t$</span>中不自由的<span class="LaTeX">$x$</span>變數， 到了<span class="LaTeX">$t$</span>裡面變成自由的了！ 因此檢查<span class="LaTeX">$t$</span>的型別時要在語境中加入<span class="LaTeX">$x$</span>的資料。 回到原本的主題上， <span class="LaTeX">$\Gamma$</span>可以是個空語境代表著什麼？ 這代表著我們不需要任何其它自由變數的資料就能進行判決， 由這個判決， 可以得到<span class="LaTeX">$x: Base \to Base$</span>， 也就是說<span class="LaTeX">$?_4 = Base \to Base$</span>。 回到<span class="LaTeX">$(abst)$</span>上， 要來解<span class="LaTeX">$?_1$</span>， 我們可以把<span class="LaTeX">$?_4 = Base \to Base$</span>填入了：</p>
+<p><span class="LaTeX">$(abst) \quad \dfrac{\emptyset, x: Base \to Base \vdash x: Base \to Base }{\Gamma \vdash (\lambda x: Base \to Base. x): ?_1}$</span></p>
+<p>根據<span class="LaTeX">$(abst)$</span>， 我們可以得到<span class="LaTeX">$?_1 = (Base \to Base) \to (Base \to Base)$</span>。 用和上述類似的方法， 我們得到<span class="LaTeX">$?_2 = Base \to Base$</span>， 因此上面提到過的<span class="LaTeX">$(appl)$</span>變成這樣：</p>
+<p><span class="LaTeX">$(appl) \quad \dfrac{\emptyset \vdash (\lambda x: Base \to Base. x): (Base \to Base) \to (Base \to Base) \qquad \emptyset \vdash (\lambda y: Base. y): Base \to Base}{\Gamma \vdash (\lambda x: Base \to Base. x)(\lambda y: Base. y): ?_3}$</span></p>
+<p>得到結論， <span class="LaTeX">$\emptyset \vdash (\lambda x: Base \to Base. x)(\lambda y: Base. y): Base \to Base$</span>。 也就是說我們不需要其他自由變數的資料， 就能得到<span class="LaTeX">$(\lambda x: Base \to Base. x)(\lambda y: Base. y)$</span>的型別是<span class="LaTeX">$Base \to Base$</span>。</p>
+<h3 id="補充">補充</h3>
+<p>啊對了， 差點忘記說一件事情， 你可能會想問， 假設有個函數<span class="LaTeX">$\lambda x: Base. x$</span>， 要怎麼丟一個<span class="LaTeX">$Base$</span>型態的參數給它呢？ 我根本就沒提到怎麼建構type為<span class="LaTeX">$Base$</span>的term啊！ 答案是……沒有辦法…… 至少在我介紹的這個最簡化的系統裡面沒辦法， 但就算沒辦法建構型別為<span class="LaTeX">$Base$</span>的term， 這個系統還是有某些用處的。 這個系統內存在type為<span class="LaTeX">$Base \to Base$</span>， 或者<span class="LaTeX">$(Base \to Base) \to (Base \to Base)$</span>的term， 即使沒有<span class="LaTeX">$Base$</span>型態的term， 我們還是能由系統內的term進行一些有意義的運算。。</p>
+<h2 id="lambda-calculus-6---curry-howard-correspondence">Lambda Calculus (6 - Curry-Howard correspondence)</h2>
+<p>這篇文章會討論有點不同的主題， 從這個問題開始： 你要怎麼寫一個term， 使得他的type為<span class="LaTeX">$\forall X. X$</span>？</p>
+<p>這是一個有點有趣的型別， 屬於它的term必須要能被當作任何型別的值， 顯然這有點無理。 假如你用的是Haskell， 或者是任何一個普通的程式語言， 事實上可行的辦法是讓這個函數永遠不要回傳值， 舉例來說讓它進入無窮迴圈， 或者是直接終止程式。 不過這些基本上都是<em>作弊</em>， 不是嗎？ 除了作弊之外， 的確你是不應該有辦法寫出這樣的term的。</p>
+<p>有沒有可能設計一個<em>沒辦法作弊</em>的程式語言呢？ 有的， 沒辦法作弊這樣的特性事實上有個聽起來比較專業的名詞：<strong>一致的</strong>。 前面我們介紹的所有lambda calculus都是一致的， 也就是說不存在型別為<span class="LaTeX">$\forall X. X$</span>的term， 一般的程式語言是在lambda calculus的基礎上加了太多其它結構， 讓你有辦法作弊。 為什麼那些程式語言要被這麼設計呢？ 因為作弊有時的確是好的， 當你寫真正的程式時， 你確實可能希望進入一個無窮迴圈， 永遠不要結束函數。 在先前介紹的各種最精簡的typed lambda裡面， 所有函數都有NF， 因此我們無法辦到這點。</p>
+<hr />
+<p>我要來直接切入一致性這樣的特性有什麼特別的意義了， 接下來給出的資訊可能有點多， 如果還沒辦法理解的話就一次背下來再繼續讀吧。</p>
+<p>二十世紀中的數學家們發現了一件事情， <em>型別系統</em>和<em>邏輯</em>是有直接的對應的， 更精確地說是如此： 不同的type可以被視為不同的<strong>命題</strong>， 而每個type的term則是它的<strong>證明</strong>， 這樣的關係被稱為<strong>柯里—霍華德對應</strong>。</p>
+<p>先來解釋一下命題是什麼： 一個命題可以被看為一個邏輯中可或不可證明的合法語句。 假如一個命題無論在任何前提下都成立的話， 則它被稱為<strong>套套句</strong>， 既然套套句是命題， 那麼便存在（至少）一個term的type是該命題對應到的type。</p>
+<p>舉個最早被發現的對應吧， 由柯里在1934年發現。 這樣的對應是：型別系統裡面的<span class="LaTeX">$\to$</span>(函數型別)對應到了邏輯裡面的<span class="LaTeX">$\to$</span>(蘊含)， 如果讀者不熟悉邏輯裡面的蘊含的話， 這邊稍微介紹一下： <span class="LaTeX">$A \to B$</span>在邏輯裡面的意思是<strong><span class="LaTeX">$A$</span>蘊含<span class="LaTeX">$B$</span></strong>， 換句話說就是由<span class="LaTeX">$A$</span>的真實性可以推導至<span class="LaTeX">$B$</span>的真實性。 單單只用<span class="LaTeX">$\to$</span>， 我們就能建立某些套套句， 舉例來說好了， 像是<span class="LaTeX">$A \to A$</span>(由任何事實能推導至它本身)， 或者是<span class="LaTeX">$A \to (B \to A)$</span>， （如果一個命題<span class="LaTeX">$A$</span>是事實， 那麼任何其它命題<span class="LaTeX">$B$</span>是事實都能推導出<span class="LaTeX">$A$</span>是事實。） 咦， 有沒有覺得有種熟悉的感覺？</p>
+<p>事實上， 這不就是<span class="LaTeX">$\mathbf{I}$</span>和<span class="LaTeX">$\mathbf{K}$</span>的type嗎？ 這印證了套套句能被證明這樣的說法。 但<span class="LaTeX">$\mathbf{I}$</span>和<span class="LaTeX">$\mathbf{K}$</span>的type前面的<span class="LaTeX">$\forall$</span>又要怎麼解釋呢？ 根據柯里—霍華德對應， <span class="LaTeX">$\forall$</span>對應到了「對於所有type……」， type被對應到了命題， 所以事實上也能解釋成「對於所有命題……」。 這麼一來， <span class="LaTeX">$\mathbf{I}$</span>的type能被解釋成<em>對於所有命題<span class="LaTeX">$A$</span>， <span class="LaTeX">$A$</span>蘊含自身</em>； <span class="LaTeX">$\mathbf{K}$</span>的type也能被類似的方式解讀， 只要在前面加上<em>對於所有命題<span class="LaTeX">$A$</span>和<span class="LaTeX">$B$</span></em>就可以了。 不存在type為<span class="LaTeX">$\forall X. X$</span>的term也因此會是型別系統裡很重要的特色， 一旦系統<em>不一致</em>， 任何命題都能被證明， 而顯然對於一個邏輯來說這並不是我們想要的。 在CoC裡面<span class="LaTeX">$\forall$</span>和<span class="LaTeX">$\to$</span>已經被統一， <span class="LaTeX">$\forall A. ...$</span>指的事實上是<span class="LaTeX">$(A: \star) \to ...$</span>， 其實我們也能有<span class="LaTeX">$(A: Bool) \to ...$</span>或<span class="LaTeX">$(A: Nat) \to ...$</span>， 分別指<em>對於所有布林值</em>和<em>對於所有自然數</em>， 依此類推。</p>
+<p>現在我們不知不覺進入了一階邏輯的領域， 這是型別理論和傳統邏輯不一樣的地方； 在傳統邏輯中， 一階邏輯的變數和命題是兩種完全不同的東西， 而在型別論中， 命題只不過是<span class="LaTeX">$\star$</span>的元素罷了， 而述詞（接收值傳回命題的函數）或高階述詞也能被輕鬆定義。</p>
+<p>命題邏輯除了<span class="LaTeX">$\to$</span>之外還有很多運算子， 現在我將一一定義。</p>
+<p>首先， 我把<span class="LaTeX">$\forall X. X$</span>當作一個最無法被證明的命題， 一旦它能被證明， 任何命題都能被推導出來， <span class="LaTeX">$\forall X. X$</span>在符號上因此被寫作<span class="LaTeX">$\bot$</span>， 顯然<span class="LaTeX">$\bot$</span>蘊含任何命題。 這邊來練習寫出第一個證明吧， 我想要證明的是<span class="LaTeX">$(A: \star) \to \bot \to A$</span>。 證明應該很顯而易見吧， 只要寫出一個type為<span class="LaTeX">$(A: \star) \to \bot \to A$</span>的term就好了， 而這樣的term是<span class="LaTeX">$\lambda A: \star. \lambda X: (A: \star) \to A. X A$</span>， 有趣的是我們調用了一個永遠不可能存在的函數（型別為<span class="LaTeX">$(A: \star) \to A$</span>）， 以符合我們想要證明的命題。</p>
+<p><span class="LaTeX">$\bot$</span>有時又被稱為<strong>矛盾</strong>。 現在我們可以定義否定了， 一個命題的否定能被證明代表它本身能推得矛盾， 寫成符號的話：</p>
+<p><span class="LaTeX">$\neg A \stackrel{def}{\equiv} A \to \bot$</span></p>
+<p>如果你有一點邏輯的基礎的話， 你可能會猜想， 現在我們能用<span class="LaTeX">$\to$</span>和<span class="LaTeX">$\neg$</span>用你所想像的那套方式來定義其它邏輯運算子。 很可惜這邊並不適用， 接下來我要來解釋為什麼。</p>
+<p>在一般邏輯學的教科書上， 你學到的那種邏輯被稱為<strong>古典邏輯</strong>， 而我們在這邊考慮的是一套稍微不同的系統， 被稱為<strong>直構邏輯</strong>。 問題在於， 在我們的詮釋下， 邏輯系統和型別系統已經成為了一體兩面， 而證明應該要能被當作程式調用： 例如像是前面提到的<span class="LaTeX">$\mathbf{I}$</span>和<span class="LaTeX">$\mathbf{K}$</span>， 除了作為命題的證明， 還能被用於真正的程式中。 可惜， 古典邏輯裡面有些定理（套套句）完全無法被當作程式運行， 例如像雙重否定律。</p>
+<p><span class="LaTeX">$\neg \neg A \to A$</span></p>
+<p><span class="LaTeX">$\neg \neg A$</span>依定義相等於<span class="LaTeX">$(A \to \bot) \to \bot$</span>， 雙重否定律是一個函數， 要有適當的參數才能調用它， 但事實是一個都沒有， 所以直覺上是不可能從這個函數得到<span class="LaTeX">$A$</span>的。 換言之， 不應該存在符合這個型別的程式。</p>
+<p>因此這邊要定義一個稍微比古典邏輯弱的系統， 你可能會覺得這樣有點可惜， 沒辦法證明一些原本能證明的定理。 好消息是， 只要假定雙重否定律， 直構邏輯就會變成古典邏輯， 這意味著你只要在需要的時候假定雙重否定律就好了， 只不過它們沒辦法被當作程式運行而已， 而且直構邏輯還提供了比古典邏輯更強大的表達能力， 就某種程度上， 直構邏輯裡面的一切命題都是能被建構的。</p>
+<p>我接下來要說邏輯中的<strong>或</strong>和<strong>且</strong>怎麼在CoC中被定義， 首先解釋<em>且</em>好了： <span class="LaTeX">$A$</span>且<span class="LaTeX">$B$</span>在邏輯上寫作<span class="LaTeX">$A \land B$</span>， 但一般型別系統中寫作<span class="LaTeX">$A \times B$</span>。 我們知道在CoC裡面幾乎只有函數這種東西而已， 因此<span class="LaTeX">$A \times B$</span>也應該被定義成某個函數， 首先， 我們知道如果<span class="LaTeX">$A$</span>和<span class="LaTeX">$B$</span>都能被證明， 則<span class="LaTeX">$A \times B$</span>也應該能被證明， 用符號可以寫成這樣：</p>
+<p><span class="LaTeX">$A \to B \to A \times B$</span></p>
+<p>上面的式子應被讀為<span class="LaTeX">$A \to B \to (A \times B)$</span>， 而非<span class="LaTeX">$(A \to B \to A) \times B$</span>。 這邊要進入有點困難的部分了， 來探討<span class="LaTeX">$A$</span>、<span class="LaTeX">$B$</span>、<span class="LaTeX">$A \times B$</span>和一任意<span class="LaTeX">$C$</span>的關係， 要探討另一命題的原因是因為在CoC裡面唯一能使用一個值的方式就是把他丟進一個函數， 定義<span class="LaTeX">$A \times B$</span>時又勢必要用到<span class="LaTeX">$A$</span>和<span class="LaTeX">$B$</span>， 而定義<span class="LaTeX">$A \times B$</span>所用到的函數應當能回傳任何型別的值(下寫作<span class="LaTeX">$C$</span>)， 所以<span class="LaTeX">$A \times B$</span>可以被定義成：</p>
+<p><span class="LaTeX">$(C: \star) \to A \to B \to C ...$</span></p>
+<p>這樣的定義還沒辦法滿足<span class="LaTeX">$A \to B \to A \times B$</span>， 因為一個隨意的<span class="LaTeX">$C$</span>被導入了： 假如把<span class="LaTeX">$A$</span>和<span class="LaTeX">$B$</span>丟進<span class="LaTeX">$(C: \star) \to A \to B \to C$</span>裡面， 它會丟回一個type為<span class="LaTeX">$C$</span>的term。 怎麼辦呢？ 因為<span class="LaTeX">$C$</span>其實本質上是不重要的， 不如我們就直接丟回<span class="LaTeX">$C$</span>吧， 把<span class="LaTeX">$A \times B$</span>的定義改成<span class="LaTeX">$(C: \star) \to (A \to B \to C) \to C$</span>， 而這就是<span class="LaTeX">$A \times B$</span>的定義了：</p>
+<p><span class="LaTeX">$A \times B \stackrel{def}{\equiv} (C: \star) \to (A \to B \to C) \to C$</span></p>
+<p>接下來講<span class="LaTeX">$A \times B$</span>在寫程式上有什麼意義， 在程式的領域， <span class="LaTeX">$A \times B$</span>被稱為一個<strong><span class="LaTeX">$A$</span>和<span class="LaTeX">$B$</span>的二元組</strong>， 它同時記錄了type為<span class="LaTeX">$A$</span>的term和type為<span class="LaTeX">$B$</span>的term兩者的資訊。 <span class="LaTeX">$A \times B$</span>本身是個type， 要建構<span class="LaTeX">$A \times B$</span>的term的方式如下：</p>
+<p><span class="LaTeX">$(a, b): A \times B \\ (a, b) \stackrel{def}{\equiv} \lambda C: \star. \lambda f: A \to B \to C. f a b$</span></p>
+<p>這樣的定義其實有點理所當然， 它告訴我們可以把任何依賴<span class="LaTeX">$a$</span>和<span class="LaTeX">$b$</span>的函數丟進去以產生一個新的<span class="LaTeX">$C$</span>的term。 接著來介紹如何從<span class="LaTeX">$(a, b)$</span>中取回<span class="LaTeX">$a$</span>和<span class="LaTeX">$b$</span>兩者的資訊， 稍微思考一下之後可以知道， 只要把適當的<span class="LaTeX">$f$</span>丟進去<span class="LaTeX">$(a, b)$</span>的定義就好了， 要取得<span class="LaTeX">$a$</span>的話用<span class="LaTeX">$\texttt{fst}$</span>， 要取得<span class="LaTeX">$b$</span>的話用<span class="LaTeX">$\texttt{snd}$</span>。</p>
+<p><span class="LaTeX">$\texttt{fst}: A \times B \to A \\ \texttt{fst} \stackrel{def}{\equiv} \lambda t: A \times B. t A (\lambda a: A. \lambda b: B. a) \\ \texttt{snd}: A \times B \to B \\ \texttt{snd} \stackrel{def}{\equiv} \lambda t: A \times B. t B (\lambda a: A. \lambda b: B. b)$</span></p>
+<p>其實有點像是循環論證啦， 畢竟我們定義出二元組就是用來能讓<span class="LaTeX">$\texttt{fst}$</span>和<span class="LaTeX">$\texttt{snd}$</span>能被寫出來啊….. 一個雞生蛋蛋生雞的概念。</p>
+<p>接著來介紹邏輯中的<em>或</em>， <span class="LaTeX">$A$</span>或<span class="LaTeX">$B$</span>在邏輯上寫作<span class="LaTeX">$A \lor B$</span>， 但通常型別系統中寫作<span class="LaTeX">$A + B$</span>， 不囉唆直接給定義了：</p>
+<p><span class="LaTeX">$A + B \stackrel{def}{\equiv} (C: \star) \to (A \to C) \to (B \to C) \to C$</span></p>
+<p><span class="LaTeX">$A + B$</span>的定義同樣會傳回一個任意的命題<span class="LaTeX">$C$</span>， 但不同的是它不需要同時接收<span class="LaTeX">$A$</span>和<span class="LaTeX">$B$</span>兩個參數， 而是接收<span class="LaTeX">$A \to C$</span>和<span class="LaTeX">$B \to C$</span>。 為什麼呢？ 因為現在我們不要求<span class="LaTeX">$A$</span>和<span class="LaTeX">$B$</span>同時成立， 而是其中一個成立就好了， 假如是<span class="LaTeX">$A$</span>成立好了， 我們能把它丟給<span class="LaTeX">$A \to C$</span>得到<span class="LaTeX">$C$</span>： 假如是<span class="LaTeX">$B$</span>成立也類似。 用這樣的寫法， 我們只需要求兩者其中之一成立就好了。</p>
+<p>現在來講<span class="LaTeX">$A + B$</span>在寫程式上頭的用途， 它儲存了<span class="LaTeX">$A$</span>或<span class="LaTeX">$B$</span>其中一者的term。 在<span class="LaTeX">$A \times B$</span>中， 要建構一個term只需要一個函數， 要獲得它的內容則有<span class="LaTeX">$\texttt{fst}$</span>和<span class="LaTeX">$\texttt{snd}$</span>兩種方式， <span class="LaTeX">$A + B$</span>則相反， 有兩種方式能建構一個type為<span class="LaTeX">$A + B$</span>的term， 但要使用它只有一種方式。</p>
+<p>要獲得<span class="LaTeX">$A + B$</span>的term的第一個方式是<span class="LaTeX">$\texttt{inl}$</span>， 以<span class="LaTeX">$A + B$</span>來說， <span class="LaTeX">$\texttt{inl}$</span>代表的是它的內容事實上是左邊的<span class="LaTeX">$A$</span>； 第二個方式則是<span class="LaTeX">$\texttt{inr}$</span>， 代表的是它的內容事實上是右邊的<span class="LaTeX">$B$</span>。</p>
+<p><span class="LaTeX">$\texttt{inl}: A \to A + B \\ \texttt{inl} \stackrel{def}{\equiv} \lambda a: A. \lambda C: \star. \lambda f: A \to C. \lambda g: B \to C. f a \\ \texttt{inr}: B \to A + B \\ \texttt{inr} \stackrel{def}{\equiv} \lambda a: A. \lambda C: \star. \lambda f: A \to C. \lambda g: B \to C. g a$</span></p>
+<p>至於要如何使用<span class="LaTeX">$A + B$</span>， <span class="LaTeX">$(C: \star) \to (A \to C) \to (B \to C) \to C$</span>這個type說得很清楚了： 我們要決定一個目標type， 就叫他<span class="LaTeX">$T$</span>好了， 然後提供一個<span class="LaTeX">$A \to T$</span>的函數和一個<span class="LaTeX">$B \to T$</span>的函數， 把它丟給<span class="LaTeX">$A + B$</span>的term後就會拿回一個<span class="LaTeX">$T$</span>。</p>
+<p>至於表示兩個命題相等的雙箭頭<span class="LaTeX">$\leftrightarrow$</span>， 則可以被定義成<span class="LaTeX">$A \leftrightarrow B \stackrel{def}{\equiv} (A \to B) \times (B \to A)$</span>， 命題邏輯的部分就到此告一段落了。</p>
+<p>在一階邏輯中， 還有另外一個符號用來表示<em>存在某個值使得一述詞成立</em>， 相對於<em>對於所有值一述詞成立</em>； 邏輯符號上寫作<span class="LaTeX">$\exists x. P$</span>。 在型別論裡面， <em>對於所有值一述詞成立</em>的對應是<span class="LaTeX">$\Pi$</span>-型別， 也就是回傳type裡面可使用輸入值的函數， 是原本<span class="LaTeX">$\to$</span>的推廣； <em>存在某個值使得一述詞成立</em>的對應則是<span class="LaTeX">$A \times B$</span>的推廣， 其中<span class="LaTeX">$B$</span>可以<em>依賴</em>type為<span class="LaTeX">$A$</span>的term， 這樣的型別被稱為<span class="LaTeX">$\Sigma$</span>-型別， 符號上則寫作</p>
+<p><span class="LaTeX">$\sum\limits_{a: A} B$</span></p>
+<p>其中<span class="LaTeX">$a$</span>被稱為<span class="LaTeX">$\Sigma$</span>的綁定變數。 和<span class="LaTeX">$\Pi$</span>-型別一樣， <span class="LaTeX">$\Sigma$</span>-型別中綁定變數的型別也不一定要是<span class="LaTeX">$\star$</span>， 而可以是一個一般的type。 舉例來說， 如果你想表示<em>對於某個自然數一述詞成立</em>， 你可以寫<span class="LaTeX">$\sum\limits_{n: Nat} B$</span>。</p>
+<p>要怎麼在CoC裡定義它呢？ 因為<span class="LaTeX">$\Sigma$</span>-型別是<span class="LaTeX">$\times$</span>的推廣， <span class="LaTeX">$\Sigma$</span>-型別的定義方法和<span class="LaTeX">$\times$</span>的也類似， 只是二元組裡面的第二個物體的type必須要能提到第一個物體的值， 事實上我們只要把原本定義裡面的<span class="LaTeX">$A$</span>改成可以被依賴的形式就好了：</p>
+<p><span class="LaTeX">$\sum\limits_{a: A} B \stackrel{def}{\equiv} (C: \star) \to ((a: A) \to B \to C) \to C$</span></p>
+<p>一旦<span class="LaTeX">$a$</span>能被依賴， <span class="LaTeX">$B$</span>這個type中便可以使用到<span class="LaTeX">$a$</span>。 如果要建構一個<span class="LaTeX">$\Sigma$</span>-型別的term， 我在此使用和普通<span class="LaTeX">$\times$</span>型別一樣的語法：</p>
+<p><span class="LaTeX">$(a, b): \sum\limits_{a: A} B \\ (a, b) \stackrel{def}{\equiv} \lambda C: \star. \lambda f: (a: A) \to B \to C. f a b$</span></p>
+<p><span class="LaTeX">$\texttt{fst}$</span>和<span class="LaTeX">$\texttt{snd}$</span>的定義則如下：</p>
+<p><span class="LaTeX">$\texttt{fst}: (\sum\limits_{a: A} B) \to A \\ \texttt{fst} \stackrel{def}{\equiv} \lambda t: \sum\limits_{a: A} B. t A (\lambda a: A. \lambda b: B. a) \\ \texttt{snd}: (t: \sum\limits_{a: A} B) \to B[a := \texttt{fst} \: t] \\ \texttt{snd} \stackrel{def}{\equiv} \lambda t: \sum\limits_{a: A} B. t (B[a := \texttt{fst} \: t]) (\lambda a: A. \lambda b: B. b)$</span></p>
+<p>以程式的角度來探討， <span class="LaTeX">$\Sigma$</span>-型別可以被想成是抹去type中一部份的資料。 舉例來說好了， 假設我們的系統裡有個叫<span class="LaTeX">$Array$</span>的type， <span class="LaTeX">$Array$</span>的型別是<span class="LaTeX">$\star \to Nat \to \star$</span>， 意思是它接收一個型別和一個自然數， 建構一個元素為那個型別且長度等同於那個自然數的陣列。 假如我想要寫一個函數， 把原本陣列裡重複的值刪除， 你不能把它的型別寫作<span class="LaTeX">$(T: \star) \to (n: Nat) \to Array \: T \: n \to Array \: T \: n$</span>， 這樣寫的話， 你傳入和傳回陣列的<span class="LaTeX">$n$</span>必須是同一個值， 問題是一旦你刪除了陣列裡的某些元素， 陣列的長度就會縮短！ 事實上應該被表達的是回傳的<span class="LaTeX">$Array$</span>的長度是某個特定的值， 但我們不確定那個值是什麼， 換句話說， 我想抹去type中長度的資料， 所以我應該用<span class="LaTeX">$\Sigma$</span>-型別這麼寫：</p>
+<p><span class="LaTeX">$(T: \star) \to (n: Nat) \to Array \: T \: n \to \sum\limits_{m: Nat} Array \: T \: m$</span></p>
+</body>
+</html>
